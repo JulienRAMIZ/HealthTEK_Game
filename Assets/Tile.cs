@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
+    [SerializeField] public GameObject _room;
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
+
 
     public void Init(bool isOffset)
     {
