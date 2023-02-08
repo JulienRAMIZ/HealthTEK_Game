@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tilePrefab: {fileID: 8267566606466411522, guid: e93aacf1573871b4c889f0de97531abb, type: 3}
-  _width: 5
-  _height: 5
+  _width: 10
+  _height: 10
   _cam: {fileID: 519420032}
 --- !u!4 &323351514
 Transform:
@@ -262,6 +262,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5834794293395042884, guid: 0f898b51db9e17b4e8bed22a1ef70767, type: 3}
+      propertyPath: m_Color.b
+      value: 0.2785476
+      objectReference: {fileID: 0}
+    - target: {fileID: 5834794293395042884, guid: 0f898b51db9e17b4e8bed22a1ef70767, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6886792
+      objectReference: {fileID: 0}
+    - target: {fileID: 5834794293395042884, guid: 0f898b51db9e17b4e8bed22a1ef70767, type: 3}
+      propertyPath: m_Color.r
+      value: 0.11304731
+      objectReference: {fileID: 0}
     - target: {fileID: 5834794293395042885, guid: 0f898b51db9e17b4e8bed22a1ef70767, type: 3}
       propertyPath: m_RootOrder
       value: 2
