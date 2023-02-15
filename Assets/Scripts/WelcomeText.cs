@@ -16,77 +16,75 @@ public class WelcomeText : MonoBehaviour
     public string[] contextSentences;
     public Button startButton;
     public Button skipButton;
+    public Button nextButton;
+    public Button previousButton;
     public TextMeshProUGUI contextText;
-    public float typingSpeed;
-    //public AudioClip welcomeMusic;
-    private int index;
-    private float waitTime = 3.0f;
+    private int indexNext;
 
     // Start is called before the first frame update
     void Start()
     {
-       // logoEstia.SetActive(true);
-       // logoDonosti.SetActive(true);
-        StartCoroutine(DisplayText());
+        // logoEstia.SetActive(true);
+        // logoDonosti.SetActive(true);
         startButton.gameObject.SetActive(false);
         skipButton.gameObject.SetActive(true);
+        nextButton.gameObject.SetActive(true);
+        previousButton.gameObject.SetActive(false);
+        NextSentence();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if ( index < contextSentences.Length) 
+        if (indexNext <= 1)
         {
-            if (contextText.text == contextSentences[index])
-            {
-                NextSentence();
-            }
-            
-        } 
+            previousButton.gameObject.SetActive(false); 
+        }
+
         else 
         {
-            StopAllCoroutines();
-            startButton.gameObject.SetActive(true);
-            skipButton.gameObject.SetActive(false);
-        } 
-
-    }
-
-    IEnumerator DisplayText()
-    {
-        foreach(char letter in contextSentences[index].ToCharArray())
-        {
-            contextText.text += letter;
-            yield return new WaitForSeconds(typingSpeed);
+            previousButton.gameObject.SetActive(true);    
         }
     }
 
-    IEnumerator WaitThenDisplay()
-    {
-        yield return new WaitForSeconds(waitTime);
-        contextText.text = "";
-        StartCoroutine(DisplayText());
-    }
-
-    // Display the next sentence of a coroutine 
-
+    /* Display the next explanation whenever the user clicks on the "Next" button
+       If we reach the last explanation, the user can directly presses "Start" */
     public void NextSentence()
     {
-        if (index < contextSentences.Length)
+        if (indexNext < contextSentences.Length && indexNext >= 0)
         {
-            index++;
-            StartCoroutine(WaitThenDisplay());   
-
+            contextText.text = contextSentences[indexNext];
+            indexNext++;
         }
-        /*else
+       
+        if (indexNext == contextSentences.Length)
         {
             Debug.Log("done");
-            contextText.text = "";
             startButton.gameObject.SetActive(true);
             skipButton.gameObject.SetActive(false);
-        }*/
+            nextButton.gameObject.SetActive(false);
+        }
+        
+        Debug.Log(indexNext);
     }
 
+    // Display the previous explanation whenever the user clicks on the "Previous" button
+    public void PreviousSentence()
+    {
+        contextText.text = contextSentences[indexNext-2];
+        Debug.Log(contextSentences[indexNext-2]);
+        indexNext --;
+        if (indexNext <= 0)
+        {
+            indexNext = 0;
+        }
+        if (nextButton.gameObject.activeSelf == false)
+        {
+            nextButton.gameObject.SetActive(true);
+        }
+    }
+
+    // Display the screen where the user can set the game difficulty
     public void ChangeScreen()
     {
         welcomeScreen.SetActive(false);
