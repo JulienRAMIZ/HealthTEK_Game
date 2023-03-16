@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class GridScript : MonoBehaviour
 {
-    [SerializeField] private Tile _tilePrefab;
-    [SerializeField] private int _width, _height;
+    [SerializeField] public Tile _tilePrefab;
+    [SerializeField] public int _width, _height;
     [SerializeField] private Transform _cam;
-    private Dictionary<Vector2, Tile> _tiles;
+    public Dictionary<Vector2, Tile> _tiles;
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GenerateGrid();
     }
@@ -20,19 +20,20 @@ public class GridScript : MonoBehaviour
 
     public void GenerateGrid()
     {
-        _tiles = new Dictionary<Vector2, Tile>();
         for (int x = 0; x < _width; x++)
         {
             for (int y = 0; y < _height; y++)
             {
-                var spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y), Quaternion.identity);
+                var spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y,(float)1), Quaternion.identity);
                 spawnedTile.name = $"room {x} {y}";
 
                 //var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
                 var isOffset = (x % 2 != y % 2);
                 spawnedTile.Init(isOffset);
 
-                _tiles[new Vector2(x, y)] = spawnedTile;
+
+                //_tiles[new Vector2(x, y)] = spawnedTile;
+
             }
         }
         
@@ -45,4 +46,5 @@ public class GridScript : MonoBehaviour
         if (_tiles.TryGetValue(pos, out var tile)) return tile;
         return null;
     }
+
 }
