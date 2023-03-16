@@ -24,11 +24,11 @@ public class GameManager : MonoBehaviour
     private GameObject SelectedButton;
     private bool CorrectChoice = false;
     //private readonly string FilePath = "C:/DEV/QnA.csv";
-    private readonly string FilePath = "..\\Assets\\QnA_Files\\QnA.csv";
     private int RandomIndex;
 
     void Start()
     {
+        string FilePath = Application.dataPath + "/QnA_Files/QnA.csv";
         QuestionScreen.SetActive(false);
 
         //Open the questions and answers file and retrieve the values

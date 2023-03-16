@@ -5,12 +5,11 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private GameObject character;
     Vector3 mousePos = new Vector3();
     public float speed = 50f;
     private Vector3 target;
     private Vector2 target2D;
-    public GridScript grid;
+    private GridScript grid;
 
 
     private void Start()
