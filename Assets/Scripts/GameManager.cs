@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviour
     private string CorrectAnswer;
     private GameObject SelectedButton;
     private bool CorrectChoice = false;
-    private readonly string FilePath = "C:/DEV/QnA.csv";
+    //private readonly string FilePath = "C:/DEV/QnA.csv";
+    private readonly string FilePath = "..\\Assets\\QnA_Files\\QnA.csv";
     private int RandomIndex;
 
     void Start()
