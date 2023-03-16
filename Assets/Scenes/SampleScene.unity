@@ -1180,7 +1180,7 @@ GameObject:
   - component: {fileID: 323351514}
   - component: {fileID: 323351513}
   m_Layer: 0
-  m_Name: GridMananger
+  m_Name: GridManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
