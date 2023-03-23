@@ -8,8 +8,15 @@ public class Tile : MonoBehaviour
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private GameObject _highlight;
+    
+    private PlayerController player;
+    private GridScript grid;
 
 
+    public void Start()
+    {
+        player = GameObject.Find("Character").GetComponent<PlayerController>();
+    }
     public void Init(bool isOffset)
     {
         // .... ? ... : ... => ? = if quelque chose est vrai ?, si oui je fais ça sinon (:) je fais ça
@@ -19,10 +26,25 @@ public class Tile : MonoBehaviour
     void OnMouseEnter()
     {
         _highlight.SetActive(true);
+
+        if (this.CompareTag("OpenedDoor") == true)
+        {   
+            Debug.Log("test");
+            player.ableMoving = true;
+        }
+        else
+        {
+            //player.ableMoving = false;
+        }
     }
 
     void OnMouseExit()
     {
         _highlight.SetActive(false);
+        if (player.isMoving == false)
+        {
+            player.ableMoving = false;
+        }
+
     }
 }
