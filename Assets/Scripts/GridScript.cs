@@ -9,13 +9,13 @@ public class GridScript : MonoBehaviour
     [SerializeField] public int _width, _height;
     [SerializeField] private Transform _cam;
 
-    public GameObject _room;
+    private GameObject _room;
     public GameObject[,] _listTiles;
 
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         GenerateGrid();
         _listTiles[2, 2].tag = "ClosedDoor";
@@ -34,8 +34,8 @@ public class GridScript : MonoBehaviour
                 spawnedTile.name = $"room {x} {y}";
                 _room = GameObject.Find("room " + x + " " + y);
                 _listTiles[x, y] = _room;
-                _listTiles[x, y].tag = "OpenedDoor";
-                Debug.Log("Voici la liste " + _listTiles[x,y].transform.position);
+                _listTiles[x, y].tag = "ClosedDoor";
+                //Debug.Log("Voici la liste " + _listTiles[x,y].transform.position);
 
                 //var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
                 var isOffset = (x % 2 != y % 2);
