@@ -33,13 +33,19 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        if (player.transform.position.x - this.transform.position.x == MathF.Abs(1) && player.transform.position.y - this.transform.position.y == MathF.Abs(1))
+        if (player.transform.position.x - transform.position.x == -1 || player.transform.position.x - transform.position.x == 1 || player.transform.position.y - transform.position.y == -1 || player.transform.position.y - transform.position.y == 1)
         {
-            isClose = true;
+            if (player.transform.position.x - transform.position.x == 0 ||  player.transform.position.y - transform.position.y == 0 )
+            {
+                isClose = true;
+                Debug.Log("en x on a : " + (player.transform.position.x - this.transform.position.x) + " Et en y on a : " + (player.transform.position.y - this.transform.position.y));
+            }
+
         }
 
         if (CompareTag("OpenedDoor") == true)
         {
+            _redHighlight.SetActive(false);
             _whiteHighlight.SetActive(true);
             if (isClose) { player.ableMoving = true; }
         }
@@ -67,11 +73,22 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left && _redHighlight == true)
+        if (eventData.button == PointerEventData.InputButton.Left && _redHighlight == true && isClose == true)
         {
             goQnA = true;
             manager.PopUpQuestion();
         }
 
+    }
+    public void CorrectAnswer()
+    {
+        if (manager.CorrectChoice) 
+        {
+            this.tag = "OpenedDoor";
+            _whiteHighlight.SetActive(true);
+            player.ableMoving = true;
+
+
+        }
     }
 }
