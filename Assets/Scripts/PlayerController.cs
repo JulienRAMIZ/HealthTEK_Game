@@ -109,8 +109,8 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
         }
-        isMoving = false;
-        ableMoving = false;
+        //isMoving = false;
+        //ableMoving = false;
     }
 
     //Raycast2D ne marche pas super, je le garde au cas où ça pourrait servir
