@@ -20,10 +20,10 @@ public class GameManager : MonoBehaviour
     public GameObject QuestionScreen;
     public GameObject[] Choices;
     public List<string> QnA;
-    public GameObject tile;
+    public Tile tile;
     private string CorrectAnswer;
     private GameObject SelectedButton;
-    private bool CorrectChoice = false;
+    public bool CorrectChoice = false;
     //private readonly string FilePath = "C:/DEV/QnA.csv";
     private int RandomIndex;
 
@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.Log("Correct Answer");
                     CorrectChoice = true;
+                    tile.CorrectAnswer();
                     break;
                 }
                 else
