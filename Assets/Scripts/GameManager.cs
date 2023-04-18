@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject QuestionScreen;
     public GameObject[] Choices;
     public List<string> QnA;
+    public GameObject tile;
     private string CorrectAnswer;
     private GameObject SelectedButton;
     private bool CorrectChoice = false;
