@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
         grid = GameObject.Find("GridManager").GetComponent<GridScript>();
         _openedTiles = new GameObject[grid._width, grid._height];
         _closedTiles = new GameObject[grid._width, grid._height];
+        grid._listTiles[(int)transform.position.x,(int)transform.position.y].tag = "OpenedDoor";
 
         
 
