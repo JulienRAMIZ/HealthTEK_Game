@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour
     // public TextMeshProUGUI TimeText;
     // public TextMeshProUGUI QuestionTitle;
     // private float time = 0.0f; //timer
-
     public GameObject TitleScreen;
     public TextMeshProUGUI QuestionText;
     public Button QuestionButton;
@@ -21,9 +20,14 @@ public class GameManager : MonoBehaviour
     public GameObject[] Choices;
     public List<string> QnA;
     public Tile tile;
+    public GridScript grid;
+
+    [System.NonSerialized]
+    public int tileX,tileY;
+
     private string CorrectAnswer;
     private GameObject SelectedButton;
-    public bool CorrectChoice = false;
+    private bool CorrectChoice = false;
     //private readonly string FilePath = "C:/DEV/QnA.csv";
     private int RandomIndex;
 
@@ -108,7 +112,8 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.Log("Correct Answer");
                     CorrectChoice = true;
-                    tile.CorrectAnswer();
+                    grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                    Debug.Log(grid._listTiles[tileX, tileY]);
                     break;
                 }
                 else
