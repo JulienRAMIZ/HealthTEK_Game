@@ -13,13 +13,18 @@ public class GameManager : MonoBehaviour
     // public TextMeshProUGUI TimeText;
     // public TextMeshProUGUI QuestionTitle;
     // private float time = 0.0f; //timer
-
     public GameObject TitleScreen;
     public TextMeshProUGUI QuestionText;
     public Button QuestionButton;
     public GameObject QuestionScreen;
     public GameObject[] Choices;
     public List<string> QnA;
+    public Tile tile;
+    public GridScript grid;
+
+    [System.NonSerialized]
+    public int tileX,tileY;
+
     private string CorrectAnswer;
     private GameObject SelectedButton;
     private bool CorrectChoice = false;
@@ -107,6 +112,8 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.Log("Correct Answer");
                     CorrectChoice = true;
+                    grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                    Debug.Log(grid._listTiles[tileX, tileY]);
                     break;
                 }
                 else
