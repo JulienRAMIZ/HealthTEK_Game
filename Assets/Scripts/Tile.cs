@@ -20,6 +20,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 
 
+
     public void Start()
     {
         player = GameObject.Find("Character").GetComponent<PlayerController>();
@@ -45,6 +46,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
         if (CompareTag("OpenedDoor") == true)
         {
+            goQnA = false;
             _redHighlight.SetActive(false);
             _whiteHighlight.SetActive(true);
             if (isClose) { player.ableMoving = true; }
@@ -53,6 +55,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             _redHighlight.SetActive(true);
             player.ableMoving = false;
+            goQnA = true;
 
         }
 
@@ -62,33 +65,22 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
         _whiteHighlight.SetActive(false);
-        if (goQnA == false) 
-        { 
-            _redHighlight.SetActive(false); 
-        
-        }
+        _redHighlight.SetActive(false);
+
         isClose = false;
 
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left && _redHighlight == true && isClose == true)
+        if (eventData.button == PointerEventData.InputButton.Left && _redHighlight == true && isClose == true && goQnA)
         {
-            goQnA = true;
+            manager.tileX = (int)transform.position.x;
+            manager.tileY = (int)transform.position.y;
+            Debug.Log("position du tile : " + manager.tileX + " , " + manager.tileY);
             manager.PopUpQuestion();
         }
 
     }
-    public void CorrectAnswer()
-    {
-        if (manager.CorrectChoice) 
-        {
-            this.tag = "OpenedDoor";
-            _whiteHighlight.SetActive(true);
-            player.ableMoving = true;
 
-
-        }
-    }
 }
