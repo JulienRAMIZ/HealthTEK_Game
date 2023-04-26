@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
                 {
                     Debug.Log("Correct Answer");
                     CorrectChoice = true;
+                    //récupère la position de la room d'où vient la question, et change son tag. La position provient de Tile via la fonction OnPointerDown()
                     grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                     Debug.Log(grid._listTiles[tileX, tileY]);
                     break;

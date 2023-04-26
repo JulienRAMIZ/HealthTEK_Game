@@ -15,25 +15,33 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public PlayerController player;
     private GridScript grid;
     private GameManager manager;
+
+    //Active la possibilité de recevoir une question
     public bool goQnA;
+    //Si le pointer est proche du personnage (case adjacente) on peut activer la phase question
     public bool isClose = false;
 
 
-
+    //Script qui agit sur chaque room crée depuis GridScript
 
     public void Start()
     {
+        //On récupère les script dont on a besoin
         player = GameObject.Find("Character").GetComponent<PlayerController>();
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     public void Init(bool isOffset)
     {
-        // .... ? ... : ... => ? = if quelque chose est vrai ?, si oui je fais ça sinon (:) je fais ça
+        //permet de changer de couleur 1 room sur 2 (référence dans GridScript)
+        // explication de la syntaxe .... ? ... : ... => ? = if quelque chose est vrai (?), si oui je fais ça sinon (:) je fais ça
         _renderer.color = isOffset ? _offsetColor : _baseColor;
     }
 
+
+    //Lorsque la souris entre dans une room
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
+        //Limitation des mouvements aux cases adjacentes 
         if (player.transform.position.x - transform.position.x == -1 || player.transform.position.x - transform.position.x == 1 || player.transform.position.y - transform.position.y == -1 || player.transform.position.y - transform.position.y == 1)
         {
             if (player.transform.position.x - transform.position.x == 0 ||  player.transform.position.y - transform.position.y == 0 )
@@ -43,7 +51,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             }
 
         }
-
+        // le tag OpenedDoor signifie que l'on a répondu correctement à la question de la room et qu'on peut donc avancer dedans, par défaut les room ont le tag ClosedDoor
         if (CompareTag("OpenedDoor") == true)
         {
             goQnA = false;
@@ -61,7 +69,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     }
 
-
+    //Lorsque la souris sort d'une room
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
         _whiteHighlight.SetActive(false);
@@ -71,6 +79,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     }
 
+    //Lorsqu'on fait un clic gauche en étant sur la room
     public void OnPointerDown(PointerEventData eventData)
     {
         if (eventData.button == PointerEventData.InputButton.Left && _redHighlight == true && isClose == true && goQnA)

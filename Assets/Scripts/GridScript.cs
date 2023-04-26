@@ -22,6 +22,7 @@ public class GridScript : MonoBehaviour
     }
 
 
+    //Génère le carré 5x5 de room, définit le nom des room et place la caméra, pas de changement prévu ici si ce n'est la position de la caméra au cas où
     public void GenerateGrid()
     {
         _listTiles = new GameObject[_width, _height];
@@ -35,19 +36,15 @@ public class GridScript : MonoBehaviour
                 _room = GameObject.Find("room " + x + " " + y);
                 _listTiles[x, y] = _room;
                 _listTiles[x, y].tag = "ClosedDoor";
-                //Debug.Log("Voici la liste " + _listTiles[x,y].transform.position);
 
-                //var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
+                //équivalent de :var isOffset = (x % 2 == 0 && y % 2 != 0) || (x % 2 != 0 && y % 2 == 0);
                 var isOffset = (x % 2 != y % 2);
                 spawnedTile.Init(isOffset);
-
-
-
-                //_tiles[new Vector2(x, y)] = spawnedTile;
 
             }
         }
         
+        //Camera position
         _cam.transform.position = new Vector3((float)_width / 2 + 5.5f, (float)_height / 2 - 0.5f, -10);
 
     }
