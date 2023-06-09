@@ -4,49 +4,39 @@ using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
 
+/* Script that controls the player */
 public class PlayerController : MonoBehaviour
 {
-    
     public float speed = 50f;
     [System.NonSerialized] public bool ableMoving, isMoving;
     private Vector3 target;
-    private Vector2 target2D;
     private GridScript grid;
-    private Tile tile;
 
+    // Unused variables
+    private Vector2 target2D;
+    private Tile tile;
     private GameObject[,] _openedTiles;
     private GameObject[,] _closedTiles;
 
-
     private void Start()
     {
-        //On récupère les script dont on a besoin
+        // We retrieve the scripts we need
         grid = GameObject.Find("GridManager").GetComponent<GridScript>();
         _openedTiles = new GameObject[grid._width, grid._height];
         _closedTiles = new GameObject[grid._width, grid._height];
         grid._listTiles[(int)transform.position.x,(int)transform.position.y].tag = "OpenedDoor";
-
-        
-
     }
 
     private void Update()
     {
-        
         if (ableMoving == true)
         {
-            //Calcul le déplacement à faire entre le personnage et le clic gauche
+            // Calculate the movement to make between the player and the left click
             calculDestination();
-            //Exécute le mouvement si on est dans une condition de déplacement
+            // Execute the movement if we respect one of the movement conditions 
             MoveCharacter();
         }
-
-
     }
-
-        
-    
-
 
     public void calculDestination()
     {
@@ -59,8 +49,7 @@ public class PlayerController : MonoBehaviour
             target.x = (float)Math.Round(target.x);
             target.y = (float)Math.Round(target.y);
 
-            //Si le clic est à l'extérieur du maze, le perso va à la case la plus proche
-
+            // If the click happens inside the maze, the player moves to the closest square. 
             if (target.x <= 0)
             {
                 target.x = 0;
@@ -78,11 +67,7 @@ public class PlayerController : MonoBehaviour
             {
                 target.y = grid._height - 1;
             }
-
-
         }
-        
-
     }
 
     public void MoveCharacter()
@@ -91,9 +76,6 @@ public class PlayerController : MonoBehaviour
         {
             isMoving = true;
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-
         }
-
     }
-
 }

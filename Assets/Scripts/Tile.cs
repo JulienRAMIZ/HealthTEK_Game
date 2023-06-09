@@ -3,93 +3,120 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
+/* Script that acts on each room from the GridScript */
 public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
 {
     [SerializeField] public GameObject _room;
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
-    [SerializeField] private GameObject _whiteHighlight;
+    [SerializeField] private Sprite _exit;
+    [SerializeField] private GameObject _greenHighlight;
     [SerializeField] private GameObject _redHighlight;
-    
+ 
     public PlayerController player;
-    private GridScript grid;
-    private GameManager manager;
-
-    //Active la possibilité de recevoir une question
-    public bool goQnA;
-    //Si le pointer est proche du personnage (case adjacente) on peut activer la phase question
+    // Variable that allows the possibility to receive the question
+    public bool goQnA = true;
+    // If the pointer is close  to the player (adjacent square), we can pop up the question
     public bool isClose = false;
+    public bool goingToExitRoom = false;
 
-
-    //Script qui agit sur chaque room crée depuis GridScript
+    private GameManager manager;
 
     public void Start()
     {
-        //On récupère les script dont on a besoin
+        // We retrieve the scripts we need
         player = GameObject.Find("Character").GetComponent<PlayerController>();
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
     public void Init(bool isOffset)
     {
-        //permet de changer de couleur 1 room sur 2 (référence dans GridScript)
-        // explication de la syntaxe .... ? ... : ... => ? = if quelque chose est vrai (?), si oui je fais ça sinon (:) je fais ça
+        // Change the color every other square (reference in the GridScript)
+        // Syntax explanation.... ? ... : ... => ? = if something is true (?), if yes I do this otherwise (:) I do that
         _renderer.color = isOffset ? _offsetColor : _baseColor;
+        if( _renderer.transform.position.x == 4 && _renderer.transform.position.y == 4)
+        {
+            _renderer.sprite  = _exit;
+        }
     }
 
-
-    //Lorsque la souris entre dans une room
+    // When the mouse enters in a room
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-        //Limitation des mouvements aux cases adjacentes 
+        // Limit the movements to the adjacent squares
         if (player.transform.position.x - transform.position.x == -1 || player.transform.position.x - transform.position.x == 1 || player.transform.position.y - transform.position.y == -1 || player.transform.position.y - transform.position.y == 1)
         {
-            if (player.transform.position.x - transform.position.x == 0 ||  player.transform.position.y - transform.position.y == 0 )
+            if (player.transform.position.x - transform.position.x == 0 || player.transform.position.y - transform.position.y == 0)
             {
                 isClose = true;
-                Debug.Log("en x on a : " + (player.transform.position.x - this.transform.position.x) + " Et en y on a : " + (player.transform.position.y - this.transform.position.y));
-            }
-
+                //Debug.Log("en x on a : " + (player.transform.position.x - this.transform.position.x) + " Et en y on a : " + (player.transform.position.y - this.transform.position.y));
+            }    
         }
-        // le tag OpenedDoor signifie que l'on a répondu correctement à la question de la room et qu'on peut donc avancer dedans, par défaut les room ont le tag ClosedDoor
-        if (CompareTag("OpenedDoor") == true)
+
+        // The OpenedDoor tag means that the player answered correctlty and that he can move to the rrom. The default tag is ClosedDoor.
+        if (CompareTag("OpenedDoor") == true )
         {
             goQnA = false;
             _redHighlight.SetActive(false);
-            _whiteHighlight.SetActive(true);
+            _greenHighlight.SetActive(true);
             if (isClose) { player.ableMoving = true; }
+        }
+
+        /* Ideas suspended for now
+         else if (CompareTag("Obstacle") == true)
+         {
+             _redHighlight.SetActive(true);
+             player.ableMoving = false;
+             deadEnd = true;
+         }
+        else if (CompareTag("RoomDownExitRoom") == true || CompareTag("RoomLeftExitRoom") == true)
+        {
+           goQnA = true;
+            player.ableMoving = false;
+            _redHighlight.SetActive(true);
+        }*/
+        else if (CompareTag("ExitRoom") == true)
+        {
+            goQnA = true;
+            player.ableMoving = false;
+            goingToExitRoom = true;
         }
         else
         {
             _redHighlight.SetActive(true);
             player.ableMoving = false;
             goQnA = true;
-
         }
-
     }
 
-    //Lorsque la souris sort d'une room
+    // When the mouse exits a room
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
-        _whiteHighlight.SetActive(false);
+        _greenHighlight.SetActive(false);
         _redHighlight.SetActive(false);
-
         isClose = false;
-
     }
 
-    //Lorsqu'on fait un clic gauche en étant sur la room
+    // When we do a left click while being on a room
     public void OnPointerDown(PointerEventData eventData)
-    {
-        if (eventData.button == PointerEventData.InputButton.Left && _redHighlight == true && isClose == true && goQnA)
+    { 
+        if (eventData.button == PointerEventData.InputButton.Left && _redHighlight == true && isClose == true && goQnA && manager.questionPopped == false) 
+        {
+            manager.tileX = (int)transform.position.x;
+            manager.tileY = (int)transform.position.y;
+            manager.PopUpQuestion();  
+        }
+        else if (eventData.button == PointerEventData.InputButton.Left && _redHighlight == true && isClose == false) // and tag différet de opende door
+        {
+            StartCoroutine(manager.ShowMessage("You can't move here.", 3));
+        }
+        else if (eventData.button == PointerEventData.InputButton.Left && goQnA && goingToExitRoom == true)
         {
             manager.tileX = (int)transform.position.x;
             manager.tileY = (int)transform.position.y;
             Debug.Log("position du tile : " + manager.tileX + " , " + manager.tileY);
             manager.PopUpQuestion();
         }
-
     }
-
 }

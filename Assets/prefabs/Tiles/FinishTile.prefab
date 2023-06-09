@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6332762846694146310}
   m_Layer: 0
   m_Name: FinishTile
-  m_TagString: Untagged
+  m_TagString: OpenedDoor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,13 @@ MonoBehaviour:
   _baseColor: {r: 0.11135638, g: 0.67119896, b: 0.8679245, a: 1}
   _offsetColor: {r: 0.10765399, g: 0.41932568, b: 0.5283019, a: 1}
   _renderer: {fileID: 8266261342554459377}
-  _highlight: {fileID: 4418196810771623090}
+  _exit: {fileID: 0}
+  _greenHighlight: {fileID: 0}
+  _redHighlight: {fileID: 0}
+  player: {fileID: 0}
+  goQnA: 0
+  isClose: 0
+  goingToExitRoom: 0
 --- !u!61 &6332762846694146310
 BoxCollider2D:
   m_ObjectHideFlags: 0

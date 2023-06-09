@@ -6,6 +6,11 @@ TagManager:
   tags:
   - ClosedDoor
   - OpenedDoor
+  - Obstacle
+  - ExitRoom
+  - ExitRoomReached
+  - RoomDownExitRoom
+  - RoomLeftExitRoom
   layers:
   - Default
   - TransparentFX
