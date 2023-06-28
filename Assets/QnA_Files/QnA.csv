@@ -1,21 +1,41 @@
-Question;Possible_Answers;Correct_Answer
-Comment appelle t on le chiffon pour nettoyer les lunettes ?;Chamoisine,Chafoisine,Chadoisine,Chanoisine;Chamoisine
-Laquelle de ces propositions n’est pas une appellation du 'Pierre Feuille Ciseaux' dans le monde ?;Klet-Klat-Klout en Finlande,Schnick-Schnack-Schnuck en Allemagne,Kawi-Bawi-Bo en Corée,Chiam-Cham-Choum au Liban;Klet-Klat-Klout en Finlande
-Une seule de ces celebrites a ete videur de boite de nuit dans sa jeunesse, Qui?;Steven Seagal,Guillaume Gallienne,Didier Deschamps,Le Pape Francois;Le Pape Francois
-Sur le territoire de quel pays pouvait-on trouver les Azteques ?;Bresil,Perou,Argentine,Mexique;Mexique
-De quel courant philosophique Plotin est il le grand representant ?;Neoplatonisme,Aristoletisme,Stoicisme,Scepticisme;Neoplatonisme
-Qui a realise le film In the mood for love ?;Chan Feng Zhao,Wong Kar-Wai,Zhang Yimou,Scorsese;Wong Kar-Wai
-Parmi les hommes politiques suivants, lequel a succede a Hugo Chavez en tant que President du Venezuela ?;Evo Morrales,Rafael Correa,Nicolas Maduro,Lula;Nicolas Maduro
-De l œuvre de quel ecrivain est tiree la celebre question 'Que sais je' ?;Montaigne,Etienne de la Boetie,Diderot,Voltaire;Montaigne
-En solfege, comment appelle t on le silence qui dure un temps ?;Un soupir,Une pause,Un silence,Un souffle;Un soupir
-En 2014, quelle entreprise rachete la branche energie d Alstom ?;Philips,General Electrics,Siemens,3M co;General Electrics
-On dit qu'un taureau ?;beguete,barete,beugle,clabaude;beugle
-Quel animal est la drosophile, utilisee dans des experimentations genetiques ?;Un rat,une mouche,un cochon dInde,une chevre;une mouche
-Quel element chimique est represente par la lettre N dans le tableau periodique des elements ?;Etain,Azote,Neon,Brome;Azote
-Quelle est la capitale de la Turquie ?;Istanbul,Ankara,Izmir,Antalya;Ankara
-En quelle annee est nee Elisabeth II, l ancienne reine du Royaume-Uni ?;1916,1921,1926,1931;1926
-A partir de quelle temperature, l or commence t il a fondre ?;333,720,1064,1535;1064
-Dans quelle partie du corps se trouve le sternum ?;Dans la cage thoracique,dans la tete,dans le cou,dans le bas ventre;Dans la cage thoracique
-Combien de paires de pattes un insecte hexapode possede-il ?;2,3,4,6;3
-Dans quel pays se trouve la ville d Ushuaia ?;Colombie,Argentine,Chili,Bresil;Argentine
-Quel pays du monde a ete cree le plus recemment ?;Soudan du Sud,Erythree,Montenegro,Bosnie-Herzegovine;Soudan du Sud
+ï»¿Question;Possible_Answers;Correct_Answer
+EQ-5D-5L can help you measure ?;quality of life of users,potential biases in answers to other tests,both;quality of life of users 
+Most tests are used at the beginning and end of each iteration ?;true,false;true
+Test for data collection about usersÂ´status are used during ?;the lab testing,the final trial,both;the final trial
+Tests are ?;selected according to the needs of the project,standardised for all projects;selected according to the needs of the project
+Tests are placed with a distance in time so that ?;the answers are genuine,the users do not get bored of them,the engagement rises;the answers are genuine
+Tests for physical status are ?;a specific and narrow section,a wide range that needs of careful selection;a wide range that needs of careful selection
+A test for quality of life is ?;ED-4L-F5,EQ-5D-5L,Edmonton;EQ-5D-5L
+Usability tests provide ?;feedback on interaction user-platform,information on how users feel in their lives,health status information;feedback on interaction user-platform
+A test for cognitive status is ?;MSEM,MNA,MMSE;MMSE
+MMSE stands for ?;Mini Mindset State Examination,Mini Mental State Examination,Mega Mental State Examination;Mini Mental State Examination
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+;;
+Usability tests provide;;
+A test for cognitive status is;;
+MMSE stands for;;
