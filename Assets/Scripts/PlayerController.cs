@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [System.NonSerialized] public bool ableMoving, isMoving;
     private Vector3 target;
     private GridScript grid;
+    public GameObject character;
 
     // Unused variables
     private Vector2 target2D;
@@ -49,24 +50,27 @@ public class PlayerController : MonoBehaviour
             target.x = (float)Math.Round(target.x);
             target.y = (float)Math.Round(target.y);
 
-            // If the click happens inside the maze, the player moves to the closest square. 
-            if (target.x <= 0)
+            Debug.Log("x = " + target.x);
+            Debug.Log("y = " + target.y);
+
+            // If the click happens outside the maze, the player moves to the closest square. 
+            /*if (target.x <= 0){ target.x = 0;} else if */
+            if (target.x < 0 || target.x > grid._width - 1)
             {
-                target.x = 0;
-            }
-            else if (target.x >= grid._width - 1)
-            {
-                target.x = grid._width - 1;
+                //target.x = grid._width - 1;
+                target.x = character.transform.position.x;
+
+                Debug.Log("ici");
             }
 
-            if (target.y <= 0)
+            if (target.y < 0 || target.y > grid._height - 1)
             {
-                target.y = 0;
+                target.y = character.transform.position.y;
+
+                Debug.Log("là");
+
             }
-            else if (target.y >= grid._height - 1)
-            {
-                target.y = grid._height - 1;
-            }
+            /*else if (target.y >= grid._height - 1){ target.y = grid._height - 1; }*/
         }
     }
 

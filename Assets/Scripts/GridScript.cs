@@ -43,8 +43,8 @@ public class GridScript : MonoBehaviour
 
         //Assign the tags for the exit room and the ones near it.
         _listTiles[_width-1, _height-1].tag = "ExitRoom";
-        _listTiles[_width - 1, _height - 2].tag = "RoomDownExitRoom";
-        _listTiles[_width - 2, _height - 1].tag = "RoomLeftExitRoom";
+       // _listTiles[_width - 1, _height - 2].tag = "RoomDownExitRoom";
+       // _listTiles[_width - 2, _height - 1].tag = "RoomLeftExitRoom";
         _listTiles[_width - 1, _height - 1] = _exitRoom;
 
         //Camera position
