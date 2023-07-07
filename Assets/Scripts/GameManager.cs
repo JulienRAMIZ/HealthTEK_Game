@@ -7,6 +7,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using Unity.IO;
 
 /* Script that manages the game */
 public class GameManager : MonoBehaviour
@@ -47,8 +48,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        string FilePath = Application.dataPath + "/QnA_Files/QnA.csv";
+        //var QuizFile = Resources.Load<TextAsset>("/QnA_Files/QnA");
+        var QuizFile = Path.Combine(Application.streamingAssetsPath,"QnA_Files/QnA.csv");
+        string FilePath = QuizFile;
+
         Debug.Log(FilePath);
+        
 
         QuestionScreen.SetActive(false);
         ScorePanel.SetActive(false);
