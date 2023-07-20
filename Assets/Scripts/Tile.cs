@@ -20,6 +20,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public bool goQnA = true;
     // If the pointer is close  to the player (adjacent square), we can pop up the question
     public bool isClose = false;
+    public bool isMoving = false;
     public bool goingToExitRoom = false;
 
     private GameManager manager;
@@ -44,9 +45,11 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     // When the mouse enters in a room
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
+
         // Limit the movements to the adjacent squares
         if (player.transform.position.x - transform.position.x == -1 || player.transform.position.x - transform.position.x == 1 || player.transform.position.y - transform.position.y == -1 || player.transform.position.y - transform.position.y == 1)
         {
+
             if (player.transform.position.x - transform.position.x == 0 || player.transform.position.y - transform.position.y == 0)
             {
                 isClose = true;
@@ -54,7 +57,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             }    
         }
 
-        // The OpenedDoor tag means that the player answered correctlty and that he can move to the rrom. The default tag is ClosedDoor.
+        // The OpenedDoor tag means that the player answered correctlty and that he can move to the room. The default tag is ClosedDoor.
         if (CompareTag("OpenedDoor") == true )
         {
             goQnA = false;
@@ -85,7 +88,11 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         else
         {
             _redHighlight.SetActive(true);
-            player.ableMoving = false;
+            if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y) 
+            {
+                player.ableMoving = false; 
+            }
+            //player.ableMoving = false;
             goQnA = true;
         }
     }
