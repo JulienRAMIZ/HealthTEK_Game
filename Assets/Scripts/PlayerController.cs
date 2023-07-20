@@ -60,14 +60,12 @@ public class PlayerController : MonoBehaviour
                 //target.x = grid._width - 1;
                 target.x = character.transform.position.x;
 
-                Debug.Log("ici");
             }
 
             if (target.y < 0 || target.y > grid._height - 1)
             {
                 target.y = character.transform.position.y;
 
-                Debug.Log("là");
 
             }
             /*else if (target.y >= grid._height - 1){ target.y = grid._height - 1; }*/
@@ -80,7 +78,7 @@ public class PlayerController : MonoBehaviour
         {
             isMoving = true;
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            Debug.Log("is moving est faux là");
+
         }
     }
 }
