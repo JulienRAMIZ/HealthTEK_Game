@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //var QuizFile = Resources.Load<TextAsset>("/QnA_Files/QnA");
-        var QuizFile = Path.Combine(Application.streamingAssetsPath,"QnA_Files/QnA.csv");
+        var QuizFile = Path.Combine(Application.streamingAssetsPath,"QnA_Files/QnA2.csv");
         string FilePath = QuizFile;
 
         Debug.Log(FilePath);
@@ -165,6 +165,7 @@ public class GameManager : MonoBehaviour
 
    public void CheckToggle()
    {
+
         // If we only have one correct answer
         if (!CorrectAnswer.Contains(","))
         {
@@ -539,7 +540,7 @@ public class GameManager : MonoBehaviour
             }
 
         }
-   }
+    }
 
     // Check if the button selected holds the correct answer
     public void CheckButton(GameObject[] Choices)
@@ -660,8 +661,9 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(ShowMessage("Wrong again! Stay focused. -40 to your score. Think harder and try again.", 6));
                 score -= 40;
             } 
-        }   
-   } 
+        }
+        CorrectChoice = false;
+    } 
    
     //Restart game by reloading the scene
     public void RestartGame()

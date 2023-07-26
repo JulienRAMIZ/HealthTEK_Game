@@ -53,21 +53,19 @@ public class PlayerController : MonoBehaviour
             Debug.Log("x = " + target.x);
             Debug.Log("y = " + target.y);
 
-            // If the click happens outside the maze, the player moves to the closest square. 
+            // If the click happens outside the maze, the player don't move at all. 
             /*if (target.x <= 0){ target.x = 0;} else if */
             if (target.x < 0 || target.x > grid._width - 1)
             {
                 //target.x = grid._width - 1;
                 target.x = character.transform.position.x;
 
-                Debug.Log("ici");
             }
 
             if (target.y < 0 || target.y > grid._height - 1)
             {
                 target.y = character.transform.position.y;
 
-                Debug.Log("là");
 
             }
             /*else if (target.y >= grid._height - 1){ target.y = grid._height - 1; }*/
@@ -80,6 +78,7 @@ public class PlayerController : MonoBehaviour
         {
             isMoving = true;
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+
         }
     }
 }
