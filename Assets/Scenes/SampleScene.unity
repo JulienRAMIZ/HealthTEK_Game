@@ -2824,7 +2824,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1978970362}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: CloseQuestionPanel
+        m_MethodName: ClosePanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9130,7 +9130,7 @@ MonoBehaviour:
   - {fileID: 528860768}
   ScorePanel: {fileID: 33916853}
   ScoreText: {fileID: 1569446462}
-  JokerText: {fileID: 1177441171}
+  CloseButton: {fileID: 731684616}
   QuestionText: {fileID: 63307151}
   QuestionButton: {fileID: 788011644}
   QnA: []
@@ -9144,7 +9144,6 @@ MonoBehaviour:
   toggleChoice4: {fileID: 528860770}
   questionPopped: 0
   score: 0
-  joker: 3
   notificationText: {fileID: 2017092759}
   timeText: {fileID: 1483983588}
   scoreText: {fileID: 1569446464}
