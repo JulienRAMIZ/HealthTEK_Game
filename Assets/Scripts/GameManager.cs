@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] Choices;
     public GameObject ScorePanel;
     public GameObject ScoreText;
+    public GameObject CloseButton;
     public TextMeshProUGUI QuestionText;
     public Button QuestionButton;
     public List<string> QnA;
@@ -41,19 +42,20 @@ public class GameManager : MonoBehaviour
     private int nbCorrectAnswers = 0;
     private int nbLines = 0;
     private int nbDisplayedQuestions = 0;
+    private int nbJokers = 3;
 
     [SerializeField] TMP_Text notificationText;
     [SerializeField] TMP_Text timeText;
     [SerializeField] TMP_Text scoreText;
+    [SerializeField] TMP_Text jokerText;
 
     void Start()
     {
         //var QuizFile = Resources.Load<TextAsset>("/QnA_Files/QnA");
-        var QuizFile = Path.Combine(Application.streamingAssetsPath,"QnA_Files/QnA2.csv");
+        var QuizFile = Path.Combine(Application.streamingAssetsPath,"QnA_Files/QnA.csv");
         string FilePath = QuizFile;
 
         Debug.Log(FilePath);
-        
 
         QuestionScreen.SetActive(false);
         ScorePanel.SetActive(false);
@@ -631,6 +633,12 @@ public class GameManager : MonoBehaviour
             timeText.gameObject.SetActive(true);
             isExitRoom = false; 
         }
+        else if ((!toggleChoice1.isOn && !toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn) ||
+                (!toggleChoice1.isOn && !toggleChoice2.isOn && !toggleChoice3.isOn) ||
+                (!toggleChoice1.isOn && !toggleChoice2.isOn))
+        {
+            StartCoroutine(ShowMessage("You haven't selected any answers. If you're struggling and you have jokers, you can skip the question.", 6));
+        }
         else
         {
             toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;
@@ -664,6 +672,26 @@ public class GameManager : MonoBehaviour
         }
         CorrectChoice = false;
     } 
+
+    //
+    public void ClosePanel()
+    {
+        if (nbJokers != 0)
+        {
+            nbJokers--;
+            QuestionScreen.SetActive(false);
+            questionPopped = false;
+            StartCoroutine(ShowMessage("Reminder: You can skip a question only 3 times.", 6));
+        }
+
+        jokerText.text = "Joker : " + nbJokers.ToString() + "/3";
+
+        if (nbJokers == 0)
+        {
+            CloseButton.SetActive(false);
+        }
+
+    }
    
     //Restart game by reloading the scene
     public void RestartGame()
