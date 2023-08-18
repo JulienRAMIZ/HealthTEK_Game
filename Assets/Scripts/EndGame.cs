@@ -23,6 +23,6 @@ public class EndGame : MonoBehaviour
     void Update()
     {
         finalTimeText = "Your time : " + timeCount.timerText.text[7..];
-        totalScoreText.text = "Your score : " + manager.score.ToString() + "\n" + finalTimeText;
+        totalScoreText.text = "Your score : " + manager.score.ToString() + "\n" + finalTimeText + "\n" + "Your mark : " + manager.playerMark + "/20";
     }
 }
