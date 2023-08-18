@@ -13,6 +13,7 @@ public class TimeCount : MonoBehaviour
 
     public TMP_Text timerText;
     public GameObject ScorePanel;
+    public GameObject GameOverPanel;
 
     // Start is called before the first frame update
     void Start(){}
@@ -25,16 +26,21 @@ public class TimeCount : MonoBehaviour
          * timerText.text = myTime.ToString("f2");
          */
 
-        myTime += Time.deltaTime;
-        seconds = myTime % 60;
-        minutes = myTime / 60;
-        hours = minutes / 60;
+        myTime += Time.deltaTime; //myTime += Time.deltaTime;
+        seconds = 60 - myTime % 60;
+        minutes = 60 - myTime / 60;
+        hours = 1 - minutes / 60;
         timerText.text = "Timer: " + string.Format("{0:00}:{1:00}:{2:00}", Mathf.FloorToInt(hours), Mathf.FloorToInt(minutes), Mathf.FloorToInt(seconds));
+
+        if (hours == 0 && minutes == 0 && seconds == 0)
+        {
+            GameOverPanel.SetActive(true);
+        }
 
         if (ScorePanel.activeSelf == true)
         {
             this.enabled = false;
             Debug.Log(timerText.text);
-        }
+        }  
     }
 }
