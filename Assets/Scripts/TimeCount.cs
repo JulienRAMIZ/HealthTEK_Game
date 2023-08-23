@@ -29,8 +29,9 @@ public class TimeCount : MonoBehaviour
         myTime += Time.deltaTime; //myTime += Time.deltaTime;
         seconds = 60 - myTime % 60;
         minutes = 60 - myTime / 60;
-        hours = 1 - minutes / 60;
-        timerText.text = "Timer: " + string.Format("{0:00}:{1:00}:{2:00}", Mathf.FloorToInt(hours), Mathf.FloorToInt(minutes), Mathf.FloorToInt(seconds));
+        timerText.text = "Timer: " + string.Format("{0:00}:{1:00}", Mathf.FloorToInt(minutes), Mathf.FloorToInt(seconds));
+        // hours = 1 - minutes / 60;
+        // timerText.text = "Timer: " + string.Format("{0:00}:{1:00}:{2:00}", Mathf.FloorToInt(hours), Mathf.FloorToInt(minutes), Mathf.FloorToInt(seconds));
 
         if (hours == 0 && minutes == 0 && seconds == 0)
         {
