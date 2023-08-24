@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 /* Script that controls the player */
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 50f;
+    public float speed = 5f;
     [System.NonSerialized] public bool ableMoving, isMoving;
     private Vector3 target;
     private GridScript grid;
