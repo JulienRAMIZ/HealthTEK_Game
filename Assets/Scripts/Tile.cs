@@ -45,7 +45,6 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     // When the mouse enters in a room
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
-
         // Limit the movements to the adjacent squares
         if (player.transform.position.x - transform.position.x == -1 || player.transform.position.x - transform.position.x == 1 || player.transform.position.y - transform.position.y == -1 || player.transform.position.y - transform.position.y == 1)
         {

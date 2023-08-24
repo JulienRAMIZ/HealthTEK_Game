@@ -115,6 +115,7 @@ MonoBehaviour:
   player: {fileID: 0}
   goQnA: 0
   isClose: 0
+  isMoving: 0
   goingToExitRoom: 0
 --- !u!61 &6332762846694146310
 BoxCollider2D:

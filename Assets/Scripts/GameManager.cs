@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public GameObject ScorePanel;
     public GameObject ScoreText;
     public GameObject CloseButton;
+    public GameObject RulesButton;
+    public GameObject Joker;
     public TextMeshProUGUI QuestionText;
     public Button QuestionButton;
     public List<string> QnA;
@@ -43,6 +45,8 @@ public class GameManager : MonoBehaviour
     private int nbLines = 0;
     private int nbDisplayedQuestions = 0;
     private int nbJokers = 3;
+    private int maxScore = 450;
+    public float playerMark;
 
     [SerializeField] TMP_Text notificationText;
     [SerializeField] TMP_Text timeText;
@@ -60,6 +64,7 @@ public class GameManager : MonoBehaviour
         QuestionScreen.SetActive(false);
         ScorePanel.SetActive(false);
         timeText.gameObject.SetActive(false);
+       
 
         //Open the questions and answers file (csv file), retrieve the values and add them in a list
         var reader = new StreamReader(File.OpenRead(FilePath));
@@ -106,7 +111,7 @@ public class GameManager : MonoBehaviour
         {
             while (!QnA[RandomIndex].EndsWith('?'))
             {
-                if (nbDisplayedQuestions >= nbLines -1) // In the current version of the game, this would never happened. However, the exception is still managed. If the number of question is fewer than the number of rooms' maze and the player has managed to get out. He failed and the game is over.
+                if (nbDisplayedQuestions >= nbLines -1) // In the current version of the game, this would never happened. However, the exception is still managed. If the number of questions is fewer than the number of rooms' maze and the player has managed to get out. He failed and the game is over.
                 {
                     StartCoroutine(ShowMessage("No questions left. The Game is over. You didn't succeed. Your score will be displayed in a few seconds.", 7));
                     ScorePanel.SetActive(true);
@@ -167,13 +172,12 @@ public class GameManager : MonoBehaviour
 
    public void CheckToggle()
    {
-
         // If we only have one correct answer
         if (!CorrectAnswer.Contains(","))
         {
             if (toggleChoice1.GetComponentInChildren<Text>().text == CorrectAnswer)
             {
-                if (!toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn)
+                if (!toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn && toggleChoice1.isOn)
                 {
                     CorrectChoice = true;
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
@@ -195,7 +199,7 @@ public class GameManager : MonoBehaviour
 
             else if (toggleChoice2.GetComponentInChildren<Text>().text == CorrectAnswer)
             {
-                if (!toggleChoice1.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn)
+                if (!toggleChoice1.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn && toggleChoice2.isOn)
                 {
                     CorrectChoice = true;
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
@@ -216,7 +220,7 @@ public class GameManager : MonoBehaviour
             }
             else if (toggleChoice3.GetComponentInChildren<Text>().text == CorrectAnswer)
             {
-                if (!toggleChoice2.isOn && !toggleChoice1.isOn && !toggleChoice4.isOn)
+                if (!toggleChoice2.isOn && !toggleChoice1.isOn && !toggleChoice4.isOn && toggleChoice3.isOn)
                 {
                     CorrectChoice = true;
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
@@ -237,7 +241,7 @@ public class GameManager : MonoBehaviour
             }
             else if (toggleChoice4.GetComponentInChildren<Text>().text == CorrectAnswer)
             {
-                if (!toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice1.isOn)
+                if (!toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice1.isOn && toggleChoice4.isOn)
                 {
                     CorrectChoice = true;
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
@@ -542,7 +546,7 @@ public class GameManager : MonoBehaviour
             }
 
         }
-    }
+   }
 
     // Check if the button selected holds the correct answer
     public void CheckButton(GameObject[] Choices)
@@ -613,16 +617,25 @@ public class GameManager : MonoBehaviour
             {
                 score += 5;
                 StartCoroutine(ShowMessage("Keep it up! Two good answers in a row. +5 to your score.", 6));
+                Debug.Log("1er bonus: +5");
             }
             if (nbCorrectAnswers == 3)
             {
                 score += 10;
                 StartCoroutine(ShowMessage("Excellent! Three good answers in a row. +10 to your score.", 6));
+                Debug.Log("2e bonus: +10");
             }
-            if (nbCorrectAnswers >= 4)
+            if (nbCorrectAnswers == 4)
             {
                 score += 15;
                 StartCoroutine(ShowMessage("You are smashing it! +15 to your score.", 5));
+                Debug.Log("3e bonus: +15");
+            }
+            if (nbCorrectAnswers >= 5)
+            {
+                score += 20;
+                StartCoroutine(ShowMessage("Spectacular! +20 to your score.", 5));
+                Debug.Log("4e bonus: +20");
             }
         } 
         else if (CorrectChoice && isExitRoom == true)
@@ -631,11 +644,13 @@ public class GameManager : MonoBehaviour
             ScorePanel.SetActive(true);
             ScoreText.SetActive(false);            
             timeText.gameObject.SetActive(true);
+            Joker.SetActive(false);
+            RulesButton.SetActive(false);
             isExitRoom = false; 
         }
         else if ((!toggleChoice1.isOn && !toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn) ||
-                (!toggleChoice1.isOn && !toggleChoice2.isOn && !toggleChoice3.isOn) ||
-                (!toggleChoice1.isOn && !toggleChoice2.isOn))
+                (!toggleChoice1.isOn && !toggleChoice2.isOn && !toggleChoice3.isOn && Choices.Length == 3) ||
+                (!toggleChoice1.isOn && !toggleChoice3.isOn && Choices.Length == 2) )
         {
             StartCoroutine(ShowMessage("You haven't selected any answers. If you're struggling and you have jokers, you can skip the question.", 6));
         }
@@ -647,33 +662,41 @@ public class GameManager : MonoBehaviour
             // Score Penalties 
             if(nbWrongAnswers == 1)
             {
-                Debug.Log("Wrong answer given one time.");
                 StartCoroutine(ShowMessage("You gave the wrong answer. -5 to your score. Try again.", 6));
                 score -= 5;
+                Debug.Log("1er malus: -5");
             }
             if (nbWrongAnswers == 2)
             {
-                Debug.Log("Wrong answer given two times.");
                 StartCoroutine(ShowMessage("You chose the wrong answer a second time. -10 to your score. Try again.", 6));
                 score -= 10;
+                Debug.Log("2e malus: -15");
             }
             if (nbWrongAnswers == 3)
             {
-                Debug.Log("Wrong answer given three times.");
+                StartCoroutine(ShowMessage("You chose the wrong answer a third time. -15 to your score. Try again.", 6));
+                score -= 20;
+                Debug.Log("3e malus: -15");
+            }
+            if (nbWrongAnswers == 4)
+            {
                 StartCoroutine(ShowMessage("You chose the wrong answer a third time. -20 to your score. Try again.", 6));
                 score -= 20;
+                Debug.Log("4e malus: -20");
             }
-            else if(nbWrongAnswers > 3)
+            else if(nbWrongAnswers > 4)
             {
                 Debug.Log("Wrong answer given again.");
-                StartCoroutine(ShowMessage("Wrong again! Stay focused. -40 to your score. Think harder and try again.", 6));
-                score -= 40;
+                StartCoroutine(ShowMessage("Wrong again! Stay focused and think harder.", 6));
+                score -= 20;
             } 
         }
         CorrectChoice = false;
-    } 
+        TransformScore();
+        Debug.Log(playerMark);
+   } 
 
-    //
+    // Close the panel question
     public void ClosePanel()
     {
         if (nbJokers != 0)
@@ -703,5 +726,96 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    // Transform the score to a mark
+    public void TransformScore()
+    {
+        if (score <= 0)
+        {
+            playerMark = 0;
+        }
+        else if (score > 0 && score < 115)
+        {
+            playerMark = score / 10f;
+        }
+        else if (score == 115)
+        {
+            playerMark = 11;
+        }
+        else if (score > 115 && score < 140)
+        {
+            playerMark = 11.5f;
+        }
+        else if (score >= 140 && score <= 145)
+        {
+            playerMark = 12;
+        }
+        else if (score > 145 && score < 170)
+        {
+            playerMark = 12.5f;
+        }
+        else if (score == 170)
+        {
+            playerMark = 13;
+        }
+        else if (score > 170 && score < 195)
+        {
+            playerMark = 13.5f;
+        }
+        else if (score >= 195 && score <= 200)
+        {
+            playerMark = 14;
+        }
+        else if (score > 200 && score < 225)
+        {
+            playerMark = 14.5f;
+        }
+        else if (score >= 225 && score <= 230)
+        {
+            playerMark = 15;
+        }
+        else if (score > 230 && score < 275)
+        {
+            playerMark = 15.5f;
+        }
+        else if (score >= 275 && score <= 280)
+        {
+            playerMark = 16;
+        }
+        else if (score > 280 && score < 335)
+        {
+            playerMark = 16.5f;
+        }
+        else if (score >= 335 && score <= 340)
+        {
+            playerMark = 17;
+        }
+        else if (score > 340 && score < 390)
+        {
+            playerMark = 17.5f;
+        }
+        else if (score >= 390 && score <= 395)
+        {
+            playerMark = 18;
+        }
+        else if (score > 395 && score < 420)
+        {
+            playerMark = 18.5f;
+        }
+        else if (score >= 420 && score <= 425)
+        {
+            playerMark = 19;
+        }
+        else if (score > 425 && score < maxScore)
+        {
+            playerMark = 19.5f;
+        }
+        else if (score >= maxScore)
+        {
+            playerMark = 20;
+        }
+
+        Debug.Log("Your mark is : " + playerMark + "/20");
     }
 }

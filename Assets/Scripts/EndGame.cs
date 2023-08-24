@@ -22,7 +22,8 @@ public class EndGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        finalTimeText = "Your time : " + timeCount.timerText.text[7..];
-        totalScoreText.text = "Your score : " + manager.score.ToString() + "\n" + finalTimeText;
+       // finalTimeText = "Your time : " + timeCount.timerText.text[7..];
+        finalTimeText = "Your time : " + (60 - int.Parse(timeCount.timerText.text.Substring(6, 3))).ToString() + ":" + (60 - int.Parse(timeCount.timerText.text[10..])).ToString();
+        totalScoreText.text = "Your score : " + manager.score.ToString() + "\n" + finalTimeText + "\n" + "Your mark : " + manager.playerMark + "/20";
     }
 }

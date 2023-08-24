@@ -12,6 +12,7 @@ public class WelcomeText : MonoBehaviour
     public GameObject timer;
     public GameObject ScoreText;
     public GameObject jokerText;
+    public GameObject RulesButton;
     public string[] contextSentences;
     public Button startButton;
     public Button skipButton;
@@ -37,6 +38,7 @@ public class WelcomeText : MonoBehaviour
         timer.SetActive(false); //timer.gameObject.SetActive(false)
         ScoreText.SetActive(false); // ScoreText.gameObject.SetActive(false)
         jokerText.SetActive(false);
+        RulesButton.SetActive(false);
         NextSentence();
     }
 
@@ -94,5 +96,6 @@ public class WelcomeText : MonoBehaviour
         timer.SetActive(true);
         ScoreText.SetActive(true);
         jokerText.SetActive(true);
+        RulesButton.SetActive(true);
     }
 }
