@@ -41,7 +41,6 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             _renderer.sprite  = _exit;
         }
     }
-
     // When the mouse enters in a room
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
@@ -64,20 +63,6 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             _greenHighlight.SetActive(true);
             if (isClose) { player.ableMoving = true; }
         }
-
-        /* Ideas suspended for now
-         else if (CompareTag("Obstacle") == true)
-         {
-             _redHighlight.SetActive(true);
-             player.ableMoving = false;
-             deadEnd = true;
-         }
-        else if (CompareTag("RoomDownExitRoom") == true || CompareTag("RoomLeftExitRoom") == true)
-        {
-           goQnA = true;
-            player.ableMoving = false;
-            _redHighlight.SetActive(true);
-        }*/
         else if (CompareTag("ExitRoom") == true)
         {
             goQnA = true;
@@ -102,6 +87,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         _greenHighlight.SetActive(false);
         _redHighlight.SetActive(false);
         isClose = false;
+        player.ableMoving = false;
     }
 
     // When we do a left click while being on a room
