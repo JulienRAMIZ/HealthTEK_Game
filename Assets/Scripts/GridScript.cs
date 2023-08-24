@@ -29,7 +29,7 @@ public class GridScript : MonoBehaviour
             for (int y = 0; y < _height; y++)
             {
                 // Originally spawnedTile was a var
-                Tile spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y,(float)1), Quaternion.identity);
+                Tile spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y,(float)-8), Quaternion.identity);
                 spawnedTile.name = $"room {x} {y}";
                 _room = GameObject.Find("room " + x + " " + y);
                 _listTiles[x, y] = _room;

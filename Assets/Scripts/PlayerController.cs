@@ -44,7 +44,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            target.z = transform.position.z;
+            //target.z = transform.position.z;
+            target.z = (float)-8;
             target2D = new Vector2(target.x, target.y);
 
             target.x = (float)Math.Round(target.x);
