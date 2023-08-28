@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
         {
             // Calculate the movement to make between the player and the left click
             calculDestination();
+            target.z = (float)-8.2;
             // Execute the movement if we respect one of the movement conditions 
             MoveCharacter();
         }
@@ -44,8 +45,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            target.z = transform.position.z;
-            //target.z = (float)-8.1;
+            //target.z = transform.position.z;
+            target.z = (float)-8.2;
             target2D = new Vector2(target.x, target.y);
 
             target.x = (float)Math.Round(target.x);
