@@ -20,6 +20,16 @@ public class GameManager : MonoBehaviour
     public GameObject CloseButton;
     public GameObject RulesButton;
     public GameObject Joker;
+    public GameObject DamageScreen;
+
+    [Header("Damage Overlay---------")]
+    public Image overlay; // our DamageOverlay gameobject (coming soon)
+    public float duration; // how long the image stays fully opaque
+    public float fadespeed; // how quickly the image will fade
+
+    private float durationTimer; // timer to check against the duration
+
+
     public TextMeshProUGUI QuestionText;
     public Button QuestionButton;
     public List<string> QnA;
@@ -78,6 +88,9 @@ public class GameManager : MonoBehaviour
             nbLines++; // We use nbLines here to get the number of questions. nbLines corresponds to the number of lines in the csv file. Since each line holds a question, nbLines can count as the number of questions.
         }
         QnA.RemoveRange(0, 3); //remove the first three values of the list (Question, Possible_Answer, Correct_Answer)   
+
+        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0); 
+    
     }
 
     /* Possible evolution of the game. Here we set the difficulty.
@@ -92,8 +105,21 @@ public class GameManager : MonoBehaviour
    void Update()
    {
         // Score updating
-        scoreText.text = "Score : " + score.ToString(); 
-   }
+        scoreText.text = "Score : " + score.ToString();
+
+
+        if (overlay.color.a > 0)
+        {
+            durationTimer += Time.deltaTime;
+            if(durationTimer > duration)
+            {
+                //fade the image
+                float tempAlpha = overlay.color.a;
+                tempAlpha -= Time.deltaTime * fadespeed;
+                overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, tempAlpha);
+            }
+        }
+    }
 
    // Choose a question randomly and displays it along with its possible answers
    public void PopUpQuestion() 
@@ -704,7 +730,16 @@ public class GameManager : MonoBehaviour
             nbJokers--;
             QuestionScreen.SetActive(false);
             questionPopped = false;
-            StartCoroutine(ShowMessage("Reminder: You can skip a question only 3 times.", 6));
+            durationTimer = 0;
+            overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0.4f);
+
+            if (nbJokers == 2)
+            {
+                
+            }
+            
+
+            StartCoroutine(ShowMessage("Reminder: You can skip a question \n only 3 times.", 6));
         }
 
         jokerText.text = "Joker : " + nbJokers.ToString() + "/3";
@@ -713,9 +748,37 @@ public class GameManager : MonoBehaviour
         {
             CloseButton.SetActive(false);
         }
+       
 
     }
-   
+    public IEnumerator ShowDamage()
+    {
+        if (nbJokers == 2)
+        {
+            DamageScreen.SetActive(true);
+            new WaitForSeconds(.1f);
+            DamageScreen.SetActive(false); 
+            yield return new WaitForSeconds(5f);
+        }
+        if (nbJokers == 1)
+        {
+            DamageScreen.SetActive(true);
+            new WaitForSeconds(.1f);
+            DamageScreen.SetActive(false);
+            yield return new WaitForSeconds(1f);
+        }
+        
+    }
+
+    //public void unshowDamage()
+    //{
+    //    if (nbJokers == 2)
+    //    {
+    //        DamageScreen.SetActive(false);
+
+    //    }
+    //}
+
     //Restart game by reloading the scene
     public void RestartGame()
     {
