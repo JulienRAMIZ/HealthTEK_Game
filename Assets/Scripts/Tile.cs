@@ -74,7 +74,8 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             _redHighlight.SetActive(true);
             if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y) 
             {
-                player.ableMoving = false; 
+                player.ableMoving = false;
+                Debug.Log("TU DOIS BOUGER");
             }
             //player.ableMoving = false;
             goQnA = true;
