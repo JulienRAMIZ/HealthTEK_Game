@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                     if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                     {
-                        grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                        //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                     }
                     if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                     {
@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                     if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                     {
-                        grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                        //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                     }
                     if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                     {
@@ -252,7 +252,7 @@ public class GameManager : MonoBehaviour
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                     if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                     {
-                        grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                        //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                     }
                     if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                     {
@@ -273,7 +273,7 @@ public class GameManager : MonoBehaviour
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                     if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                     {
-                        grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                        //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                     }
                     if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                     {
@@ -311,7 +311,7 @@ public class GameManager : MonoBehaviour
                         // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                         if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                         {
-                            grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                            //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                         }
                         if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                         {
@@ -335,7 +335,7 @@ public class GameManager : MonoBehaviour
                         // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                         if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                         {
-                            grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                            //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                         }
                         if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                         {
@@ -359,7 +359,7 @@ public class GameManager : MonoBehaviour
                         // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                         if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                         {
-                            grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                            //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                         }
                         if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                         {
@@ -383,7 +383,7 @@ public class GameManager : MonoBehaviour
                         // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                         if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                         {
-                            grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                            //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                         }
                         if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                         {
@@ -407,7 +407,7 @@ public class GameManager : MonoBehaviour
                         // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                         if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                         {
-                            grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                            //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                         }
                         if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                         {
@@ -431,7 +431,7 @@ public class GameManager : MonoBehaviour
                         // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                         if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                         {
-                            grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                            //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                         }
                         if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                         {
@@ -469,7 +469,7 @@ public class GameManager : MonoBehaviour
                         // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                         if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                         {
-                            grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                            //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                         }
                         if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                         {
@@ -498,7 +498,7 @@ public class GameManager : MonoBehaviour
                         // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                         if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                         {
-                            grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                            //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                         }
                         if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                         {
@@ -527,7 +527,7 @@ public class GameManager : MonoBehaviour
                         // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                         if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                         {
-                            grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                            //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                         }
                         if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                         {
@@ -556,7 +556,7 @@ public class GameManager : MonoBehaviour
                         // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                         if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                         {
-                            grid._listTiles[tileX, tileY].tag = "OpenedDoor";
+                            //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                         }
                         if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                         {
@@ -588,10 +588,10 @@ public class GameManager : MonoBehaviour
                 {
                     CorrectChoice = true;
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
-                    if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)  
-                    {
-                        grid._listTiles[tileX, tileY].tag = "OpenedDoor";         
-                    }
+                    //if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)  
+                    //{
+                    //    grid._listTiles[tileX, tileY].tag = "OpenedDoor";         
+                    //}
                     if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                     {
                         isExitRoom = true;
@@ -633,6 +633,7 @@ public class GameManager : MonoBehaviour
             toggleChoice4.gameObject.SetActive(true);
             QuestionScreen.SetActive(false);
             questionPopped = false;
+            grid._listTiles[tileX, tileY].tag = "OpenedDoor";
             StartCoroutine(ShowMessage("Well done! You can move to the green tile.", 4));
             QuestionButton.gameObject.SetActive(true);
             score += 5;
@@ -697,24 +698,32 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(ShowMessage("You chose the wrong answer a second time. -10 to your score. Try again.", 6));
                 score -= 10;
                 Debug.Log("2e malus: -15");
+                //durationTimer = 0;
+                overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0.4f);
             }
             if (nbWrongAnswers == 3)
             {
                 StartCoroutine(ShowMessage("You chose the wrong answer a third time. -15 to your score. Try again.", 6));
                 score -= 20;
                 Debug.Log("3e malus: -15");
+                durationTimer = 0;
+                overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0.4f);
             }
             if (nbWrongAnswers == 4)
             {
                 StartCoroutine(ShowMessage("You chose the wrong answer a third time. -20 to your score. Try again.", 6));
                 score -= 20;
                 Debug.Log("4e malus: -20");
+                durationTimer = 0;
+                overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0.4f);
             }
             else if(nbWrongAnswers > 4)
             {
                 Debug.Log("Wrong answer given again.");
                 StartCoroutine(ShowMessage("Wrong again! Stay focused and think harder.", 6));
                 score -= 20;
+                durationTimer = 0;
+                overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0.4f);
             } 
         }
         CorrectChoice = false;
@@ -730,15 +739,9 @@ public class GameManager : MonoBehaviour
             nbJokers--;
             QuestionScreen.SetActive(false);
             questionPopped = false;
-            durationTimer = 0;
-            overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0.4f);
-
-            if (nbJokers == 2)
-            {
-                
-            }
             
-
+                grid._listTiles[tileX, tileY].tag = "Obstacle";
+ 
             StartCoroutine(ShowMessage("Reminder: You can skip a question \n only 3 times.", 6));
         }
 
@@ -751,33 +754,6 @@ public class GameManager : MonoBehaviour
        
 
     }
-    public IEnumerator ShowDamage()
-    {
-        if (nbJokers == 2)
-        {
-            DamageScreen.SetActive(true);
-            new WaitForSeconds(.1f);
-            DamageScreen.SetActive(false); 
-            yield return new WaitForSeconds(5f);
-        }
-        if (nbJokers == 1)
-        {
-            DamageScreen.SetActive(true);
-            new WaitForSeconds(.1f);
-            DamageScreen.SetActive(false);
-            yield return new WaitForSeconds(1f);
-        }
-        
-    }
-
-    //public void unshowDamage()
-    //{
-    //    if (nbJokers == 2)
-    //    {
-    //        DamageScreen.SetActive(false);
-
-    //    }
-    //}
 
     //Restart game by reloading the scene
     public void RestartGame()

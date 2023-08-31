@@ -13,6 +13,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Sprite _exit;
     [SerializeField] private GameObject _greenHighlight;
+    [SerializeField] private GameObject _whiteHighlight;
     [SerializeField] private GameObject _redHighlight;
  
     public PlayerController player;
@@ -22,6 +23,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public bool isClose = false;
     public bool isMoving = false;
     public bool goingToExitRoom = false;
+    public bool isPositionned = false;
 
     private GameManager manager;
 
@@ -30,6 +32,19 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         // We retrieve the scripts we need
         player = GameObject.Find("Character").GetComponent<PlayerController>();
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+    }
+
+    public void Update()
+    {
+        if (CompareTag("Obstacle") == true)
+        {
+            _redHighlight.SetActive(true);
+        }
+
+        if (CompareTag("OpenedDoor") == true)
+        {
+            _greenHighlight.SetActive(true);
+        }
     }
     public void Init(bool isOffset)
     {
@@ -59,23 +74,30 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         if (CompareTag("OpenedDoor") == true )
         {
             goQnA = false;
-            _redHighlight.SetActive(false);
+            _whiteHighlight.SetActive(false);
             _greenHighlight.SetActive(true);
             if (isClose) 
             { 
                 player.ableMoving = true;
-                Debug.Log("TU es CLOSE madafaka");
+                isPositionned = false;
             }
             else if (player.transform.position.x != (int)player.transform.position.x || player.transform.position.y != (int)player.transform.position.y)
             {
                 player.ableMoving = true;
+                isPositionned = false;
 
             }
             else
             {
                 player.ableMoving = false;
+                isPositionned = true;
 
             }
+        }
+        else if (CompareTag("Obstacle") == true)
+        {
+            goQnA = false;
+            player.ableMoving = false;
         }
         else if (CompareTag("ExitRoom") == true)
         {
@@ -83,12 +105,26 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             player.ableMoving = false;
             goingToExitRoom = true;
         }
+
+        //à continuer le dev, je peux encore déplacer le perso non stop si toujours en mouvement (soucis avec du isclose et ablemoving)
+        else if (CompareTag("ClosedDoor") == true)
+        {
+            _whiteHighlight.SetActive(true);
+            if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y)
+            {
+                player.ableMoving = false;
+                isPositionned = true;
+
+            }
+        }
+
         else
         {
-            _redHighlight.SetActive(true);
+            _whiteHighlight.SetActive(true);
             if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y) 
             {
                 player.ableMoving = false;
+                isPositionned = true;
                 
             }
             else
@@ -110,7 +146,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
         _greenHighlight.SetActive(false);
-        _redHighlight.SetActive(false);
+        _whiteHighlight.SetActive(false);
         isClose = false;
         player.ableMoving = false;
     }
@@ -118,11 +154,19 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     // When we do a left click while being on a room
     public void OnPointerDown(PointerEventData eventData)
     { 
-        if (eventData.button == PointerEventData.InputButton.Left && _redHighlight == true && isClose == true && goQnA && manager.questionPopped == false) 
+        if (eventData.button == PointerEventData.InputButton.Left && _whiteHighlight == true && isClose == true && goQnA && manager.questionPopped == false) 
         {
             manager.tileX = (int)transform.position.x;
             manager.tileY = (int)transform.position.y;
             manager.PopUpQuestion();  
+        }
+        else if (eventData.button == PointerEventData.InputButton.Left && _whiteHighlight == true && isClose == false) // and tag différet de opende door
+        {
+            StartCoroutine(manager.ShowMessage("You can't move here.", 3));
+        }
+        else if (eventData.button == PointerEventData.InputButton.Left && _redHighlight == true && isClose == true) // and tag différet de opende door
+        {
+            StartCoroutine(manager.ShowMessage("You can't attempt again.", 3));
         }
         else if (eventData.button == PointerEventData.InputButton.Left && _redHighlight == true && isClose == false) // and tag différet de opende door
         {

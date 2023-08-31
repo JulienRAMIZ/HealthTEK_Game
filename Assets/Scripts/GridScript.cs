@@ -20,6 +20,11 @@ public class GridScript : MonoBehaviour
         _listTiles[2, 2].tag = "ClosedDoor";
     }
 
+    private void Update()
+    {
+        //CheckObstacle();
+    }
+
     // Generate the 5x5 square, defines the rooms' names le nom des room and place the camera, no changes expexted here except (maybe) the camera position 
     public void GenerateGrid()
     {
@@ -43,29 +48,12 @@ public class GridScript : MonoBehaviour
 
         //Assign the tags for the exit room and the ones near it.
         _listTiles[_width-1, _height-1].tag = "ExitRoom";
-       // _listTiles[_width - 1, _height - 2].tag = "RoomDownExitRoom";
-       // _listTiles[_width - 2, _height - 1].tag = "RoomLeftExitRoom";
         _listTiles[_width - 1, _height - 1] = _exitRoom;
 
         //Camera position
         _cam.transform.position = new Vector3((float)_width / 2 + 5.5f, (float)_height / 2 - 0.5f, -10);
 
+    }
 
-        /* Idea suspended for now 
-        /*
-         * //Creation of random obstacles. Obstacles are dead ends. 
-            int numberObstacles = 0;
-            //bool numberObstaclesReached = false;
-            while (numberObstacles != 5)
-            {
-                int RandomX = Random.Range(0, _width-1);
-                int RandomY = Random.Range(0, _height-1);
-                if (RandomX != _width-1 && RandomY != _height-1 && !_listTiles[RandomX, RandomY].CompareTag("Obstacle"))
-                {
-                    _listTiles[RandomX, RandomY].tag = "Obstacle";
-                    numberObstacles++;
-                }
-             }
-        */
-    }   
+
 }
