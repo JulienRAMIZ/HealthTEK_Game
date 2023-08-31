@@ -61,7 +61,21 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             goQnA = false;
             _redHighlight.SetActive(false);
             _greenHighlight.SetActive(true);
-            if (isClose) { player.ableMoving = true; }
+            if (isClose) 
+            { 
+                player.ableMoving = true;
+                Debug.Log("TU es CLOSE madafaka");
+            }
+            else if (player.transform.position.x != (int)player.transform.position.x || player.transform.position.y != (int)player.transform.position.y)
+            {
+                player.ableMoving = true;
+
+            }
+            else
+            {
+                player.ableMoving = false;
+
+            }
         }
         else if (CompareTag("ExitRoom") == true)
         {
@@ -75,7 +89,17 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y) 
             {
                 player.ableMoving = false;
+                
+            }
+            else
+            {
+                player.ableMoving = true;
                 Debug.Log("TU DOIS BOUGER");
+                if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y)
+                {
+                    player.ableMoving = false;
+
+                }
             }
             //player.ableMoving = false;
             goQnA = true;
