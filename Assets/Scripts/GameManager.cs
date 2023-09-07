@@ -152,19 +152,24 @@ public class GameManager : MonoBehaviour
         questionPopped = true;
    }
 
-   // Set the four possible answers to the choice buttons on Unity and assign the correct answer
-   public void SetAnswers() 
-   {   
+    // Set the four possible answers to the choice buttons on Unity and assign the correct answer
+    public void SetAnswers()
+    {
         // If we have two choices of correct answers (true or false questions)
         if (QnA[RandomIndex + 1].Split(',').Length == 2)
         {
             Debug.Log("True or false question");
             toggleChoice2.gameObject.SetActive(false);
             toggleChoice4.gameObject.SetActive(false);
-            Choices[0].transform.GetChild(1).GetComponent<Text>().text = (QnA[RandomIndex + 1].Split(','))[0];
-            Choices[2].transform.GetChild(1).GetComponent<Text>().text = (QnA[RandomIndex + 1].Split(','))[1];
+            // Choices[0].transform.GetChild(1).GetComponent<Text>().text = (QnA[RandomIndex + 1].Split(','))[0];
+            Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[0];
+            Choices[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[1];
+
+
 
         }
+
+
 
         // If we have three choices of correct answers
         if (QnA[RandomIndex + 1].Split(',').Length == 3)
@@ -173,24 +178,27 @@ public class GameManager : MonoBehaviour
             toggleChoice4.gameObject.SetActive(false);
             for (int j = 0; j < 3; j++)
             {
-                Choices[j].transform.GetChild(1).GetComponent<Text>().text = (QnA[RandomIndex + 1].Split(','))[j];
+                //Choices[j].transform.GetChild(1).GetComponent<Text>().text = (QnA[RandomIndex + 1].Split(','))[j];
+                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[j];
             }
         }
+
+
 
         //If we have four choices of correct answers (a real MCQ)
         if (QnA[RandomIndex + 1].Split(',').Length > 3)
         {
             for (int j = 0; j < 4; j++)
             {
-                Choices[j].transform.GetChild(1).GetComponent<Text>().text = (QnA[RandomIndex + 1].Split(','))[j];
+                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[j];
             }
         }
-       
-        CorrectAnswer = QnA[RandomIndex + 2];
-   }
 
-   // Check if the player cliked on the correct answer
-   public void IsCorrect()
+        CorrectAnswer = QnA[RandomIndex + 2];
+    }
+
+    // Check if the player cliked on the correct answer
+    public void IsCorrect()
    {
         //CheckButton(Choices);
         CheckToggle();
@@ -673,7 +681,8 @@ public class GameManager : MonoBehaviour
             timeText.gameObject.SetActive(true);
             Joker.SetActive(false);
             RulesButton.SetActive(false);
-            isExitRoom = false; 
+            isExitRoom = false;
+            
         }
         else if ((!toggleChoice1.isOn && !toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn) ||
                 (!toggleChoice1.isOn && !toggleChoice2.isOn && !toggleChoice3.isOn && Choices.Length == 3) ||
@@ -729,7 +738,9 @@ public class GameManager : MonoBehaviour
         CorrectChoice = false;
         TransformScore();
         Debug.Log(playerMark);
-   } 
+        tile.questionpoped = false;
+        Debug.Log("Check les réponses");
+    } 
 
     // Close the panel question
     public void ClosePanel()
@@ -751,7 +762,8 @@ public class GameManager : MonoBehaviour
         {
             CloseButton.SetActive(false);
         }
-       
+        tile.questionpoped = false;
+        Debug.Log("joker utilisé");
 
     }
 

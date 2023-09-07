@@ -24,6 +24,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public bool isMoving = false;
     public bool goingToExitRoom = false;
     public bool isPositionned = false;
+    public bool questionpoped = false;
 
     private GameManager manager;
 
@@ -45,6 +46,18 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             _greenHighlight.SetActive(true);
         }
+
+        //if (questionpoped == true)
+        //{
+        //    player.ableMoving = false;
+
+            
+        //}
+        //if (questionpoped == false)
+        //{
+        //    player.ableMoving = true;
+        //}
+
     }
     public void Init(bool isOffset)
     {
@@ -107,16 +120,16 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
 
         //à continuer le dev, je peux encore déplacer le perso non stop si toujours en mouvement (soucis avec du isclose et ablemoving)
-        else if (CompareTag("ClosedDoor") == true)
-        {
-            _whiteHighlight.SetActive(true);
-            if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y)
-            {
-                player.ableMoving = false;
-                isPositionned = true;
+        //else if (CompareTag("ClosedDoor") == true)
+        //{
+        //    _whiteHighlight.SetActive(true);
+        //    if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y)
+        //    {
+        //        player.ableMoving = false;
+        //        isPositionned = true;
 
-            }
-        }
+        //    }
+        //}
 
         else
         {
@@ -159,6 +172,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             manager.tileX = (int)transform.position.x;
             manager.tileY = (int)transform.position.y;
             manager.PopUpQuestion();  
+            questionpoped = true;
         }
         else if (eventData.button == PointerEventData.InputButton.Left && _whiteHighlight == true && isClose == false) // and tag différet de opende door
         {
@@ -178,6 +192,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             manager.tileY = (int)transform.position.y;
             Debug.Log("position du tile : " + manager.tileX + " , " + manager.tileY);
             manager.PopUpQuestion();
+            questionpoped = true;
         }
     }
 }

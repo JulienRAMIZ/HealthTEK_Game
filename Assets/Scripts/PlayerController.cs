@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
     public void MoveCharacter()
     {
-        if (ableMoving == true && tile.isPositionned == true)
+        if (ableMoving == true/* && tile.isPositionned == true*/)
         {
             isMoving = true;
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
