@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
     [System.NonSerialized] public bool ableMoving, isMoving;
-    private Vector3 target;
+    public Vector3 target;
     private GridScript grid;
     public GameObject character;
 
@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
         {
             isMoving = true;
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            //tile.playerTarget = target;
 
         }
     }

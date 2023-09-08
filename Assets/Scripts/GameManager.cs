@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("True or false question");
             toggleChoice2.gameObject.SetActive(false);
             toggleChoice4.gameObject.SetActive(false);
-            // Choices[0].transform.GetChild(1).GetComponent<Text>().text = (QnA[RandomIndex + 1].Split(','))[0];
+            // Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[0];
             Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[0];
             Choices[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[1];
 
@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour
         // If we only have one correct answer
         if (!CorrectAnswer.Contains(","))
         {
-            if (toggleChoice1.GetComponentInChildren<Text>().text == CorrectAnswer)
+            if (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer)
             {
                 if (!toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn && toggleChoice1.isOn)
                 {
@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            else if (toggleChoice2.GetComponentInChildren<Text>().text == CorrectAnswer)
+            else if (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer)
             {
                 if (!toggleChoice1.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn && toggleChoice2.isOn)
                 {
@@ -252,7 +252,7 @@ public class GameManager : MonoBehaviour
                     //toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;
                 }
             }
-            else if (toggleChoice3.GetComponentInChildren<Text>().text == CorrectAnswer)
+            else if (toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer)
             {
                 if (!toggleChoice2.isOn && !toggleChoice1.isOn && !toggleChoice4.isOn && toggleChoice3.isOn)
                 {
@@ -273,7 +273,7 @@ public class GameManager : MonoBehaviour
                     //toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;
                 }
             }
-            else if (toggleChoice4.GetComponentInChildren<Text>().text == CorrectAnswer)
+            else if (toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer)
             {
                 if (!toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice1.isOn && toggleChoice4.isOn)
                 {
@@ -310,8 +310,8 @@ public class GameManager : MonoBehaviour
                 Debug.Log(correctAnswer1 + "," + correctAnswer2);
 
                 // If toggle 1 and 2 are holding the correct answers 
-                if ((toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer2) ||
-                     (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer1))
+                if ((toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2) ||
+                     (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1))
                 {
                     if (toggleChoice1.isOn && toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn)
                     {
@@ -334,8 +334,8 @@ public class GameManager : MonoBehaviour
                 }
 
                 // If toggle 1 and 3 are holding the correct answers
-                if ((toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer2) ||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer1))
+                if ((toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2) ||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1))
                 {
                     if (toggleChoice1.isOn && toggleChoice3.isOn && !toggleChoice2.isOn && !toggleChoice4.isOn)
                     {
@@ -358,8 +358,8 @@ public class GameManager : MonoBehaviour
                 }
 
                 // If toggle 1 and 4 are holding the correct answers
-                if ((toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer2) ||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer1))
+                if ((toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2) ||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1))
                 {
                     if (toggleChoice1.isOn && toggleChoice4.isOn && !toggleChoice3.isOn && !toggleChoice2.isOn)
                     {
@@ -382,8 +382,8 @@ public class GameManager : MonoBehaviour
                 }
 
                 // If toggle 2 and 3 are holding the correct answers
-                if ((toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer2) ||
-                     (toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer1))
+                if ((toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2) ||
+                     (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1))
                 {
                     if (toggleChoice2.isOn && toggleChoice3.isOn && !toggleChoice1.isOn && !toggleChoice4.isOn)
                     {
@@ -406,8 +406,8 @@ public class GameManager : MonoBehaviour
                 }
 
                 // If toggle 2 and 4 are holding the correct answers
-                if ((toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer2) ||
-                    (toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer1))
+                if ((toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2) ||
+                    (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1))
                 {
                     if (toggleChoice2.isOn && toggleChoice4.isOn && !toggleChoice1.isOn && !toggleChoice3.isOn)
                     {
@@ -430,8 +430,8 @@ public class GameManager : MonoBehaviour
                 }
 
                 // If toggle 3 and 4 are holding the correct answers
-                if ((toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer2) ||
-                    (toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer1))
+                if ((toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2) ||
+                    (toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1))
                 {
                     if (toggleChoice3.isOn && toggleChoice4.isOn && !toggleChoice1.isOn && !toggleChoice2.isOn)
                     {
@@ -463,12 +463,12 @@ public class GameManager : MonoBehaviour
                 Debug.Log(correctAnswer1 + "," + correctAnswer2 + "," + correctAnswer3);
 
                 // If toggle 1, 2, and 3 are holding the correct answers 
-                if ((toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer3)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer3)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer1)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer1)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer2)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer2)
+                if ((toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2)
                     )
                 {
                     if (toggleChoice1.isOn && toggleChoice2.isOn && toggleChoice3.isOn && !toggleChoice4.isOn)
@@ -492,12 +492,12 @@ public class GameManager : MonoBehaviour
                 }
 
                 // If toggle 1, 2, and 4 are holding the correct answers 
-                if ((toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer3)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer3)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer1)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer1)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer2)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer2)
+                if ((toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2)
                     )
                 {
                     if (toggleChoice1.isOn && toggleChoice2.isOn && toggleChoice4.isOn && !toggleChoice3.isOn)
@@ -521,12 +521,12 @@ public class GameManager : MonoBehaviour
                 }
 
                 // If toggle 1, 3, and 4 are holding the correct answers 
-                if ((toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer3)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer3)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer1)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer1)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer2)||
-                    (toggleChoice1.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer2)
+                if ((toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2)||
+                    (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2)
                 )
                 {
                     if (toggleChoice1.isOn && toggleChoice3.isOn && toggleChoice4.isOn && !toggleChoice2.isOn)
@@ -550,12 +550,12 @@ public class GameManager : MonoBehaviour
                 }
 
                 // If toggle 2, 3, and 4 are holding the correct answers 
-                if ((toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer3)||
-                    (toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer3)||
-                    (toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer1)||
-                    (toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer1)||
-                    (toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer2)||
-                    (toggleChoice2.GetComponentInChildren<Text>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<Text>().text == correctAnswer3 && toggleChoice4.GetComponentInChildren<Text>().text == correctAnswer2)
+                if ((toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3)||
+                    (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3)||
+                    (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1)||
+                    (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1)||
+                    (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2)||
+                    (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3 && toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2)
                 )
                 {
                     if (toggleChoice1.isOn && toggleChoice3.isOn && toggleChoice4.isOn && !toggleChoice2.isOn)
@@ -592,7 +592,7 @@ public class GameManager : MonoBehaviour
         {
             if (SelectedButton == Choices[i])
             {
-                if (Choices[i].transform.GetChild(1).GetComponent<Text>().text == CorrectAnswer) //Choices[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text == CorrectAnswer
+                if (Choices[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text == CorrectAnswer) //Choices[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text == CorrectAnswer
                 {
                     CorrectChoice = true;
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function

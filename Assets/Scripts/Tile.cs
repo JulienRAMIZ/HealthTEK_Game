@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using static UnityEngine.GraphicsBuffer;
 
 /* Script that acts on each room from the GridScript */
 public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
@@ -25,6 +26,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public bool goingToExitRoom = false;
     public bool isPositionned = false;
     public bool questionpoped = false;
+    private Vector3 playerTarget = new Vector3();
 
     private GameManager manager;
 
@@ -37,6 +39,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void Update()
     {
+        playerTarget = player.target;
         if (CompareTag("Obstacle") == true)
         {
             _redHighlight.SetActive(true);
@@ -98,6 +101,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             {
                 player.ableMoving = true;
                 isPositionned = false;
+                player.transform.position = Vector3.MoveTowards(transform.position, playerTarget, player.speed * Time.deltaTime);
 
             }
             else

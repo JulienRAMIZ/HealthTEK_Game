@@ -193,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7891902410924864750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0047, y: 0.0001, z: 0}
+  m_LocalPosition: {x: -0.0047, y: 0.0001, z: -0.1}
   m_LocalScale: {x: 0.02516459, y: 0.025186853, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -490,6 +490,9 @@ MonoBehaviour:
   isClose: 0
   isMoving: 0
   goingToExitRoom: 0
+  isPositionned: 0
+  questionpoped: 0
+  playerTarget: {x: 0, y: 0, z: 0}
 --- !u!61 &-8714099730171501408
 BoxCollider2D:
   m_ObjectHideFlags: 0
