@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
-    [System.NonSerialized] public bool ableMoving, isMoving;
+    [System.NonSerialized] public bool ableMoving, isMoving, isCalculated;
     public Vector3 target;
     private GridScript grid;
     public GameObject character;
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
 
     public void calculDestination()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && ableMoving == true)
         {
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //target.z = transform.position.z;
@@ -70,18 +70,29 @@ public class PlayerController : MonoBehaviour
 
 
             }
+            isCalculated = true;
             /*else if (target.y >= grid._height - 1){ target.y = grid._height - 1; }*/
         }
     }
 
     public void MoveCharacter()
     {
-        if (ableMoving == true/* && tile.isPositionned == true*/)
+        Vector3 calculatedDestination = new Vector3();
+
+        if (ableMoving == true && isCalculated == true)
         {
             isMoving = true;
-            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            //tile.playerTarget = target;
+            calculatedDestination = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            transform.position = calculatedDestination;
 
         }
+
+        else if (ableMoving == true && isCalculated == false /* && tile.isPositionned == true*/)
+        {
+            isMoving = true;
+            transform.position = calculatedDestination;
+        }
+
+        
     }
 }

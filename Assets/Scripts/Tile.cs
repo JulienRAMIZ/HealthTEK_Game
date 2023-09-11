@@ -50,16 +50,32 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             _greenHighlight.SetActive(true);
         }
 
+        if (player.transform.position.x != (int)player.transform.position.x || player.transform.position.y != (int)player.transform.position.y)
+        {
+            player.ableMoving = true;
+            //player.transform.position = Vector3.MoveTowards(transform.position, playerTarget, player.speed * Time.deltaTime);
+        }
+        else
+        {
+            isMoving = false;
+        }
+
+        if (isMoving == !isMoving)
+        {
+            Debug.Log("Oula changement du bool isMoving ... " + isMoving);
+
+        }
+
         //if (questionpoped == true)
         //{
         //    player.ableMoving = false;
 
-            
-        //}
-        //if (questionpoped == false)
-        //{
-        //    player.ableMoving = true;
-        //}
+
+            //}
+            //if (questionpoped == false)
+            //{
+            //    player.ableMoving = true;
+            //}
 
     }
     public void Init(bool isOffset)
