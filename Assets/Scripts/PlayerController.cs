@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public Vector3 target;
     private GridScript grid;
     public GameObject character;
+    private Vector3 myTransform;
+    private Vector3 calculatedTransform;
 
     // Unused variables
     private Vector2 target2D;
@@ -26,6 +28,8 @@ public class PlayerController : MonoBehaviour
         _openedTiles = new GameObject[grid._width, grid._height];
         _closedTiles = new GameObject[grid._width, grid._height];
         grid._listTiles[(int)transform.position.x,(int)transform.position.y].tag = "OpenedDoor";
+
+        myTransform = transform.position;
     }
 
     private void Update()
@@ -71,26 +75,33 @@ public class PlayerController : MonoBehaviour
 
             }
             isCalculated = true;
+            calculatedTransform = target;
             /*else if (target.y >= grid._height - 1){ target.y = grid._height - 1; }*/
         }
     }
 
     public void MoveCharacter()
     {
-        Vector3 calculatedDestination = new Vector3();
+
+        if (myTransform != calculatedTransform)
+        {
+            calculatedTransform = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            myTransform = calculatedTransform;
+        }
+
 
         if (ableMoving == true && isCalculated == true)
         {
             isMoving = true;
-            calculatedDestination = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            transform.position = calculatedDestination;
+            calculatedTransform = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+            transform.position = calculatedTransform;
 
         }
 
         else if (ableMoving == true && isCalculated == false /* && tile.isPositionned == true*/)
         {
             isMoving = true;
-            transform.position = calculatedDestination;
+            transform.position = calculatedTransform;
         }
 
         
