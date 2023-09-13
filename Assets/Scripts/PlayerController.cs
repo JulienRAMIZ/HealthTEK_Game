@@ -76,6 +76,7 @@ public class PlayerController : MonoBehaviour
             }
             isCalculated = true;
             calculatedTransform = target;
+            ableMoving = false;
             /*else if (target.y >= grid._height - 1){ target.y = grid._height - 1; }*/
         }
     }

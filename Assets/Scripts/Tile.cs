@@ -103,76 +103,116 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
 
         // The OpenedDoor tag means that the player answered correctlty and that he can move to the room. The default tag is ClosedDoor.
-        if (CompareTag("OpenedDoor") == true )
+
+        if (CompareTag("OpenedDoor") == true)
         {
             goQnA = false;
             _whiteHighlight.SetActive(false);
             _greenHighlight.SetActive(true);
-            if (isClose) 
-            { 
-                player.ableMoving = true;
-                isPositionned = false;
-            }
-            else if (player.transform.position.x != (int)player.transform.position.x || player.transform.position.y != (int)player.transform.position.y)
+
+            if (isClose)
             {
                 player.ableMoving = true;
-                isPositionned = false;
-                player.transform.position = Vector3.MoveTowards(transform.position, playerTarget, player.speed * Time.deltaTime);
-
             }
             else
             {
                 player.ableMoving = false;
-                isPositionned = true;
-
             }
         }
-        else if (CompareTag("Obstacle") == true)
+
+        if (CompareTag("Obstacle") == true)
         {
             goQnA = false;
             player.ableMoving = false;
         }
-        else if (CompareTag("ExitRoom") == true)
+
+        if (CompareTag("ExitRoom") == true)
         {
             goQnA = true;
             player.ableMoving = false;
-            goingToExitRoom = true;
         }
 
-        //à continuer le dev, je peux encore déplacer le perso non stop si toujours en mouvement (soucis avec du isclose et ablemoving)
-        //else if (CompareTag("ClosedDoor") == true)
+        if (CompareTag("ClosedDoor") == true)
+        {
+            _whiteHighlight.SetActive(true);
+            if (isClose)
+            {
+                goQnA = true;
+            }
+        }
+
+        //if (CompareTag("OpenedDoor") == true )
+        //{
+        //    goQnA = false;
+        //    _whiteHighlight.SetActive(false);
+        //    _greenHighlight.SetActive(true);
+        //    if (isClose) 
+        //    { 
+        //        player.ableMoving = true;
+        //        isPositionned = false;
+        //    }
+        //    else if (player.transform.position.x != (int)player.transform.position.x || player.transform.position.y != (int)player.transform.position.y)
+        //    {
+        //        player.ableMoving = true;
+        //        isPositionned = false;
+        //        player.transform.position = Vector3.MoveTowards(transform.position, playerTarget, player.speed * Time.deltaTime);
+
+                //    }
+                //    else
+                //    {
+                //        player.ableMoving = false;
+                //        isPositionned = true;
+
+                //    }
+                //}
+                //else if (CompareTag("Obstacle") == true)
+                //{
+                //    goQnA = false;
+                //    player.ableMoving = false;
+                //}
+                //else if (CompareTag("ExitRoom") == true)
+                //{
+                //    goQnA = true;
+                //    player.ableMoving = false;
+                //    goingToExitRoom = true;
+                //}
+
+
+
+                //à continuer le dev, je peux encore déplacer le perso non stop si toujours en mouvement (soucis avec du isclose et ablemoving)
+                //else if (CompareTag("ClosedDoor") == true)
+                //{
+                //    _whiteHighlight.SetActive(true);
+                //    if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y)
+                //    {
+                //        player.ableMoving = false;
+                //        isPositionned = true;
+
+                //    }
+                //}
+
+        //        else
         //{
         //    _whiteHighlight.SetActive(true);
-        //    if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y)
+        //    if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y) 
         //    {
         //        player.ableMoving = false;
         //        isPositionned = true;
-
-        //    }
-        //}
-
-        else
-        {
-            _whiteHighlight.SetActive(true);
-            if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y) 
-            {
-                player.ableMoving = false;
-                isPositionned = true;
                 
-            }
-            else
-            {
-                player.ableMoving = true;
-                Debug.Log("TU DOIS BOUGER");
-                if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y)
-                {
-                    player.ableMoving = false;
+        //    }
+        //    else
+        //    {
+        //        player.ableMoving = true;
+        //        Debug.Log("TU DOIS BOUGER");
+        //        if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y)
+        //        {
+        //            player.ableMoving = false;
 
-                }
-            }
-            //player.ableMoving = false;
-            goQnA = true;
-        }
+        //        }
+        //    }
+        //    //player.ableMoving = false;
+        //    goQnA = true;
+        //}
     }
 
     // When the mouse exits a room
