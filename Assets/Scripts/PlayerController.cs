@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
-    [System.NonSerialized] public bool ableMoving, isMoving, isCalculated;
+    [System.NonSerialized] public bool ableMoving, isMoving, isCalculated, closedDoor;
     public Vector3 target;
     private GridScript grid;
     public GameObject character;
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
 
     public void calculDestination()
     {
-        if (Input.GetMouseButtonDown(0) && ableMoving == true)
+        if (Input.GetMouseButtonDown(0) && ableMoving == true && isMoving == false && closedDoor == false)
         {
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //target.z = transform.position.z;
@@ -63,7 +63,6 @@ public class PlayerController : MonoBehaviour
             /*if (target.x <= 0){ target.x = 0;} else if */
             if (target.x < 0 || target.x > grid._width - 1)
             {
-                //target.x = grid._width - 1;
                 target.x = character.transform.position.x;
 
             }
@@ -76,35 +75,31 @@ public class PlayerController : MonoBehaviour
             }
             isCalculated = true;
             calculatedTransform = target;
-            ableMoving = false;
+            ableMoving = true;
             /*else if (target.y >= grid._height - 1){ target.y = grid._height - 1; }*/
         }
     }
 
     public void MoveCharacter()
     {
-
-        if (myTransform != calculatedTransform)
-        {
-            calculatedTransform = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
-            myTransform = calculatedTransform;
-        }
-
-
         if (ableMoving == true && isCalculated == true)
         {
             isMoving = true;
             calculatedTransform = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             transform.position = calculatedTransform;
-
+            
         }
 
-        else if (ableMoving == true && isCalculated == false /* && tile.isPositionned == true*/)
+        if (transform.position != target)
         {
-            isMoving = true;
+            calculatedTransform = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
             transform.position = calculatedTransform;
+            if (transform.position == calculatedTransform)
+            {
+                isMoving = false;
+            }
         }
 
-        
+        isCalculated = false;
     }
 }

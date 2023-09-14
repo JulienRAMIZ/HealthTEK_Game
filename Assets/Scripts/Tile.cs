@@ -22,7 +22,6 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public bool goQnA = true;
     // If the pointer is close  to the player (adjacent square), we can pop up the question
     public bool isClose = false;
-    public bool isMoving = false;
     public bool goingToExitRoom = false;
     public bool isPositionned = false;
     public bool questionpoped = false;
@@ -38,8 +37,9 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
 
     public void Update()
-    {
+    {   
         playerTarget = player.target;
+
         if (CompareTag("Obstacle") == true)
         {
             _redHighlight.SetActive(true);
@@ -53,29 +53,18 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         if (player.transform.position.x != (int)player.transform.position.x || player.transform.position.y != (int)player.transform.position.y)
         {
             player.ableMoving = true;
-            //player.transform.position = Vector3.MoveTowards(transform.position, playerTarget, player.speed * Time.deltaTime);
+            player.isMoving = true;
         }
         else
         {
-            isMoving = false;
+            player.isMoving = false;
         }
 
-        if (isMoving == !isMoving)
+        if (player.isMoving == !player.isMoving)
         {
-            Debug.Log("Oula changement du bool isMoving ... " + isMoving);
+            Debug.Log("Oula changement du bool isMoving ... " + player.isMoving);
 
         }
-
-        //if (questionpoped == true)
-        //{
-        //    player.ableMoving = false;
-
-
-            //}
-            //if (questionpoped == false)
-            //{
-            //    player.ableMoving = true;
-            //}
 
     }
     public void Init(bool isOffset)
@@ -98,7 +87,6 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             if (player.transform.position.x - transform.position.x == 0 || player.transform.position.y - transform.position.y == 0)
             {
                 isClose = true;
-                //Debug.Log("en x on a : " + (player.transform.position.x - this.transform.position.x) + " Et en y on a : " + (player.transform.position.y - this.transform.position.y));
             }    
         }
 
@@ -106,16 +94,19 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
         if (CompareTag("OpenedDoor") == true)
         {
+            player.closedDoor = false;
             goQnA = false;
             _whiteHighlight.SetActive(false);
             _greenHighlight.SetActive(true);
 
-            if (isClose)
+            if (isClose && manager.questionPopped == false)
             {
                 player.ableMoving = true;
+                Debug.Log("Close it is !");
             }
             else
             {
+                Debug.Log("Plus close du tout ! ");
                 player.ableMoving = false;
             }
         }
@@ -134,85 +125,15 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
         if (CompareTag("ClosedDoor") == true)
         {
+            player.closedDoor = true;
             _whiteHighlight.SetActive(true);
+            player.ableMoving = false;
             if (isClose)
             {
                 goQnA = true;
             }
         }
 
-        //if (CompareTag("OpenedDoor") == true )
-        //{
-        //    goQnA = false;
-        //    _whiteHighlight.SetActive(false);
-        //    _greenHighlight.SetActive(true);
-        //    if (isClose) 
-        //    { 
-        //        player.ableMoving = true;
-        //        isPositionned = false;
-        //    }
-        //    else if (player.transform.position.x != (int)player.transform.position.x || player.transform.position.y != (int)player.transform.position.y)
-        //    {
-        //        player.ableMoving = true;
-        //        isPositionned = false;
-        //        player.transform.position = Vector3.MoveTowards(transform.position, playerTarget, player.speed * Time.deltaTime);
-
-                //    }
-                //    else
-                //    {
-                //        player.ableMoving = false;
-                //        isPositionned = true;
-
-                //    }
-                //}
-                //else if (CompareTag("Obstacle") == true)
-                //{
-                //    goQnA = false;
-                //    player.ableMoving = false;
-                //}
-                //else if (CompareTag("ExitRoom") == true)
-                //{
-                //    goQnA = true;
-                //    player.ableMoving = false;
-                //    goingToExitRoom = true;
-                //}
-
-
-
-                //à continuer le dev, je peux encore déplacer le perso non stop si toujours en mouvement (soucis avec du isclose et ablemoving)
-                //else if (CompareTag("ClosedDoor") == true)
-                //{
-                //    _whiteHighlight.SetActive(true);
-                //    if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y)
-                //    {
-                //        player.ableMoving = false;
-                //        isPositionned = true;
-
-                //    }
-                //}
-
-        //        else
-        //{
-        //    _whiteHighlight.SetActive(true);
-        //    if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y) 
-        //    {
-        //        player.ableMoving = false;
-        //        isPositionned = true;
-                
-        //    }
-        //    else
-        //    {
-        //        player.ableMoving = true;
-        //        Debug.Log("TU DOIS BOUGER");
-        //        if (player.transform.position.x == (int)player.transform.position.x && player.transform.position.y == (int)player.transform.position.y)
-        //        {
-        //            player.ableMoving = false;
-
-        //        }
-        //    }
-        //    //player.ableMoving = false;
-        //    goQnA = true;
-        //}
     }
 
     // When the mouse exits a room
@@ -221,7 +142,6 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         _greenHighlight.SetActive(false);
         _whiteHighlight.SetActive(false);
         isClose = false;
-        player.ableMoving = false;
     }
 
     // When we do a left click while being on a room
@@ -231,8 +151,8 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             manager.tileX = (int)transform.position.x;
             manager.tileY = (int)transform.position.y;
-            manager.PopUpQuestion();  
             questionpoped = true;
+            manager.PopUpQuestion();  
         }
         else if (eventData.button == PointerEventData.InputButton.Left && _whiteHighlight == true && isClose == false) // and tag différet de opende door
         {
