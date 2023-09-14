@@ -561,7 +561,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 325.63}
+  m_AnchoredPosition: {x: 0, y: 474}
   m_SizeDelta: {x: 1494.52, y: -128.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &63307151
@@ -1494,141 +1494,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150459701}
   m_CullTransparentMesh: 1
---- !u!1 &167256130
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 167256131}
-  - component: {fileID: 167256133}
-  - component: {fileID: 167256132}
-  m_Layer: 5
-  m_Name: Question Title Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &167256131
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 167256130}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 271303493}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -50.1}
-  m_SizeDelta: {x: 941.2, y: -55.1}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &167256132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 167256130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 'Here is your question : '
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8abe1e37fe7bf433896970245b936749, type: 2}
-  m_sharedMaterial: {fileID: 21175996417216586, guid: 8abe1e37fe7bf433896970245b936749, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: 97690656
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 17
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &167256133
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 167256130}
-  m_CullTransparentMesh: 1
 --- !u!1001 &168718261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2487,7 +2352,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 63307150}
-  - {fileID: 167256131}
   m_Father: {fileID: 1291381256}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3955,7 +3819,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 500, y: -224.64}
+  m_AnchoredPosition: {x: 500, y: -146}
   m_SizeDelta: {x: 160.12, y: 30.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &528860770
@@ -4946,39 +4810,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb79cdac194a9e34c97f082ac2946c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  welcomeScreen: {fileID: 613695467}
+  welcomeScreen: {fileID: 229221786}
   timer: {fileID: 1483983587}
   ScoreText: {fileID: 1569446462}
   jokerText: {fileID: 1177441171}
   RulesButton: {fileID: 9718518}
   contextSentences:
-  - 'The aim is to get out of the maze before time runs out. '
-  - To progress through the labyrinth, you'll need to answer a series of multiple-choice
-    questions correctly.
-  - 'To spice things up, you''ll get bonuses or penalties depending on whether or
-    not you give the right answer. '
-  - 'Think carefully before you answer, because your score can quickly go from mediocre
-    to brilliant. '
-  - 'You''ll be able to skip a question if you can''t answer it. '
-  - 'Since the questions are displayed randomly, it''s possible that the question
-    you failed to answer will come up again. '
-  - 'And remember, you can only change questions 3 times. '
-  - 'Your grade will depend on your final score. '
-  - To have the average, you'll need a score of around 115.
-  - The more questions you answer, the more likely you are to get a higher score,
-    and therefore a higher grade.
-  - Beware ! This can be a double-edged sword.
-  - 'If you''re wrong several times, your score can quickly become negative, and
-    if it does, you''ll get a zero. '
-  - 'As you can see, your grade will depend on your score, which in turn depends
-    on the number of questions you answer correctly (or not) to reach the exit. '
-  - It's all up to you.
-  - 'All clear ? '
-  startButton: {fileID: 806973224}
-  skipButton: {fileID: 806973224}
-  nextButton: {fileID: 252349126}
-  previousButton: {fileID: 900290928}
-  contextText: {fileID: 642137468}
+  - It's the 18th century, and the plague is massacring your village.
+  - Doctors are testing remedies, each more unsuccessful than the last.
+  - You're a different kind of healer. Your remedies are out of the ordinary and
+    you've had a serious lead for several months.
+  - Time is running out as one of your patient is suffering badly and has only 1
+    hour to live.
+  - 'Sitting in your library, you try to decipher the way out of a paper maze by
+    answering a Multiple Choice Questions. '
+  - Each correct answer moves you forward, bringing you closer to the exit and thus
+    to the final element in your cure.
+  - If necessary, you can skip a question, but only three times.
+  - And remember, the higher your score, the greater the healing power of your remedy.
+  - Will you be able to answer all the questions in less than 1 hour?
+  - Can you save your patient from death?
+  - Can you find the cure?
+  - It's all up to you - let's go!
+  startButton: {fileID: 776093333}
+  skipButton: {fileID: 109521212}
+  nextButton: {fileID: 189183300}
+  previousButton: {fileID: 1318131077}
+  contextText: {fileID: 929727097}
 --- !u!114 &642137468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5133,7 +4991,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 82.67}
+  m_AnchoredPosition: {x: 0, y: 96}
   m_SizeDelta: {x: 400, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &646956386
@@ -7617,31 +7475,22 @@ MonoBehaviour:
   jokerText: {fileID: 1177441171}
   RulesButton: {fileID: 9718518}
   contextSentences:
-  - 'How well did you understand your biosensors course ? '
-  - That's what we are going to test in this game.
-  - 'The aim is simple: to get out of the maze before time runs out. '
-  - To progress through the labyrinth, you'll need to answer a series of multiple-choice
-    questions correctly.
-  - 'To spice things up, you''ll get bonuses or penalties depending on whether or
-    not you give the right answer. '
-  - 'Think carefully before you answer, because your score can quickly go from mediocre
-    to brilliant. '
-  - 'You''ll be able to skip a question if you can''t answer it. '
-  - 'Since the questions are displayed randomly, it''s possible that the question
-    you failed to answer will come up again. '
-  - 'And remember, you can only change questions 3 times. '
-  - 'Your grade will depend on your final score. '
-  - To have the average, you'll need a score of around 115.
-  - The more questions you answer, the more likely you are to get a higher score,
-    and therefore a higher grade.
-  - Beware ! This can be a double-edged sword.
-  - 'If you''re wrong several times, your score can quickly become negative, and
-    if it does, you''ll get a zero. '
-  - 'As you can see, your grade will depend on your score, which in turn depends
-    on the number of questions you answer correctly (or not) to reach the exit. '
-  - It's all up to you.
-  - 'All clear ? '
-  - 'Let''s get started ! '
+  - It's the 18th century, and the plague is massacring your village.
+  - Doctors are testing remedies, each more unsuccessful than the last.
+  - You're a different kind of healer. Your remedies are out of the ordinary and
+    you've had a serious lead for several months.
+  - Time is running out as one of your patient is suffering badly and has only 1
+    hour to live.
+  - 'Sitting in your library, you try to decipher the way out of a paper maze by
+    answering a Multiple Choice Questions. '
+  - Each correct answer moves you forward, bringing you closer to the exit and thus
+    to the final element in your cure.
+  - If necessary, you can skip a question, but only three times.
+  - And remember, the higher your score, the greater the healing power of your remedy.
+  - Will you be able to answer all the questions in less than 1 hour?
+  - Can you save your patient from death?
+  - Can you find the cure?
+  - It's all up to you - let's go!
   startButton: {fileID: 776093333}
   skipButton: {fileID: 109521212}
   nextButton: {fileID: 189183300}
@@ -7669,15 +7518,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'How well did you understand you bio sensors course ? '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
-  m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8abe1e37fe7bf433896970245b936749, type: 2}
+  m_sharedMaterial: {fileID: 21175996417216586, guid: 8abe1e37fe7bf433896970245b936749, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4293590784
-  m_fontColor: {r: 0, g: 1, b: 0.9194181, a: 1}
+    rgba: 4284937215
+  m_fontColor: {r: 1, g: 0.9512395, b: 0.4009434, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7952,7 +7801,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -350, y: 55}
+  m_AnchoredPosition: {x: -350, y: 133.64001}
   m_SizeDelta: {x: 330, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &954077360
@@ -8408,7 +8257,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -350, y: 243}
+  m_AnchoredPosition: {x: -350, y: 321.64}
   m_SizeDelta: {x: 330, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &996575603
@@ -9773,7 +9622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -430, y: 25.1}
+  m_AnchoredPosition: {x: -430, y: 103.74001}
   m_SizeDelta: {x: 160.12, y: 30.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1182252628
@@ -13240,7 +13089,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 350, y: 55}
+  m_AnchoredPosition: {x: 350, y: 133.64001}
   m_SizeDelta: {x: 330, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1512335312
@@ -14724,7 +14573,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -430, y: -217.8}
+  m_AnchoredPosition: {x: -430, y: -139.16}
   m_SizeDelta: {x: 160.12, y: 30.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624851489
@@ -17275,14 +17124,14 @@ MonoBehaviour:
   m_text: A-MAZE-IN-GAME
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8abe1e37fe7bf433896970245b936749, type: 2}
-  m_sharedMaterial: {fileID: 21175996417216586, guid: 8abe1e37fe7bf433896970245b936749, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: 1fd0cc6cae9106a4ca49cb57f99865e0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 3623936762
-  m_fontColor: {r: 0.9811321, g: 0.88670534, b: 0, a: 0.84705883}
+    rgba: 4205200254
+  m_fontColor: {r: 0.49347392, g: 0.26099145, b: 0.6509434, a: 0.98039216}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -18675,7 +18524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 350, y: 243}
+  m_AnchoredPosition: {x: 350, y: 321.64}
   m_SizeDelta: {x: 330, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1981924628
@@ -19371,7 +19220,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 500, y: 16.9}
+  m_AnchoredPosition: {x: 500, y: 95.540016}
   m_SizeDelta: {x: 160.12, y: 30.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2040922001

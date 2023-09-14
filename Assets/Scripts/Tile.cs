@@ -75,6 +75,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         if( _renderer.transform.position.x == 4 && _renderer.transform.position.y == 4)
         {
             _renderer.sprite  = _exit;
+
         }
     }
     // When the mouse enters in a room
