@@ -13,6 +13,8 @@ public class WelcomeText : MonoBehaviour
     public GameObject ScoreText;
     public GameObject jokerText;
     public GameObject RulesButton;
+   // public GameObject HeartImage;
+    public Image HeartImage;
     public string[] contextSentences;
     public Button startButton;
     public Button skipButton;
@@ -39,6 +41,7 @@ public class WelcomeText : MonoBehaviour
         ScoreText.SetActive(false); // ScoreText.gameObject.SetActive(false)
         jokerText.SetActive(false);
         RulesButton.SetActive(false);
+        HeartImage.gameObject.SetActive(false);
         NextSentence();
     }
 
@@ -92,10 +95,15 @@ public class WelcomeText : MonoBehaviour
     public void ChangeScreen()
     {
         welcomeScreen.SetActive(false);
-       // difficultyPanel.SetActive(true);
         timer.SetActive(true);
         ScoreText.SetActive(true);
         jokerText.SetActive(true);
         RulesButton.SetActive(true);
+        HeartImage.gameObject.SetActive(true); 
+    }
+
+    public void hideImage()
+    {
+        HeartImage.gameObject.SetActive(true); 
     }
 }
