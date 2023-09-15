@@ -13,7 +13,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     [SerializeField] private Color _baseColor, _offsetColor;
     [SerializeField] private SpriteRenderer _renderer;
     [SerializeField] private Sprite _exit;
-    [SerializeField] private GameObject _greenHighlight;
+    [SerializeField] private GameObject _purpleHighlight;
     [SerializeField] private GameObject _whiteHighlight;
     [SerializeField] private GameObject _redHighlight;
  
@@ -43,11 +43,12 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         if (CompareTag("Obstacle") == true)
         {
             _redHighlight.SetActive(true);
+            _purpleHighlight.SetActive(false);
         }
 
         if (CompareTag("OpenedDoor") == true)
         {
-            _greenHighlight.SetActive(true);
+            _purpleHighlight.SetActive(true);
         }
 
         if (player.transform.position.x != (int)player.transform.position.x || player.transform.position.y != (int)player.transform.position.y)
@@ -74,7 +75,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         _renderer.color = isOffset ? _offsetColor : _baseColor;
         if( _renderer.transform.position.x == 4 && _renderer.transform.position.y == 4)
         {
-            _renderer.sprite  = _exit;
+            _renderer.sprite = _exit;
 
         }
     }
@@ -84,7 +85,6 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         // Limit the movements to the adjacent squares
         if (player.transform.position.x - transform.position.x == -1 || player.transform.position.x - transform.position.x == 1 || player.transform.position.y - transform.position.y == -1 || player.transform.position.y - transform.position.y == 1)
         {
-
             if (player.transform.position.x - transform.position.x == 0 || player.transform.position.y - transform.position.y == 0)
             {
                 isClose = true;
@@ -92,13 +92,11 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
 
         // The OpenedDoor tag means that the player answered correctlty and that he can move to the room. The default tag is ClosedDoor.
-
         if (CompareTag("OpenedDoor") == true)
         {
             player.closedDoor = false;
             goQnA = false;
             _whiteHighlight.SetActive(false);
-            _greenHighlight.SetActive(true);
 
             if (isClose && manager.questionPopped == false)
             {
@@ -134,13 +132,12 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
                 goQnA = true;
             }
         }
-
     }
 
     // When the mouse exits a room
     void IPointerExitHandler.OnPointerExit(PointerEventData eventData)
     {
-        _greenHighlight.SetActive(false);
+        _purpleHighlight.SetActive(false);
         _whiteHighlight.SetActive(false);
         isClose = false;
     }
@@ -159,9 +156,9 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             StartCoroutine(manager.ShowMessage("You can't move here.", 3));
         }
-        else if (eventData.button == PointerEventData.InputButton.Left && _redHighlight == true && isClose == true) // and tag différet de opende door
+        else if (eventData.button == PointerEventData.InputButton.Left && isClose == true && CompareTag("Obstacle") == true) // and tag différet de opende door
         {
-            StartCoroutine(manager.ShowMessage("You can't attempt again.", 3));
+            StartCoroutine(manager.ShowMessage("This square is blocked because you skipped its question. You can no longer move here.", 7));
         }
         else if (eventData.button == PointerEventData.InputButton.Left && _redHighlight == true && isClose == false) // and tag différet de opende door
         {
