@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject RulesButton;
     public GameObject Joker;
     public GameObject DamageScreen;
+    public Image HeartImage;
 
     [Header("Damage Overlay---------")]
     public Image overlay; // our DamageOverlay gameobject (coming soon)
@@ -682,6 +683,7 @@ public class GameManager : MonoBehaviour
             Joker.SetActive(false);
             RulesButton.SetActive(false);
             isExitRoom = false;
+            HeartImage.gameObject.SetActive(false);
             
         }
         else if ((!toggleChoice1.isOn && !toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn) ||
@@ -720,7 +722,7 @@ public class GameManager : MonoBehaviour
             }
             if (nbWrongAnswers == 4)
             {
-                StartCoroutine(ShowMessage("You chose the wrong answer a third time. -20 to your score. Try again.", 6));
+                StartCoroutine(ShowMessage("You chose the wrong answer a fourth time. -20 to your score. Try again.", 6));
                 score -= 20;
                 Debug.Log("4e malus: -20");
                 durationTimer = 0;
@@ -753,7 +755,7 @@ public class GameManager : MonoBehaviour
             
                 grid._listTiles[tileX, tileY].tag = "Obstacle";
  
-            StartCoroutine(ShowMessage("Reminder: You can skip a question \n only 3 times.", 6));
+            StartCoroutine(ShowMessage("Careful, by skipping the question, you've used up 1 joker. You only have " + nbJokers.ToString() + " left now.", 8));
         }
 
         jokerText.text = "Joker : " + nbJokers.ToString() + "/3";
