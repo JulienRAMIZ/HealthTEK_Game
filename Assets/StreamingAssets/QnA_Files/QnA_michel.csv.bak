@@ -34,7 +34,7 @@ RTD is a non-contact temperature device ?;True,False;False
 Thermocouple Sensor can stand much higher temperature than RTD ?;True,False;True
 Thermocouple are made of two similar metals ?;True,False;False
 RTD can be made of lead ?;True,False;False
-Temperature is not measured in ?;Pari,Celsius,Rankine;Pari
+Temperature is not measured in ?;Pari, Celsius,Rankine;Pari
 Infrared Sensors works by ?;measuring the emitted thermal radiation from source, measuring the stored thermal radiation in source, none of them;measuring the emitted thermal radiation from source
 Does not play role in choosing temperature sensor ?;Temperature Range,Stability,Soundwave;Soundwave
 RTD stands for ?;Resistance Temperature Detector,Resistance Temperature Dimension,Resistance Time Device;Resistance Temperature Detector

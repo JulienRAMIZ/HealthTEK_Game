@@ -120,6 +120,11 @@ public class GameManager : MonoBehaviour
                 overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, tempAlpha);
             }
         }
+
+        if (ScorePanel.activeSelf == true)
+        {
+            HeartImage.gameObject.SetActive(false);
+        }
     }
 
    // Choose a question randomly and displays it along with its possible answers
