@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public GameObject RulesButton;
     public GameObject Joker;
     public GameObject DamageScreen;
-    public Image HeartImage;
+    public GameObject HeartImage;
 
     [Header("Damage Overlay---------")]
     public Image overlay; // our DamageOverlay gameobject (coming soon)
