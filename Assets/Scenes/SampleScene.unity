@@ -4828,7 +4828,7 @@ MonoBehaviour:
   jokerText: {fileID: 1177441171}
   RulesButton: {fileID: 9718518}
   contextSentences:
-  - It's the 18th century, and the plague is massacring your village.
+  - It's the 17th century, and the plague is massacring your village.
   - Doctors are testing remedies, each more unsuccessful than the last.
   - You're a different kind of healer. Your remedies are out of the ordinary and
     you've had a serious lead for several months.
@@ -4869,7 +4869,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: It's the 18th century, and the plague is massacring your village.
+  m_text: It's the 17th century, and the plague is massacring your village.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8abe1e37fe7bf433896970245b936749, type: 2}
   m_sharedMaterial: {fileID: 21175996417216586, guid: 8abe1e37fe7bf433896970245b936749, type: 2}
@@ -7411,7 +7411,7 @@ MonoBehaviour:
   jokerText: {fileID: 1177441171}
   RulesButton: {fileID: 9718518}
   contextSentences:
-  - It's the 18th century, and the plague is massacring your village.
+  - It's the 17th century, and the plague is massacring your village.
   - Doctors are testing remedies, each more unsuccessful than the last.
   - You're a different kind of healer. Your remedies are out of the ordinary and
     you've had a serious lead for several months.
@@ -7452,7 +7452,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: It's the 18th century, and the plague is massacring your village.
+  m_text: It's the 17th century, and the plague is massacring your village.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8abe1e37fe7bf433896970245b936749, type: 2}
   m_sharedMaterial: {fileID: 21175996417216586, guid: 8abe1e37fe7bf433896970245b936749, type: 2}
@@ -12700,10 +12700,10 @@ RectTransform:
   m_Father: {fileID: 1799490476}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -22.799805, y: 20}
-  m_SizeDelta: {x: 319.59998, y: 49.089996}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -159.79999, y: -24.544983}
+  m_SizeDelta: {x: 319.59998, y: 49.089966}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1483983591
 MonoBehaviour:

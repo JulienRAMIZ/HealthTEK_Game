@@ -15,7 +15,7 @@ BMI is for weighing scale ?;True,False;True
 Wheelchairs are Class I devices ?;True,False;True
 Surgical laser is Class III device ?;True,False;False
 An instrument for measuring the air capacity of the lungs ?;Spirometer,Cannula,Sphygmomanometer;Spirometer
-Systolic Blood pressure is ?;80 mm/Hg,120 mm/Hg,100 mm/Hg;120 mmHg
+Systolic Blood pressure is ?;80 mm/Hg,120 mm/Hg,100 mm/Hg;120 mm/Hg
 It has 2 basic types,transmission probes and reflectance probes ?;Spirometer,Pulse oximeter,Sphygmomanometer;Pulse oximeter
 Which Class is Pacemakers ?;Class I,Class IIa,Class III;Class IIa
 Which Class is Hearing aid ?;Class I,Class IIa,Class III;Class III
