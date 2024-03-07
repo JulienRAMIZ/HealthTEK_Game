@@ -162,14 +162,14 @@ public class GameManager : MonoBehaviour
     public void SetAnswers()
     {
         // If we have two choices of correct answers (true or false questions)
-        if (QnA[RandomIndex + 1].Split(',').Length == 2)
+        if (QnA[RandomIndex + 1].Split('|').Length == 2)
         {
             Debug.Log("True or false question");
             toggleChoice2.gameObject.SetActive(false);
             toggleChoice4.gameObject.SetActive(false);
             // Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[0];
-            Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[0];
-            Choices[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[1];
+            Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split('|'))[0];
+            Choices[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split('|'))[1];
 
 
 
@@ -178,25 +178,25 @@ public class GameManager : MonoBehaviour
 
 
         // If we have three choices of correct answers
-        if (QnA[RandomIndex + 1].Split(',').Length == 3)
+        if (QnA[RandomIndex + 1].Split('|').Length == 3)
         {
             Debug.Log("three answers question");
             toggleChoice4.gameObject.SetActive(false);
             for (int j = 0; j < 3; j++)
             {
                 //Choices[j].transform.GetChild(1).GetComponent<Text>().text = (QnA[RandomIndex + 1].Split(','))[j];
-                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[j];
+                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split('|'))[j];
             }
         }
 
 
 
         //If we have four choices of correct answers (a real MCQ)
-        if (QnA[RandomIndex + 1].Split(',').Length > 3)
+        if (QnA[RandomIndex + 1].Split('|').Length > 3)
         {
             for (int j = 0; j < 4; j++)
             {
-                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[j];
+                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split('|'))[j];
             }
         }
 
@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
    public void CheckToggle()
    {
         // If we only have one correct answer
-        if (!CorrectAnswer.Contains(","))
+        if (!CorrectAnswer.Contains("|"))
         {
             if (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer)
             {
@@ -303,9 +303,9 @@ public class GameManager : MonoBehaviour
         }
 
         // If we have multiple correct answers
-        if (CorrectAnswer.Contains(","))
+        if (CorrectAnswer.Contains("|"))
         {
-            string[] Answers = CorrectAnswer.Split(",");
+            string[] Answers = CorrectAnswer.Split("|");
             int nbAnswers = Answers.Length;
 
             // If we have two correct answers
@@ -313,7 +313,7 @@ public class GameManager : MonoBehaviour
             {
                 string correctAnswer1 = Answers[0]; 
                 string correctAnswer2 = Answers[1]; 
-                Debug.Log(correctAnswer1 + "," + correctAnswer2);
+                Debug.Log(correctAnswer1 + "|" + correctAnswer2);
 
                 // If toggle 1 and 2 are holding the correct answers 
                 if ((toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2) ||
@@ -466,7 +466,7 @@ public class GameManager : MonoBehaviour
                 string correctAnswer1 = Answers[0];
                 string correctAnswer2 = Answers[1];
                 string correctAnswer3 = Answers[2];
-                Debug.Log(correctAnswer1 + "," + correctAnswer2 + "," + correctAnswer3);
+                Debug.Log(correctAnswer1 + "|" + correctAnswer2 + "|" + correctAnswer3);
 
                 // If toggle 1, 2, and 3 are holding the correct answers 
                 if ((toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3)||
