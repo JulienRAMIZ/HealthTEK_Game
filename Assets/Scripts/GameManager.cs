@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Unity.IO;
+using Nobi.UiRoundedCorners;
 
 /* Script that manages the game */
 public class GameManager : MonoBehaviour
@@ -39,6 +40,9 @@ public class GameManager : MonoBehaviour
     public GridScript grid;
     public SelectedButton selectedButton;
     public Toggle toggleChoice1, toggleChoice2,toggleChoice3, toggleChoice4;
+    public GameObject background1 , background2, background3, background4;
+    private ImageWithRoundedCorners image1, image2, image3, image4;
+    public Sprite square, circle;
     //private Color selectedColor, normalColor;
 
     [System.NonSerialized]
@@ -67,7 +71,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //var QuizFile = Resources.Load<TextAsset>("/QnA_Files/QnA");
-        var QuizFile = Path.Combine(Application.streamingAssetsPath,"QnA_Files/QnA_unit1.csv");
+        //var QuizFile = Path.Combine(Application.streamingAssetsPath,"QnA_Files/QnA_unit1.csv");
+        var QuizFile = Path.Combine(Application.streamingAssetsPath, "QnA_Files/test_file.csv");
         string FilePath = QuizFile;
 
         Debug.Log(FilePath);
@@ -75,7 +80,19 @@ public class GameManager : MonoBehaviour
         QuestionScreen.SetActive(false);
         ScorePanel.SetActive(false);
         timeText.gameObject.SetActive(false);
-       
+
+        ////Open the questions and answers file (csv file), retrieve the values and add them in a list
+        //var reader = new StreamReader(File.OpenRead(FilePath));
+        //while (!reader.EndOfStream)
+        //{
+        //    var line = reader.ReadLine();
+        //    var values = line.Split(';');
+        //    QnA.Add(values[0]);
+        //    QnA.Add(values[1]);
+        //    QnA.Add(values[2]);
+        //    nbLines++; // We use nbLines here to get the number of questions. nbLines corresponds to the number of lines in the csv file. Since each line holds a question, nbLines can count as the number of questions.
+        //}
+        //QnA.RemoveRange(0, 3); //remove the first three values of the list (Question, Possible_Answer, Correct_Answer)   
 
         //Open the questions and answers file (csv file), retrieve the values and add them in a list
         var reader = new StreamReader(File.OpenRead(FilePath));
@@ -86,12 +103,22 @@ public class GameManager : MonoBehaviour
             QnA.Add(values[0]);
             QnA.Add(values[1]);
             QnA.Add(values[2]);
+            QnA.Add(values[3]);
+            QnA.Add(values[4]);
+            QnA.Add(values[5]);
             nbLines++; // We use nbLines here to get the number of questions. nbLines corresponds to the number of lines in the csv file. Since each line holds a question, nbLines can count as the number of questions.
         }
-        QnA.RemoveRange(0, 3); //remove the first three values of the list (Question, Possible_Answer, Correct_Answer)   
+        QnA.RemoveRange(0, 5); //remove the first three values of the list (Question, Possible_Answer, Correct_Answer)
 
-        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0); 
-    
+        overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
+
+        //CorrectAnswer = QnA[RandomIndex + 2];
+        CorrectAnswer = QnA[RandomIndex + 5];
+
+        image1 = background1.GetComponent<ImageWithRoundedCorners>();
+        image2 = background2.GetComponent<ImageWithRoundedCorners>();
+        image3 = background3.GetComponent<ImageWithRoundedCorners>();
+        image4 = background4.GetComponent<ImageWithRoundedCorners>();
     }
 
     /* Possible evolution of the game. Here we set the difficulty.
@@ -133,6 +160,55 @@ public class GameManager : MonoBehaviour
         QuestionScreen.SetActive(true);
         QuestionButton.gameObject.SetActive(false);
         RandomIndex = UnityEngine.Random.Range(0, QnA.Count);
+        Transform[] backgroundM = new Transform[4];
+        Transform[] backgroundS = new Transform[4];
+        backgroundM[0] = toggleChoice1.transform.Find("BackgroundM");
+        backgroundM[1] = toggleChoice2.transform.Find("BackgroundM");
+        backgroundM[2] = toggleChoice3.transform.Find("BackgroundM");
+        backgroundM[3] = toggleChoice4.transform.Find("BackgroundM");
+        backgroundS[0] = toggleChoice1.transform.Find("BackgroundM");
+        backgroundS[1] = toggleChoice2.transform.Find("BackgroundM");
+        backgroundS[2] = toggleChoice3.transform.Find("BackgroundM");
+        backgroundS[3] = toggleChoice4.transform.Find("BackgroundM");
+
+        if (CorrectAnswer.Contains("|"))
+        {
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    backgroundM[i].gameObject.SetActive(true);
+            //    backgroundS[i].gameObject.SetActive(false);
+            //    Debug.Log("Là c'est les carrés");
+
+            //}
+            background1.GetComponent<Image>().sprite = square;
+            background2.GetComponent<Image>().sprite = square;
+            background3.GetComponent<Image>().sprite = square;
+            background4.GetComponent<Image>().sprite = square;
+
+            //image1.radius = 0;
+            //image2.radius = 0;
+            //image3.radius = 0;
+            //image4.radius = 0;
+        }
+
+        if (!CorrectAnswer.Contains("|"))
+        {
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    backgroundM[i].gameObject.SetActive(false);
+            //    backgroundS[i].gameObject.SetActive(true);
+            //    Debug.Log("Là c'est les ronds");
+
+            //}
+            background1.GetComponent<Image>().sprite = circle;
+            background2.GetComponent<Image>().sprite = circle;
+            background3.GetComponent<Image>().sprite = circle;
+            background4.GetComponent<Image>().sprite = circle;
+            //image1.radius = 10;
+            //image2.radius = 10;
+            //image3.radius = 10;
+            //image4.radius = 10;
+        }
 
         if (QnA[RandomIndex].EndsWith('?'))
         {
@@ -200,7 +276,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        CorrectAnswer = QnA[RandomIndex + 2];
+        //CorrectAnswer = QnA[RandomIndex + 2];
     }
 
     // Check if the player cliked on the correct answer
