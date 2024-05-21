@@ -106,9 +106,12 @@ public class GameManager : MonoBehaviour
             QnA.Add(values[3]);
             QnA.Add(values[4]);
             QnA.Add(values[5]);
+            QnA.Add(values[6]);
+            QnA.Add(values[7]);
+            QnA.Add(values[8]);
             nbLines++; // We use nbLines here to get the number of questions. nbLines corresponds to the number of lines in the csv file. Since each line holds a question, nbLines can count as the number of questions.
         }
-        QnA.RemoveRange(0, 5); //remove the first three values of the list (Question, Possible_Answer, Correct_Answer)
+        QnA.RemoveRange(0, 9); //remove the first three values of the list (Question, Possible_Answer, Correct_Answer)
 
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
 
@@ -119,6 +122,16 @@ public class GameManager : MonoBehaviour
         image2 = background2.GetComponent<ImageWithRoundedCorners>();
         image3 = background3.GetComponent<ImageWithRoundedCorners>();
         image4 = background4.GetComponent<ImageWithRoundedCorners>();
+
+        Debug.Log(QnA[0]);
+        Debug.Log(QnA[1]);
+        Debug.Log(QnA[2]);
+        Debug.Log(QnA[3]);
+        Debug.Log(QnA[4]);
+        Debug.Log(QnA[5]);
+        Debug.Log(QnA[6]);
+        Debug.Log(QnA[7]);
+        Debug.Log(QnA[8]);
     }
 
     /* Possible evolution of the game. Here we set the difficulty.
@@ -331,7 +344,7 @@ public class GameManager : MonoBehaviour
                 else
                 {
                     CorrectChoice = false;
-                    //toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;
+                    //toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;                                                                                                                                                                                                                                                                                                         
                 }
             }
             else if (toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer)
