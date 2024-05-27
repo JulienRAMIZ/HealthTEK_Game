@@ -48,7 +48,9 @@ public class GameManager : MonoBehaviour
     [System.NonSerialized]
     public int tileX,tileY;
 
-    private string CorrectAnswer;
+    private string[] CorrectAnswer;
+    private string[] filledAnswer;
+    private int nbEmptyAnswer = 0;
     private GameObject SelectedButton, SelectedButton2;
     private bool CorrectChoice = false;
     private bool isExitRoom = false;
@@ -116,7 +118,24 @@ public class GameManager : MonoBehaviour
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
 
         //CorrectAnswer = QnA[RandomIndex + 2];
-        CorrectAnswer = QnA[RandomIndex + 5];
+        for(int i = 0; i < 5; i++)
+        {
+            CorrectAnswer[i] = QnA[RandomIndex + 5 + i];
+            if (CorrectAnswer[i] == null) 
+            {
+                nbEmptyAnswer++;
+            }
+            else
+            {
+                for(int j = 0; j < 5; j++)
+                {
+                    filledAnswer[j] = CorrectAnswer[i];
+                }
+                
+            }
+
+        }
+        
 
         image1 = background1.GetComponent<ImageWithRoundedCorners>();
         image2 = background2.GetComponent<ImageWithRoundedCorners>();
@@ -184,7 +203,7 @@ public class GameManager : MonoBehaviour
         backgroundS[2] = toggleChoice3.transform.Find("BackgroundM");
         backgroundS[3] = toggleChoice4.transform.Find("BackgroundM");
 
-        if (CorrectAnswer.Contains("|"))
+        if (nbEmptyAnswer <= 2)
         {
             //for (int i = 0; i < 4; i++)
             //{
@@ -204,7 +223,7 @@ public class GameManager : MonoBehaviour
             //image4.radius = 0;
         }
 
-        if (!CorrectAnswer.Contains("|"))
+        if (nbEmptyAnswer == 3)
         {
             //for (int i = 0; i < 4; i++)
             //{
@@ -302,9 +321,9 @@ public class GameManager : MonoBehaviour
    public void CheckToggle()
    {
         // If we only have one correct answer
-        if (!CorrectAnswer.Contains("|"))
+        if (nbEmptyAnswer == 3)
         {
-            if (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer)
+            if (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer[0])
             {
                 if (!toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn && toggleChoice1.isOn)
                 {
@@ -326,7 +345,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            else if (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer)
+            else if (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer[1])
             {
                 if (!toggleChoice1.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn && toggleChoice2.isOn)
                 {
@@ -347,7 +366,7 @@ public class GameManager : MonoBehaviour
                     //toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;                                                                                                                                                                                                                                                                                                         
                 }
             }
-            else if (toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer)
+            else if (toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer[2])
             {
                 if (!toggleChoice2.isOn && !toggleChoice1.isOn && !toggleChoice4.isOn && toggleChoice3.isOn)
                 {
@@ -368,7 +387,7 @@ public class GameManager : MonoBehaviour
                     //toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;
                 }
             }
-            else if (toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer)
+            else if (toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer[3])
             {
                 if (!toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice1.isOn && toggleChoice4.isOn)
                 {
@@ -392,9 +411,9 @@ public class GameManager : MonoBehaviour
         }
 
         // If we have multiple correct answers
-        if (CorrectAnswer.Contains("|"))
+        if (nbEmptyAnswer <= 3)
         {
-            string[] Answers = CorrectAnswer.Split("|");
+            string[] Answers = filledAnswer;
             int nbAnswers = Answers.Length;
 
             // If we have two correct answers
@@ -687,7 +706,7 @@ public class GameManager : MonoBehaviour
         {
             if (SelectedButton == Choices[i])
             {
-                if (Choices[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text == CorrectAnswer) //Choices[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text == CorrectAnswer
+                if (Choices[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text == CorrectAnswer[i]) //Choices[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text == CorrectAnswer
                 {
                     CorrectChoice = true;
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
