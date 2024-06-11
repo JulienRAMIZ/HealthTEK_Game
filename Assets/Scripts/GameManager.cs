@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
     [System.NonSerialized]
     public int tileX,tileY;
 
-    private string[] CorrectAnswer;
+    private string[] correctAnswer;
     private string[] filledAnswer;
     private int nbEmptyAnswer = 0;
     private GameObject SelectedButton, SelectedButton2;
@@ -118,23 +118,9 @@ public class GameManager : MonoBehaviour
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
 
         //CorrectAnswer = QnA[RandomIndex + 2];
-        for(int i = 0; i < 5; i++)
-        {
-            CorrectAnswer[i] = QnA[RandomIndex + 5 + i];
-            if (CorrectAnswer[i] == null) 
-            {
-                nbEmptyAnswer++;
-            }
-            else
-            {
-                for(int j = 0; j < 5; j++)
-                {
-                    filledAnswer[j] = CorrectAnswer[i];
-                }
-                
-            }
 
-        }
+        // create a function for adapt file's answers
+        
         
 
         image1 = background1.GetComponent<ImageWithRoundedCorners>();
@@ -186,6 +172,30 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    public void AdaptFileAnswers()
+    {
+        // create a function to adapt file's answers
+        for (int i = 0; i < 4; i++)
+        {
+            correctAnswer[i] = QnA[RandomIndex + 5 + i];
+            filledAnswer[i] = QnA[RandomIndex + 1 + i];
+            if (correctAnswer[i] == null)
+            {
+                nbEmptyAnswer++;
+            }
+            else
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    correctAnswer[i] = filledAnswer[j];
+                }
+
+            }
+
+        }
+    }
+
    // Choose a question randomly and displays it along with its possible answers
    public void PopUpQuestion() 
    {
@@ -202,6 +212,8 @@ public class GameManager : MonoBehaviour
         backgroundS[1] = toggleChoice2.transform.Find("BackgroundM");
         backgroundS[2] = toggleChoice3.transform.Find("BackgroundM");
         backgroundS[3] = toggleChoice4.transform.Find("BackgroundM");
+        
+
 
         if (nbEmptyAnswer <= 2)
         {
@@ -269,6 +281,7 @@ public class GameManager : MonoBehaviour
     // Set the four possible answers to the choice buttons on Unity and assign the correct answer
     public void SetAnswers()
     {
+        AdaptFileAnswers();
         // If we have two choices of correct answers (true or false questions)
         if (QnA[RandomIndex + 1].Split('|').Length == 2)
         {
@@ -323,7 +336,7 @@ public class GameManager : MonoBehaviour
         // If we only have one correct answer
         if (nbEmptyAnswer == 3)
         {
-            if (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer[0])
+            if (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer[0])
             {
                 if (!toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn && toggleChoice1.isOn)
                 {
@@ -345,7 +358,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            else if (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer[1])
+            else if (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer[1])
             {
                 if (!toggleChoice1.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn && toggleChoice2.isOn)
                 {
@@ -366,7 +379,7 @@ public class GameManager : MonoBehaviour
                     //toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;                                                                                                                                                                                                                                                                                                         
                 }
             }
-            else if (toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer[2])
+            else if (toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer[2])
             {
                 if (!toggleChoice2.isOn && !toggleChoice1.isOn && !toggleChoice4.isOn && toggleChoice3.isOn)
                 {
@@ -387,7 +400,7 @@ public class GameManager : MonoBehaviour
                     //toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;
                 }
             }
-            else if (toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == CorrectAnswer[3])
+            else if (toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer[3])
             {
                 if (!toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice1.isOn && toggleChoice4.isOn)
                 {
@@ -413,7 +426,8 @@ public class GameManager : MonoBehaviour
         // If we have multiple correct answers
         if (nbEmptyAnswer <= 3)
         {
-            string[] Answers = filledAnswer;
+            //string[] Answers = filledAnswer;
+            string[] Answers = correctAnswer;
             int nbAnswers = Answers.Length;
 
             // If we have two correct answers
@@ -706,7 +720,7 @@ public class GameManager : MonoBehaviour
         {
             if (SelectedButton == Choices[i])
             {
-                if (Choices[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text == CorrectAnswer[i]) //Choices[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text == CorrectAnswer
+                if (Choices[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text == correctAnswer[i]) //Choices[i].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text == CorrectAnswer
                 {
                     CorrectChoice = true;
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
