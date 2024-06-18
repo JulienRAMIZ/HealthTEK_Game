@@ -48,8 +48,8 @@ public class GameManager : MonoBehaviour
     [System.NonSerialized]
     public int tileX,tileY;
 
-    private string[] correctAnswer;
-    private string[] filledAnswer;
+    private List<string> correctAnswer = new List<String>();
+    private List<string> filledAnswer = new List<String>();
     private int nbEmptyAnswer = 0;
     private GameObject SelectedButton, SelectedButton2;
     private bool CorrectChoice = false;
@@ -152,7 +152,7 @@ public class GameManager : MonoBehaviour
    {
         // Score updating
         scoreText.text = "Score : " + score.ToString();
-
+        
 
         if (overlay.color.a > 0)
         {
@@ -175,25 +175,45 @@ public class GameManager : MonoBehaviour
 
     public void AdaptFileAnswers()
     {
+        correctAnswer = new List<string>();
+        filledAnswer = new List<string>();
+        Debug.Log(" RandomIndex vaut  :  " + RandomIndex + "\n" + "Ok mais qna.count vaut  : " + (QnA.Count));
+        foreach (string x in correctAnswer) 
+        {
+            Debug.Log(" vrai test correctAnswer vaut  :  " + x);
+        }
+        //Debug.Log(" correctAnswer vaut  :  " + correctAnswer[1] + "\n" + "Ok mais filledAnswer vaut  : " + filledAnswer);
         // create a function to adapt file's answers
         for (int i = 0; i < 4; i++)
         {
-            correctAnswer[i] = QnA[RandomIndex + 5 + i];
-            filledAnswer[i] = QnA[RandomIndex + 1 + i];
-            if (correctAnswer[i] == null)
+            for (int j = 0; j < 4; j++)
             {
-                nbEmptyAnswer++;
-            }
-            else
-            {
-                for (int j = 0; j < 4; j++)
-                {
-                    correctAnswer[i] = filledAnswer[j];
-                }
 
+
+                correctAnswer.Add(QnA[(RandomIndex + 5 + i)]);
+                filledAnswer.Add(QnA[(RandomIndex + 1 + i)]);
+
+                Debug.Log(" correctAnswer vaut  :  " + correctAnswer[i] + "\n" + "Ok mais filledAnswer vaut  : " + filledAnswer[i]);
+                if (correctAnswer[i] == null)
+                {
+                    nbEmptyAnswer++;
+
+                }
+                else
+                {
+                    //for (int j = 0; j < 4; j++)
+                    //{
+                    correctAnswer.Insert(i, filledAnswer[j]);
+                    //}
+                    j++;
+
+                }
+                i++;
             }
 
         }
+        correctAnswer.RemoveAll(null);
+        Debug.Log($"Voyons correct answer : on a  {correctAnswer.Count} éléments \n Ensuite on verra");
     }
 
    // Choose a question randomly and displays it along with its possible answers
@@ -274,11 +294,52 @@ public class GameManager : MonoBehaviour
             }
             nbDisplayedQuestions++;
         }
-        SetAnswers();
+        //SetAnswers();
+        newSetAnswer();
         questionPopped = true;
    }
 
     // Set the four possible answers to the choice buttons on Unity and assign the correct answer
+
+    public void newSetAnswer()
+    {
+        AdaptFileAnswers();
+        Debug.Log("Correct answer est a  : " + correctAnswer.Count + " réponses");
+        if (correctAnswer.Count == 2)
+        {
+            Debug.Log("True or false question");
+            toggleChoice2.gameObject.SetActive(false);
+            toggleChoice4.gameObject.SetActive(false);
+            // Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[0];
+            Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = correctAnswer[0];
+            Choices[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = correctAnswer[1];
+        }
+
+        // If we have three choices of correct answers
+        if (correctAnswer.Count == 3)
+        {
+            Debug.Log("three answers question");
+            toggleChoice4.gameObject.SetActive(false);
+            for (int j = 0; j < 3; j++)
+            {
+                //Choices[j].transform.GetChild(1).GetComponent<Text>().text = (QnA[RandomIndex + 1].Split(','))[j];
+                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = correctAnswer[j];
+            }
+        }
+
+
+
+        //If we have four choices of correct answers (a real MCQ)
+        if (correctAnswer.Count > 3)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = correctAnswer[j];
+            }
+        }
+
+    }
+
     public void SetAnswers()
     {
         AdaptFileAnswers();
@@ -325,6 +386,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Check if the player cliked on the correct answer
+
     public void IsCorrect()
    {
         //CheckButton(Choices);
@@ -427,7 +489,7 @@ public class GameManager : MonoBehaviour
         if (nbEmptyAnswer <= 3)
         {
             //string[] Answers = filledAnswer;
-            string[] Answers = correctAnswer;
+            string[] Answers = correctAnswer.ToArray();
             int nbAnswers = Answers.Length;
 
             // If we have two correct answers
