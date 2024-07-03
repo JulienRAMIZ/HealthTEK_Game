@@ -48,8 +48,8 @@ public class GameManager : MonoBehaviour
     [System.NonSerialized]
     public int tileX,tileY;
 
-    private List<string> correctAnswer = new List<String>();
-    private List<string> filledAnswer = new List<String>();
+    private string[] correctAnswer = new string[4];
+    private string[] filledAnswer = new string[4];
     private int nbEmptyAnswer = 0;
     private GameObject SelectedButton, SelectedButton2;
     private bool CorrectChoice = false;
@@ -175,8 +175,6 @@ public class GameManager : MonoBehaviour
 
     public void AdaptFileAnswers()
     {
-        correctAnswer = new List<string>();
-        filledAnswer = new List<string>();
         Debug.Log(" RandomIndex vaut  :  " + RandomIndex + "\n" + "Ok mais qna.count vaut  : " + (QnA.Count));
         foreach (string x in correctAnswer) 
         {
@@ -189,9 +187,9 @@ public class GameManager : MonoBehaviour
             for (int j = 0; j <= 3; j++)
             {
 
+                correctAnswer[i] = QnA[RandomIndex + 5 + i];
+                filledAnswer[i] = QnA[RandomIndex + 1 + i];
 
-                correctAnswer.Add(QnA[(RandomIndex + 5 + i)]);
-                filledAnswer.Add(QnA[(RandomIndex + 1 + i)]);
 
                 Debug.Log(" correctAnswer vaut  :  " + correctAnswer[i] + "\n" + "Ok mais filledAnswer vaut  : " + filledAnswer[i]);
                 if (correctAnswer[i] == "EMPTY")
@@ -203,7 +201,7 @@ public class GameManager : MonoBehaviour
                 {
                     //for (int j = 0; j < 4; j++)
                     //{
-                    correctAnswer.Insert(i, filledAnswer[j]);
+                    correctAnswer[i] = filledAnswer[j];
                     //}
                     j++;
 
@@ -213,7 +211,7 @@ public class GameManager : MonoBehaviour
 
         }
         //correctAnswer.RemoveAll(match:"EMPTY");
-        Debug.Log($"Voyons correct answer : on a  {correctAnswer.Count} éléments \n Ensuite on verra");
+        Debug.Log($"Voyons correct answer : on a  {correctAnswer.Length} éléments \n Ensuite on verra");
     }
 
    // Choose a question randomly and displays it along with its possible answers
@@ -304,8 +302,8 @@ public class GameManager : MonoBehaviour
     public void newSetAnswer()
     {
         AdaptFileAnswers();
-        Debug.Log("Correct answer est a  : " + correctAnswer.Count + " réponses");
-        if (correctAnswer.Count == 2)
+        Debug.Log("Correct answer est a  : " + correctAnswer.Length + " réponses");
+        if (correctAnswer.Length == 2)
         {
             Debug.Log("True or false question");
             toggleChoice2.gameObject.SetActive(false);
@@ -316,7 +314,7 @@ public class GameManager : MonoBehaviour
         }
 
         // If we have three choices of correct answers
-        if (correctAnswer.Count == 3)
+        if (correctAnswer.Length == 3)
         {
             Debug.Log("three answers question");
             toggleChoice4.gameObject.SetActive(false);
@@ -330,7 +328,7 @@ public class GameManager : MonoBehaviour
 
 
         //If we have four choices of correct answers (a real MCQ)
-        if (correctAnswer.Count > 3)
+        if (correctAnswer.Length > 3)
         {
             for (int j = 0; j < 4; j++)
             {
@@ -489,7 +487,7 @@ public class GameManager : MonoBehaviour
         if (nbEmptyAnswer <= 3)
         {
             //string[] Answers = filledAnswer;
-            string[] Answers = correctAnswer.ToArray();
+            string[] Answers = correctAnswer;
             int nbAnswers = Answers.Length;
 
             // If we have two correct answers
