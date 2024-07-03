@@ -1,4 +1,4 @@
 ﻿question;answer1;answer2;answer3;answer4;correct1;correct2;correct3;correct4
-Quel est le plus grand océan du monde ?;Océan Atlantique;Océan Indien;Océan Pacifique;Océan Arctique;;;x;
-Quel élément chimique a pour symbole 'O' ?;Or;Oxygène;Osmium;Oganesson;;x;;
-Wtf les ?;amis;amies;cons;;x;x;;
+Quel est le plus grand océan du monde ?;Océan Atlantique;Océan Indien;Océan Pacifique;Océan Arctique;EMPTY;EMPTY;x;EMPTY
+Quel élément chimique a pour symbole 'O' ?;Or;Oxygène;Osmium;Oganesson;EMPTY;x;EMPTY;EMPTY
+Wtf les ?;amis;amies;cons;;x;x;EMPTY;EMPTY

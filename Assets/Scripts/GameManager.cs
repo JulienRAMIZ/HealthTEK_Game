@@ -184,9 +184,9 @@ public class GameManager : MonoBehaviour
         }
         //Debug.Log(" correctAnswer vaut  :  " + correctAnswer[1] + "\n" + "Ok mais filledAnswer vaut  : " + filledAnswer);
         // create a function to adapt file's answers
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i <= 3; i++)
         {
-            for (int j = 0; j < 4; j++)
+            for (int j = 0; j <= 3; j++)
             {
 
 
@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
                 filledAnswer.Add(QnA[(RandomIndex + 1 + i)]);
 
                 Debug.Log(" correctAnswer vaut  :  " + correctAnswer[i] + "\n" + "Ok mais filledAnswer vaut  : " + filledAnswer[i]);
-                if (correctAnswer[i] == null)
+                if (correctAnswer[i] == "EMPTY")
                 {
                     nbEmptyAnswer++;
 
@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
             }
 
         }
-        correctAnswer.RemoveAll(null);
+        //correctAnswer.RemoveAll(match:"EMPTY");
         Debug.Log($"Voyons correct answer : on a  {correctAnswer.Count} éléments \n Ensuite on verra");
     }
 
