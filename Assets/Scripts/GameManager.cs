@@ -9,6 +9,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using Unity.IO;
 using Nobi.UiRoundedCorners;
+using System.Linq;
+using UnityEditor;
 
 /* Script that manages the game */
 public class GameManager : MonoBehaviour
@@ -50,6 +52,7 @@ public class GameManager : MonoBehaviour
 
     private string[] correctAnswer = new string[4];
     private string[] filledAnswer = new string[4];
+    private string[] answerAndEmpty = new string[4];
     private int nbEmptyAnswer = 0;
     private GameObject SelectedButton, SelectedButton2;
     private bool CorrectChoice = false;
@@ -128,15 +131,15 @@ public class GameManager : MonoBehaviour
         image3 = background3.GetComponent<ImageWithRoundedCorners>();
         image4 = background4.GetComponent<ImageWithRoundedCorners>();
 
-        Debug.Log(QnA[0]);
-        Debug.Log(QnA[1]);
-        Debug.Log(QnA[2]);
-        Debug.Log(QnA[3]);
-        Debug.Log(QnA[4]);
-        Debug.Log(QnA[5]);
-        Debug.Log(QnA[6]);
-        Debug.Log(QnA[7]);
-        Debug.Log(QnA[8]);
+        //Debug.Log(QnA[0]);
+        //Debug.Log(QnA[1]);
+        //Debug.Log(QnA[2]);
+        //Debug.Log(QnA[3]);
+        //Debug.Log(QnA[4]);
+        //Debug.Log(QnA[5]);
+        //Debug.Log(QnA[6]);
+        //Debug.Log(QnA[7]);
+        //Debug.Log(QnA[8]);
     }
 
     /* Possible evolution of the game. Here we set the difficulty.
@@ -176,23 +179,18 @@ public class GameManager : MonoBehaviour
     public void AdaptFileAnswers()
     {
         Debug.Log(" RandomIndex vaut  :  " + RandomIndex + "\n" + "Ok mais qna.count vaut  : " + (QnA.Count));
-        foreach (string x in correctAnswer) 
-        {
-            Debug.Log(" vrai test correctAnswer vaut  :  " + x);
-        }
+        
         //Debug.Log(" correctAnswer vaut  :  " + correctAnswer[1] + "\n" + "Ok mais filledAnswer vaut  : " + filledAnswer);
         // create a function to adapt file's answers
         for (int i = 0; i <= 3; i++)
         {
-            for (int j = 0; j <= 3; j++)
-            {
+            //for (int j = 0; j <= 3; j++)
+            //{
 
-                correctAnswer[i] = QnA[RandomIndex + 5 + i];
+            answerAndEmpty[i] = QnA[RandomIndex + 5 + i];
                 filledAnswer[i] = QnA[RandomIndex + 1 + i];
 
-
-                Debug.Log(" correctAnswer vaut  :  " + correctAnswer[i] + "\n" + "Ok mais filledAnswer vaut  : " + filledAnswer[i]);
-                if (correctAnswer[i] == "EMPTY")
+                if (answerAndEmpty[i] == "EMPTY")
                 {
                     nbEmptyAnswer++;
 
@@ -201,22 +199,56 @@ public class GameManager : MonoBehaviour
                 {
                     //for (int j = 0; j < 4; j++)
                     //{
-                    correctAnswer[i] = filledAnswer[j];
+                    answerAndEmpty[i] = filledAnswer[i];
                     //}
-                    j++;
+                    
 
                 }
-                i++;
+
+            //}
+
+            var total = 0;
+            total = answerAndEmpty.Count(c => c == "EMPTY");
+            Debug.Log(total);
+
+
+            // Permet de repérer les éléments qui ont EMPTY et de les supprimer de l'array
+            var Empty = new HashSet<string> { "EMPTY" };
+            var test = answerAndEmpty.ToHashSet();
+            test.ExceptWith(Empty);
+            correctAnswer = test.ToArray();
+
+            Debug.Log("voici correct answer : ");
+            for (int k = 0; k < correctAnswer.Length - 1; k++) 
+            { 
+                Debug.Log(correctAnswer[k]);   
             }
+
+            //    var dict = new Dictionary<string, int>();
+
+            //foreach (string value in correctAnswer)
+            //{
+            //    dict.TryGetValue(value, out int count);
+            //    dict[value] = count + 1;
+            //}
+            //foreach(var pair in dict)
+            //{
+            //    Console.WriteLine("Value {0} occurred {1} times.",pair.Key,pair.Value);
+            //}
 
         }
         //correctAnswer.RemoveAll(match:"EMPTY");
+
+
+
+        Debug.Log(" Voici le ne nombre de Empty Answer là le truc que tu voulais mettre  : " + nbEmptyAnswer);
         Debug.Log($"Voyons correct answer : on a  {correctAnswer.Length} éléments \n Ensuite on verra");
     }
 
    // Choose a question randomly and displays it along with its possible answers
    public void PopUpQuestion() 
    {
+        Debug.Log("TUTE TUTE FILS DE PUTE");
         QuestionScreen.SetActive(true);
         QuestionButton.gameObject.SetActive(false);
         RandomIndex = UnityEngine.Random.Range(0, QnA.Count);
@@ -233,44 +265,7 @@ public class GameManager : MonoBehaviour
         
 
 
-        if (nbEmptyAnswer <= 2)
-        {
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    backgroundM[i].gameObject.SetActive(true);
-            //    backgroundS[i].gameObject.SetActive(false);
-            //    Debug.Log("Là c'est les carrés");
-
-            //}
-            background1.GetComponent<Image>().sprite = square;
-            background2.GetComponent<Image>().sprite = square;
-            background3.GetComponent<Image>().sprite = square;
-            background4.GetComponent<Image>().sprite = square;
-
-            //image1.radius = 0;
-            //image2.radius = 0;
-            //image3.radius = 0;
-            //image4.radius = 0;
-        }
-
-        if (nbEmptyAnswer == 3)
-        {
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    backgroundM[i].gameObject.SetActive(false);
-            //    backgroundS[i].gameObject.SetActive(true);
-            //    Debug.Log("Là c'est les ronds");
-
-            //}
-            background1.GetComponent<Image>().sprite = circle;
-            background2.GetComponent<Image>().sprite = circle;
-            background3.GetComponent<Image>().sprite = circle;
-            background4.GetComponent<Image>().sprite = circle;
-            //image1.radius = 10;
-            //image2.radius = 10;
-            //image3.radius = 10;
-            //image4.radius = 10;
-        }
+        
 
         if (QnA[RandomIndex].EndsWith('?'))
         {
@@ -295,6 +290,7 @@ public class GameManager : MonoBehaviour
         //SetAnswers();
         newSetAnswer();
         questionPopped = true;
+        nbEmptyAnswer = 0;
    }
 
     // Set the four possible answers to the choice buttons on Unity and assign the correct answer
@@ -302,37 +298,80 @@ public class GameManager : MonoBehaviour
     public void newSetAnswer()
     {
         AdaptFileAnswers();
-        Debug.Log("Correct answer est a  : " + correctAnswer.Length + " réponses");
-        if (correctAnswer.Length == 2)
+
+        if (nbEmptyAnswer <= 2)
+        {
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    backgroundM[i].gameObject.SetActive(true);
+            //    backgroundS[i].gameObject.SetActive(false);
+            //    Debug.Log("Là c'est les carrés");
+
+            //}
+            background1.GetComponent<Image>().sprite = square;
+            background2.GetComponent<Image>().sprite = square;
+            background3.GetComponent<Image>().sprite = square;
+            background4.GetComponent<Image>().sprite = square;
+
+            Debug.Log("Passe t'on ici ?");
+            //image1.radius = 0;
+            //image2.radius = 0;
+            //image3.radius = 0;
+            //image4.radius = 0;
+        }
+
+        if (nbEmptyAnswer == 3)
+        {
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    backgroundM[i].gameObject.SetActive(false);
+            //    backgroundS[i].gameObject.SetActive(true);
+            //    Debug.Log("Là c'est les ronds");
+
+            //}
+            background1.GetComponent<Image>().sprite = circle;
+            background2.GetComponent<Image>().sprite = circle;
+            background3.GetComponent<Image>().sprite = circle;
+            background4.GetComponent<Image>().sprite = circle;
+            //image1.radius = 10;
+            //image2.radius = 10;
+            //image3.radius = 10;
+            //image4.radius = 10;
+            Debug.Log("Passe par là ?");
+        }
+
+
+        Debug.Log("Correct answer est a  : " + filledAnswer.Length + " réponses");
+        if (filledAnswer.Length == 2)
         {
             Debug.Log("True or false question");
             toggleChoice2.gameObject.SetActive(false);
             toggleChoice4.gameObject.SetActive(false);
             // Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[0];
-            Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = correctAnswer[0];
-            Choices[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = correctAnswer[1];
+            Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[0];
+            Choices[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[1];
         }
 
         // If we have three choices of correct answers
-        if (correctAnswer.Length == 3)
+        if (filledAnswer.Length == 3)
         {
             Debug.Log("three answers question");
             toggleChoice4.gameObject.SetActive(false);
             for (int j = 0; j < 3; j++)
             {
                 //Choices[j].transform.GetChild(1).GetComponent<Text>().text = (QnA[RandomIndex + 1].Split(','))[j];
-                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = correctAnswer[j];
+                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[j];
             }
         }
 
 
 
         //If we have four choices of correct answers (a real MCQ)
-        if (correctAnswer.Length > 3)
+        if (filledAnswer.Length > 3)
         {
             for (int j = 0; j < 4; j++)
             {
-                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = correctAnswer[j];
+                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[j];
             }
         }
 
@@ -348,8 +387,8 @@ public class GameManager : MonoBehaviour
             toggleChoice2.gameObject.SetActive(false);
             toggleChoice4.gameObject.SetActive(false);
             // Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[0];
-            Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split('|'))[0];
-            Choices[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split('|'))[1];
+            Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[0];
+            Choices[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[1];
 
 
 
@@ -365,7 +404,7 @@ public class GameManager : MonoBehaviour
             for (int j = 0; j < 3; j++)
             {
                 //Choices[j].transform.GetChild(1).GetComponent<Text>().text = (QnA[RandomIndex + 1].Split(','))[j];
-                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split('|'))[j];
+                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[j];
             }
         }
 
@@ -376,7 +415,7 @@ public class GameManager : MonoBehaviour
         {
             for (int j = 0; j < 4; j++)
             {
-                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split('|'))[j];
+                Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[j];
             }
         }
 
@@ -394,7 +433,7 @@ public class GameManager : MonoBehaviour
    public void CheckToggle()
    {
         // If we only have one correct answer
-        if (nbEmptyAnswer == 3)
+        if (correctAnswer.Length == 1)
         {
             if (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer[0])
             {
@@ -418,7 +457,7 @@ public class GameManager : MonoBehaviour
                 }
             }
 
-            else if (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer[1])
+            else if (toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer[0])
             {
                 if (!toggleChoice1.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn && toggleChoice2.isOn)
                 {
@@ -439,7 +478,7 @@ public class GameManager : MonoBehaviour
                     //toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;                                                                                                                                                                                                                                                                                                         
                 }
             }
-            else if (toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer[2])
+            else if (toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer[0])
             {
                 if (!toggleChoice2.isOn && !toggleChoice1.isOn && !toggleChoice4.isOn && toggleChoice3.isOn)
                 {
@@ -460,7 +499,7 @@ public class GameManager : MonoBehaviour
                     //toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;
                 }
             }
-            else if (toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer[3])
+            else if (toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer[0])
             {
                 if (!toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice1.isOn && toggleChoice4.isOn)
                 {
@@ -484,7 +523,7 @@ public class GameManager : MonoBehaviour
         }
 
         // If we have multiple correct answers
-        if (nbEmptyAnswer <= 3)
+        if (correctAnswer.Length >= 2)
         {
             //string[] Answers = filledAnswer;
             string[] Answers = correctAnswer;
