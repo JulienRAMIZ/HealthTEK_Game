@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
     {
         //var QuizFile = Resources.Load<TextAsset>("/QnA_Files/QnA");
         //var QuizFile = Path.Combine(Application.streamingAssetsPath,"QnA_Files/QnA_unit1.csv");
-        var QuizFile = Path.Combine(Application.streamingAssetsPath, "QnA_Files/test_file.csv");
+        var QuizFile = Path.Combine(Application.streamingAssetsPath, "QnA_Files/QnA_unit1_new.csv");
         string FilePath = QuizFile;
 
         Debug.Log(FilePath);
