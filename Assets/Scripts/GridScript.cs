@@ -12,7 +12,7 @@ public class GridScript : MonoBehaviour
 
     private GameObject _room;
     public GameObject[,] _listTiles;
-
+ 
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,6 +35,7 @@ public class GridScript : MonoBehaviour
             {
                 // Originally spawnedTile was a var
                 Tile spawnedTile = Instantiate(_tilePrefab, new Vector3(x, y,(float)-8), Quaternion.identity);
+                spawnedTile.transform.parent = GameObject.Find("RoomMaze").transform;
                 spawnedTile.name = $"room {x} {y}";
                 _room = GameObject.Find("room " + x + " " + y);
                 _listTiles[x, y] = _room;
@@ -51,7 +52,7 @@ public class GridScript : MonoBehaviour
         _listTiles[_width - 1, _height - 1] = _exitRoom;
 
         //Camera position
-        _cam.transform.position = new Vector3((float)_width / 2 + 5.5f, (float)_height / 2 - 0.5f, -10);
+        //_cam.transform.position = new Vector3((float)_width / 2 + 5.5f, (float)_height / 2 - 0.5f, -10);
 
     }
 
