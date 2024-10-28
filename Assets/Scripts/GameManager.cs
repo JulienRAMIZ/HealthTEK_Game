@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
     {
         //var QuizFile = Resources.Load<TextAsset>("/QnA_Files/QnA");
         //var QuizFile = Path.Combine(Application.streamingAssetsPath,"QnA_Files/QnA_unit1.csv");
-        var QuizFile = Path.Combine(Application.streamingAssetsPath, "QnA_Files/QnA_unit1_new.csv");
+        var QuizFile = Path.Combine(Application.streamingAssetsPath, "QnA_Files/SmartModule_NS.csv");
         string FilePath = QuizFile;
 
         Debug.Log(FilePath);
@@ -169,10 +169,10 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (ScorePanel.activeSelf == true)
-        {
-            HeartImage.gameObject.SetActive(false);
-        }
+        //if (ScorePanel.activeSelf == true)
+        //{
+        //    HeartImage.gameObject.SetActive(false);
+        //}
     }
 
 
@@ -900,7 +900,8 @@ public class GameManager : MonoBehaviour
                 Debug.Log("4e bonus: +20");
             }
         } 
-        else if (CorrectChoice && isExitRoom == true)
+        //else if (CorrectChoice && isExitRoom == true)
+        else if (CorrectChoice && nbDisplayedQuestions >= nbLines - 1 == true)
         {
             QuestionScreen.SetActive(false);
             ScorePanel.SetActive(true);
