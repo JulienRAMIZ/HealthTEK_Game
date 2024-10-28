@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         _openedTiles = new GameObject[grid._width, grid._height];
         _closedTiles = new GameObject[grid._width, grid._height];
         //grid._listTiles[(int)transform.position.x,(int)transform.position.y].tag = "OpenedDoor";
-        grid._listTiles[(int)transform.localPosition.x,(int)transform.localPosition.y].tag = "OpenedDoor";
+        grid._listTiles[(int)transform.position.x,(int)transform.position.y].tag = "OpenedDoor";
 
         myTransform = transform.position;
     }
