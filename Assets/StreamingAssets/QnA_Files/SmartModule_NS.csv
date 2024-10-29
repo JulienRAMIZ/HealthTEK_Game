@@ -1,31 +1,31 @@
-question;answer1;answer2;answer3;answer4;correct1;correct2;correct3;correct4
-How many bones are in the human foot ?;5;12;17;26;EMPTY;EMPTY;EMPTY;x
-Which bone forms the heel of the foot ?;Talus;Calcaneus;Cuboid;Navicular;EMPTY;x;EMPTY;EMPTY
-What is a pattern of walking ?;gait analaysis;ankle analysis;knee analysis;x;EMPTY;EMPTY;EMPTY
-Who has flat feet ?;Elderly people;Teenagers;Babies;man;EMPTY;EMPTY;x;EMPTY
-Which of this shoe element can be found in all types of shoes ?;Sholeace;Sole;Evelets;;EMPTY;x;EMPTY;EMPTY
-True or False: In basic electronics, current is measured in amperes ?;TRUE;FALSE;;;x;EMPTY;EMPTY;EMPTY
-"True or False: In binary, the digit ""1"" represents an ""off"" state ?";TRUE;FALSE;;;EMPTY;x;EMPTY;EMPTY
-Multiple Choice: What does the binary number 1010 represent in decimal ?;8;10;12;15;EMPTY;x;EMPTY;EMPTY
-Multiple Choice: If the pH of a solution is 2, the solution is ?;Neutral;Acidic;Basic;Alkaline;EMPTY;x;EMPTY;EMPTY
-Multiple Correct Answers: Which of the following components are common in electronic circuits ?;Resistors;Capacitors;Glycogen;Inductors;x;x;EMPTY;x
-What is the name of the scissor used for dissection ?;Curved iris scissor;Anatomical scissor;Mayo scissor;Metzenbaum scissor;EMPTY;x;EMPTY;EMPTY
-In what hand should you hold your scalpel ?;The dominant hand;The in-dominant hand;Always the right hand;Always the left hand;x;EMPTY;EMPTY;EMPTY
-What is the purpose of a scalpel ?;To cut tissues;To hold tissues;To measure blood pressure;To hold bones;x;EMPTY;EMPTY;EMPTY
-Which instrument is used to visualize internal body structures ?;Stethoscope;Otoscope;Ophthalmoscope;Endoscope;EMPTY;x;EMPTY;EMPTY
-What are the materials used in surgical instruments ?;Wood;Stainless steel;Metal;;EMPTY;x;EMPTY;EMPTY
-True or False: In Python, the keyword def is used to define a function ?;TRUE;FALSE;;;x;EMPTY;EMPTY;EMPTY
-True or False: In linear regression, the slope of the regression line is always positive ?;TRUE;FALSE;;;EMPTY;x;EMPTY;EMPTY
-Multiple Choice: Which of the following is the correct syntax to call a function my_function in Python ?;call my_function;my_function();function_call(my_function);my_function[];EMPTY;x;EMPTY;EMPTY
-Multiple Choice: Which algorithm is typically used to find the best-fitting line in linear regression ?;Decision Tree;Ordinary Least Squares (OLS);K-means Clustering;Naive Bayes;EMPTY;x;EMPTY;EMPTY
-Multiple Correct Answers: Which of the following are examples of sorting algorithms ?;Merge Sort;Quick Sort;Principal Component Analysis (PCA);Bubble Sort;x;x;EMPTY;x
-Which of the following bones is part of the wrist joint (radiocarpal joint) ?;Ulna;Radius;Humerus;Scapula;EMPTY;x;EMPTY;EMPTY
-Which of the following structures is responsible for protecting and supporting vital organs within the thoracic cavity as well as providing structural support for the upper body ?;Diaphragm;Thoracolumbar aponeurosis;Costotransverse ligament;Deep thoracic fascia;x;EMPTY;EMPTY;EMPTY
-During the physical examination of a patient with wrist pain, which of the following movements is most indicative of carpal tunnel syndrome ?;Dorsal flexion of the wrist;Palmar flexion of the wrist;Forearm pronation;Forearm supination;EMPTY;x;EMPTY;EMPTY
-Which of the following structures is responsible for the lateral stability of the wrist ?;Ulnar collateral ligament;Radial collateral ligament;Lateral external ligament;Medial internal ligament;x;EMPTY;EMPTY;EMPTY
-During the medical history of a patient with chest pain suspected of angina pectoris, which of the following questions is most relevant to determine the nature of the pain?;"Does the pain worsen with palpation of the affected area ?";"Does the pain radiate to any other location besides the chest?";"Have you experienced any fever in the past few days?";"Has the pain been constantly present or has it had episodes of sudden onset and cessation?";EMPTY;x;EMPTY;EMPTY
-Which of the following best describes the relationship between genetic factors and overall health outcomes ?;Genetic makeup has no bearing on an individual's health status.;Genetic factors are the sole determinants of an individual's health, independent of lifestyle choices and environmental influences.;Genetic predispositions interact with lifestyle and environmental factors to influence overall health outcomes.;Health outcomes are solely influenced by lifestyle choices, with genetics playing no significant role.;EMPTY;EMPTY;x;EMPTY
-Which of the following statements best describes the physiological condition ?;A neuron and a hepatocyte from Mary do not have the same genes. ;A neuron from John and a neuron from Matt do not have the same genes. ;A neuron from John and a hepatocyte from Matt have the same genes.;A neuron from John and a hepatocyte from Matt do not have the same genes.;EMPTY;EMPTY;x;EMPTY
-A neuron from John and a hepatocyte from Matt do not have the same genes.;Translation is the synthesis of DNA from a protein.;Transcription is the synthesis of RNA from DNA.;Transcription is the synthesis of a protein from an RNA template.;Translation is the synthesis of RNA from DNA.;EMPTY;x;EMPTY;EMPTY
-Which of the following best defines pharmacogenomics ?;Pharmacogenomics focuses on how drugs affect individuals based on their age and gender.;Pharmacogenomics considers both genetic and environmental factors that influence drug response.;Pharmacogenomics primarily studies the interaction between drugs and microorganisms in the body.;Pharmacogenomics emphasizes the development of drugs based on traditional medicinal practices.;EMPTY;x;EMPTY;EMPTY
-Which of the following best describes CRISPR technology?;To identify genetic mutations in humans.;To deliver drugs directly to diseased cells.;To edit specific genes within an organism's genome.;To enhance the production of antibodies in the body.;EMPTY;EMPTY;x;EMPTY
+question;answer1;answer2;answer3;answer4;correct1;correct2;correct3;correct4;pos x;pos y
+0;0;How many bones are in the human foot ?;5;12;17;26;EMPTY;EMPTY;EMPTY;x
+1;0;Which bone forms the heel of the foot ?;Talus;Calcaneus;Cuboid;Navicular;EMPTY;x;EMPTY;EMPTY
+2;0;What is a pattern of walking ?;gait analaysis;ankle analysis;knee analysis;;x;EMPTY;EMPTY;EMPTY
+3;0;Who has flat feet ?;Elderly people;Teenagers;Babies;man;EMPTY;EMPTY;x;EMPTY
+4;0;Which of this shoe element can be found in all types of shoes ?;Sholeace;Sole;Evelets;;EMPTY;x;EMPTY;EMPTY
+0;1;True or False: In basic electronics, current is measured in amperes ?;TRUE;FALSE;;;x;EMPTY;EMPTY;EMPTY
+1;1;True or False: In binary, the digit "1" represents an "off" state ?";TRUE;FALSE;;;EMPTY;x;EMPTY;EMPTY
+2;1;Multiple Choice: What does the binary number 1010 represent in decimal ?;8;10;12;15;EMPTY;x;EMPTY;EMPTY
+3;1;Multiple Choice: If the pH of a solution is 2, the solution is ?;Neutral;Acidic;Basic;Alkaline;EMPTY;x;EMPTY;EMPTY
+4;1;Multiple Correct Answers: Which of the following components are common in electronic circuits ?;Resistors;Capacitors;Glycogen;Inductors;x;x;EMPTY;x
+0;2;What is the name of the scissor used for dissection ?;Curved iris scissor;Anatomical scissor;Mayo scissor;Metzenbaum scissor;EMPTY;x;EMPTY;EMPTY
+1;2;In what hand should you hold your scalpel ?;The dominant hand;The in-dominant hand;Always the right hand;Always the left hand;x;EMPTY;EMPTY;EMPTY
+2;2;What is the purpose of a scalpel ?;To cut tissues;To hold tissues;To measure blood pressure;To hold bones;x;EMPTY;EMPTY;EMPTY
+3;2;Which instrument is used to visualize internal body structures ?;Stethoscope;Otoscope;Ophthalmoscope;Endoscope;EMPTY;x;EMPTY;EMPTY
+4;2;What are the materials used in surgical instruments ?;Wood;Stainless steel;Metal;;EMPTY;x;EMPTY;EMPTY
+0;3;True or False: In Python, the keyword def is used to define a function ?;TRUE;FALSE;;;x;EMPTY;EMPTY;EMPTY
+1;3;True or False: In linear regression, the slope of the regression line is always positive ?;TRUE;FALSE;;;EMPTY;x;EMPTY;EMPTY
+2;3;Multiple Choice: Which of the following is the correct syntax to call a function my_function in Python ?;call my_function;my_function();function_call(my_function);my_function[];EMPTY;x;EMPTY;EMPTY
+3;3;Multiple Choice: Which algorithm is typically used to find the best-fitting line in linear regression ?;Decision Tree;Ordinary Least Squares (OLS);K-means Clustering;Naive Bayes;EMPTY;x;EMPTY;EMPTY
+4;3;Multiple Correct Answers: Which of the following are examples of sorting algorithms ?;Merge Sort;Quick Sort;Principal Component Analysis (PCA);Bubble Sort;x;x;EMPTY;x
+0;4;Which of the following bones is part of the wrist joint (radiocarpal joint) ?;Ulna;Radius;Humerus;Scapula;EMPTY;x;EMPTY;EMPTY
+1;4;Which of the following structures is responsible for protecting and supporting vital organs within the thoracic cavity as well as providing structural support for the upper body ?;Diaphragm;Thoracolumbar aponeurosis;Costotransverse ligament;Deep thoracic fascia;x;EMPTY;EMPTY;EMPTY
+2;4;During the physical examination of a patient with wrist pain, which of the following movements is most indicative of carpal tunnel syndrome ?;Dorsal flexion of the wrist;Palmar flexion of the wrist;Forearm pronation;Forearm supination;EMPTY;x;EMPTY;EMPTY
+3;4;Which of the following structures is responsible for the lateral stability of the wrist ?;Ulnar collateral ligament;Radial collateral ligament;Lateral external ligament;Medial internal ligament;x;EMPTY;EMPTY;EMPTY
+4;4;During the medical history of a patient with chest pain suspected of angina pectoris, which of the following questions is most relevant to determine the nature of the pain ?;"Does the pain worsen with palpation of the affected area ?";"Does the pain radiate to any other location besides the chest?";"Have you experienced any fever in the past few days?";"Has the pain been constantly present or has it had episodes of sudden onset and cessation?";EMPTY;x;EMPTY;EMPTY
+0;5;Which of the following best describes the relationship between genetic factors and overall health outcomes ?;Genetic makeup has no bearing on an individual's health status.;Genetic factors are the sole determinants of an individual's health, independent of lifestyle choices and environmental influences.;Genetic predispositions interact with lifestyle and environmental factors to influence overall health outcomes.;Health outcomes are solely influenced by lifestyle choices, with genetics playing no significant role.;EMPTY;EMPTY;x;EMPTY
+1;5;Which of the following statements best describes the physiological condition ?;A neuron and a hepatocyte from Mary do not have the same genes. ;A neuron from John and a neuron from Matt do not have the same genes. ;A neuron from John and a hepatocyte from Matt have the same genes.;A neuron from John and a hepatocyte from Matt do not have the same genes.;EMPTY;EMPTY;x;EMPTY
+2;5;A neuron from John and a hepatocyte from Matt do not have the same genes.;Translation is the synthesis of DNA from a protein.;Transcription is the synthesis of RNA from DNA.;Transcription is the synthesis of a protein from an RNA template.;Translation is the synthesis of RNA from DNA.;EMPTY;x;EMPTY;EMPTY
+3;5;Which of the following best defines pharmacogenomics ?;Pharmacogenomics focuses on how drugs affect individuals based on their age and gender.;Pharmacogenomics considers both genetic and environmental factors that influence drug response.;Pharmacogenomics primarily studies the interaction between drugs and microorganisms in the body.;Pharmacogenomics emphasizes the development of drugs based on traditional medicinal practices.;EMPTY;x;EMPTY;EMPTY
+4;5;Which of the following best describes CRISPR technology ?;To identify genetic mutations in humans.;To deliver drugs directly to diseased cells.;To edit specific genes within an organism's genome.;To enhance the production of antibodies in the body.;EMPTY;EMPTY;x;EMPTY

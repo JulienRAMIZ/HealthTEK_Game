@@ -114,9 +114,11 @@ public class GameManager : MonoBehaviour
             QnA.Add(values[6]);
             QnA.Add(values[7]);
             QnA.Add(values[8]);
+            QnA.Add(values[9]);
+            QnA.Add(values[10]);
             nbLines++; // We use nbLines here to get the number of questions. nbLines corresponds to the number of lines in the csv file. Since each line holds a question, nbLines can count as the number of questions.
         }
-        QnA.RemoveRange(0, 9); //remove the first three values of the list (Question, Possible_Answer, Correct_Answer)
+        QnA.RemoveRange(0, 11); //remove the first three values of the list (Question, Possible_Answer, Correct_Answer)
 
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
 
@@ -178,7 +180,7 @@ public class GameManager : MonoBehaviour
 
     public void AdaptFileAnswers()
     {
-        Debug.Log(" RandomIndex vaut  :  " + RandomIndex + "\n" + "Ok mais qna.count vaut  : " + (QnA.Count));
+        //Debug.Log(" RandomIndex vaut  :  " + RandomIndex + "\n" + "Ok mais qna.count vaut  : " + (QnA.Count));
         
         //Debug.Log(" correctAnswer vaut  :  " + correctAnswer[1] + "\n" + "Ok mais filledAnswer vaut  : " + filledAnswer);
         // create a function to adapt file's answers
@@ -187,8 +189,8 @@ public class GameManager : MonoBehaviour
             //for (int j = 0; j <= 3; j++)
             //{
 
-            answerAndEmpty[i] = QnA[RandomIndex + 5 + i];
-                filledAnswer[i] = QnA[RandomIndex + 1 + i];
+            answerAndEmpty[i] = QnA[5 + i];
+                filledAnswer[i] = QnA[1 + i];
 
                 if (answerAndEmpty[i] == "EMPTY")
                 {
@@ -251,7 +253,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("TUTE TUTE FILS DE PUTE");
         QuestionScreen.SetActive(true);
         QuestionButton.gameObject.SetActive(false);
-        RandomIndex = UnityEngine.Random.Range(0, QnA.Count);
+        //RandomIndex = UnityEngine.Random.Range(0, QnA.Count);
         Transform[] backgroundM = new Transform[4];
         Transform[] backgroundS = new Transform[4];
         backgroundM[0] = toggleChoice1.transform.Find("BackgroundM");
@@ -282,7 +284,7 @@ public class GameManager : MonoBehaviour
                     ScorePanel.SetActive(true);
                     break;
                 }
-                RandomIndex = UnityEngine.Random.Range(0, QnA.Count);
+                //RandomIndex = UnityEngine.Random.Range(0, QnA.Count);
                 QuestionText.text = QnA[RandomIndex];
             }
             nbDisplayedQuestions++;
