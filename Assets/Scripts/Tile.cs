@@ -164,13 +164,13 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             StartCoroutine(manager.ShowMessage("You can't move here.", 3));
         }
-        else if (eventData.button == PointerEventData.InputButton.Left && goQnA && goingToExitRoom == true)
-        {
-            manager.tileX = (int)transform.position.x;
-            manager.tileY = (int)transform.position.y;
-            Debug.Log("position du tile : " + manager.tileX + " , " + manager.tileY);
-            manager.PopUpQuestion();
-            questionpoped = true;
-        }
+        //else if (eventData.button == PointerEventData.InputButton.Left && goQnA && goingToExitRoom == true)
+        //{
+        //    manager.tileX = (int)transform.position.x;
+        //    manager.tileY = (int)transform.position.y;
+        //    Debug.Log("position du tile : " + manager.tileX + " , " + manager.tileY);
+        //    manager.PopUpQuestion();
+        //    questionpoped = true;
+        //}
     }
 }

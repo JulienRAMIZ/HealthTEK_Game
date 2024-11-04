@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     private bool isExitRoom = false;
     public  bool questionPopped;
     public  int score;
-    private int RandomIndex;
+    private int QuestionIndex = 0;
     private int nbWrongAnswers = 0;
     private int nbCorrectAnswers = 0;
     private int nbLines = 0;
@@ -118,10 +118,13 @@ public class GameManager : MonoBehaviour
             QnA.Add(values[10]);
             nbLines++; // We use nbLines here to get the number of questions. nbLines corresponds to the number of lines in the csv file. Since each line holds a question, nbLines can count as the number of questions.
         }
-        QnA.RemoveRange(0, 11); //remove the first three values of the list (Question, Possible_Answer, Correct_Answer)
+        //On ne supprime plus la ligne de titre car elle n'existe plus dans le fichier
+        // Au cas où c'était : question;answer1;answer2;answer3;answer4;correct1;correct2;correct3;correct4;pos x;pos y
+        //QnA.RemoveRange(0, 11); //remove the first three values of the list (Question, Possible_Answer, Correct_Answer)
 
         overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0);
 
+        //Debug.Log("Nombre de lignes : " + nbLines); 
         //CorrectAnswer = QnA[RandomIndex + 2];
 
         // create a function for adapt file's answers
@@ -189,8 +192,8 @@ public class GameManager : MonoBehaviour
             //for (int j = 0; j <= 3; j++)
             //{
 
-            answerAndEmpty[i] = QnA[5 + i];
-                filledAnswer[i] = QnA[1 + i];
+            answerAndEmpty[i] = QnA[QuestionIndex + 5 + i];
+                filledAnswer[i] = QnA[QuestionIndex + 1 + i];
 
                 if (answerAndEmpty[i] == "EMPTY")
                 {
@@ -211,7 +214,7 @@ public class GameManager : MonoBehaviour
 
             var total = 0;
             total = answerAndEmpty.Count(c => c == "EMPTY");
-            Debug.Log(total);
+            //Debug.Log(total);
 
 
             // Permet de repérer les éléments qui ont EMPTY et de les supprimer de l'array
@@ -220,10 +223,10 @@ public class GameManager : MonoBehaviour
             test.ExceptWith(Empty);
             correctAnswer = test.ToArray();
 
-            Debug.Log("voici correct answer : ");
+            //Debug.Log("voici correct answer : ");
             for (int k = 0; k < correctAnswer.Length - 1; k++) 
             { 
-                Debug.Log(correctAnswer[k]);   
+                //Debug.Log(correctAnswer[k]);   
             }
 
             //    var dict = new Dictionary<string, int>();
@@ -243,14 +246,14 @@ public class GameManager : MonoBehaviour
 
 
 
-        Debug.Log(" Voici le ne nombre de Empty Answer là le truc que tu voulais mettre  : " + nbEmptyAnswer);
-        Debug.Log($"Voyons correct answer : on a  {correctAnswer.Length} éléments \n Ensuite on verra");
+        //Debug.Log(" Voici le ne nombre de Empty Answer là le truc que tu voulais mettre  : " + nbEmptyAnswer);
+        //Debug.Log($"Voyons correct answer : on a  {correctAnswer.Length} éléments \n Ensuite on verra");
     }
 
    // Choose a question randomly and displays it along with its possible answers
    public void PopUpQuestion() 
    {
-        Debug.Log("TUTE TUTE FILS DE PUTE");
+        //Debug.Log("TUTE TUTE FILS DE PUTE");
         QuestionScreen.SetActive(true);
         QuestionButton.gameObject.SetActive(false);
         //RandomIndex = UnityEngine.Random.Range(0, QnA.Count);
@@ -269,31 +272,32 @@ public class GameManager : MonoBehaviour
 
         
 
-        if (QnA[RandomIndex].EndsWith('?'))
+        if (QnA[QuestionIndex].EndsWith('?'))
         {
-            QuestionText.text = QnA[RandomIndex];
+            QuestionText.text = QnA[QuestionIndex];
             nbDisplayedQuestions++;
+            Debug.Log("Index question : " + QuestionIndex);
         }
         else
         {
-            while (!QnA[RandomIndex].EndsWith('?'))
-            {
-                if (nbDisplayedQuestions >= nbLines -1) // In the current version of the game, this would never happened. However, the exception is still managed. If the number of questions is fewer than the number of rooms' maze and the player has managed to get out. He failed and the game is over.
-                {
-                    StartCoroutine(ShowMessage("No questions left. The Game is over. You didn't succeed. Your score will be displayed in a few seconds.", 7));
-                    ScorePanel.SetActive(true);
-                    break;
-                }
-                //RandomIndex = UnityEngine.Random.Range(0, QnA.Count);
-                QuestionText.text = QnA[RandomIndex];
-            }
-            nbDisplayedQuestions++;
+            //if (!QnA[QuestionIndex].EndsWith('?'))
+            //{
+            //    if (nbDisplayedQuestions >= nbLines - 1) // In the current version of the game, this would never happened. However, the exception is still managed. If the number of questions is fewer than the number of rooms' maze and the player has managed to get out. He failed and the game is over.
+            //    {
+            //        StartCoroutine(ShowMessage("No questions left. The Game is over. You didn't succeed. Your score will be displayed in a few seconds.", 7));
+            //        ScorePanel.SetActive(true);
+                    
+            //    }
+            //    //RandomIndex = UnityEngine.Random.Range(0, QnA.Count);
+            //    QuestionText.text = QnA[QuestionIndex++];
+            //}
+            //nbDisplayedQuestions++;
         }
         //SetAnswers();
         newSetAnswer();
         questionPopped = true;
         nbEmptyAnswer = 0;
-   }
+    }
 
     // Set the four possible answers to the choice buttons on Unity and assign the correct answer
 
@@ -315,7 +319,7 @@ public class GameManager : MonoBehaviour
             background3.GetComponent<Image>().sprite = square;
             background4.GetComponent<Image>().sprite = square;
 
-            Debug.Log("Passe t'on ici ?");
+            //Debug.Log("Passe t'on ici ?");
             //image1.radius = 0;
             //image2.radius = 0;
             //image3.radius = 0;
@@ -339,11 +343,11 @@ public class GameManager : MonoBehaviour
             //image2.radius = 10;
             //image3.radius = 10;
             //image4.radius = 10;
-            Debug.Log("Passe par là ?");
+            //Debug.Log("Passe par là ?");
         }
 
 
-        Debug.Log("Correct answer est a  : " + filledAnswer.Length + " réponses");
+        //Debug.Log("Correct answer est a  : " + filledAnswer.Length + " réponses");
         if (filledAnswer.Length == 2)
         {
             Debug.Log("True or false question");
@@ -376,14 +380,14 @@ public class GameManager : MonoBehaviour
                 Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[j];
             }
         }
-
+        QuestionIndex = QuestionIndex + 10;
     }
 
     public void SetAnswers()
     {
         AdaptFileAnswers();
         // If we have two choices of correct answers (true or false questions)
-        if (QnA[RandomIndex + 1].Split('|').Length == 2)
+        if (QnA[QuestionIndex + 1].Split('|').Length == 2)
         {
             Debug.Log("True or false question");
             toggleChoice2.gameObject.SetActive(false);
@@ -399,7 +403,7 @@ public class GameManager : MonoBehaviour
 
 
         // If we have three choices of correct answers
-        if (QnA[RandomIndex + 1].Split('|').Length == 3)
+        if (QnA[QuestionIndex + 1].Split('|').Length == 3)
         {
             Debug.Log("three answers question");
             toggleChoice4.gameObject.SetActive(false);
@@ -413,7 +417,7 @@ public class GameManager : MonoBehaviour
 
 
         //If we have four choices of correct answers (a real MCQ)
-        if (QnA[RandomIndex + 1].Split('|').Length > 3)
+        if (QnA[QuestionIndex + 1].Split('|').Length > 3)
         {
             for (int j = 0; j < 4; j++)
             {
@@ -447,10 +451,10 @@ public class GameManager : MonoBehaviour
                     {
                         //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                     }
-                    if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
-                    {
-                        isExitRoom = true;
-                    }
+                    //if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
+                    //{
+                    //    isExitRoom = true;
+                    //}
                 }
                 else
                 {
@@ -469,10 +473,10 @@ public class GameManager : MonoBehaviour
                     {
                         //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                     }
-                    if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
-                    {
-                        isExitRoom = true;
-                    }
+                    //if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
+                    //{
+                    //    isExitRoom = true;
+                    //}
                 }
                 else
                 {
@@ -490,10 +494,10 @@ public class GameManager : MonoBehaviour
                     {
                         //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                     }
-                    if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
-                    {
-                        isExitRoom = true;
-                    }
+                    //if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
+                    //{
+                    //    isExitRoom = true;
+                    //}
                 }
                 else
                 {
@@ -511,10 +515,10 @@ public class GameManager : MonoBehaviour
                     {
                         //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                     }
-                    if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
-                    {
-                        isExitRoom = true;
-                    }
+                    //if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
+                    //{
+                    //    isExitRoom = true;
+                    //}
                 }
                 else
                 {
@@ -874,7 +878,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(ShowMessage("Well done! You can move to the green tile.", 4));
             QuestionButton.gameObject.SetActive(true);
             score += 5;
-            QnA.Remove(QnA[RandomIndex]); // remove the question from the list so that it doesn't show up again
+            //QnA.Remove(QnA[QuestionIndex]); // remove the question from the list so that it doesn't show up again
            
             //Score Bonuses 
             if (nbCorrectAnswers == 2)
@@ -968,9 +972,9 @@ public class GameManager : MonoBehaviour
         }
         CorrectChoice = false;
         TransformScore();
-        Debug.Log(playerMark);
+        //Debug.Log(playerMark);
         tile.questionpoped = false;
-        Debug.Log("Check les réponses");
+        //Debug.Log("Check les réponses");
     } 
 
     // Close the panel question
