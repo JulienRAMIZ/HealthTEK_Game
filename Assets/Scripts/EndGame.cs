@@ -26,4 +26,9 @@ public class EndGame : MonoBehaviour
         finalTimeText = "Your time : " + (15 - int.Parse(timeCount.timerText.text.Substring(6, 3))).ToString() + ":" + (60 - int.Parse(timeCount.timerText.text[10..])).ToString();
         totalScoreText.text = "Your score : " + manager.score.ToString() + "\n" + finalTimeText + "\n" + "Your mark : " + manager.playerMark + "/20";
     }
+
+    public void OpenAlud(string Urlname)
+    {
+        Application.OpenURL(Urlname);
+    }
 }
