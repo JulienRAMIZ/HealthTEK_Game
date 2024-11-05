@@ -11,6 +11,8 @@ TagManager:
   - ExitRoomReached
   - RoomDownExitRoom
   - RoomLeftExitRoom
+  - FailedRoom
+  - SucceededRoom
   layers:
   - Default
   - TransparentFX

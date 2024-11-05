@@ -40,7 +40,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {   
         playerTarget = player.target;
 
-        if (CompareTag("Obstacle") == true)
+        if (CompareTag("FailedRoom") == true)
         {
             _redHighlight.SetActive(true);
             _purpleHighlight.SetActive(false);
@@ -92,7 +92,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         }
 
         // The OpenedDoor tag means that the player answered correctlty and that he can move to the room. The default tag is ClosedDoor.
-        if (CompareTag("OpenedDoor") == true)
+        if (CompareTag("OpenedDoor") == true || CompareTag("FailedRoom") == true)
         {
             player.closedDoor = false;
             goQnA = false;
