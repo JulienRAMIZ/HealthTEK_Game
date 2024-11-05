@@ -59,6 +59,12 @@ public class GameManager : MonoBehaviour
     private bool isExitRoom = false;
     public  bool questionPopped;
     public  int score;
+    public int unit2;
+    public int unit3;
+    public int unit4;
+    public int unit5;
+    public int unit6;
+    public int unit7;
     private int QuestionIndex = 0;
     private int nbWrongAnswers = 0;
     private int nbCorrectAnswers = 0;
@@ -180,6 +186,21 @@ public class GameManager : MonoBehaviour
         //}
     }
 
+    public void QuestionTile()
+    {
+        if (QuestionIndex < 45)
+        {
+            if (CorrectChoice)
+            {
+                unit2++;
+            }
+        }
+
+        //QnA[QuestionIndex + 9] = 
+            
+       
+
+    }
 
     public void AdaptFileAnswers()
     {
@@ -289,8 +310,8 @@ public class GameManager : MonoBehaviour
 
                 }
                 //RandomIndex = UnityEngine.Random.Range(0, QnA.Count);
-                QuestionIndex = QuestionIndex + 11;
-                QuestionText.text = QnA[QuestionIndex];
+                //QuestionIndex = QuestionIndex + 11;
+                //QuestionText.text = QnA[QuestionIndex];
             }
             nbDisplayedQuestions++;
             Debug.Log("Ok c'est la merde ");
@@ -909,7 +930,7 @@ public class GameManager : MonoBehaviour
             }
         } 
         //else if (CorrectChoice && isExitRoom == true)
-        else if (CorrectChoice && nbDisplayedQuestions >= nbLines - 1 == true)
+        else if (QuestionIndex > 319)
         {
             QuestionScreen.SetActive(false);
             ScorePanel.SetActive(true);
@@ -932,10 +953,20 @@ public class GameManager : MonoBehaviour
             toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;
             nbCorrectAnswers = 0;
             nbWrongAnswers++;
+            toggleChoice1.gameObject.SetActive(true);
+            toggleChoice2.gameObject.SetActive(true);
+            toggleChoice3.gameObject.SetActive(true);
+            toggleChoice4.gameObject.SetActive(true);
+            QuestionScreen.SetActive(false);
+            questionPopped = false;
+            grid._listTiles[tileX, tileY].tag = "FailedRoom";
+            //StartCoroutine(ShowMessage("You failed, but don't lose hope", 6));
+            QuestionButton.gameObject.SetActive(true);
             // Score Penalties 
-            if(nbWrongAnswers == 1)
+            if (nbWrongAnswers == 1)
             {
-                StartCoroutine(ShowMessage("You gave the wrong answer. -5 to your score. Try again.", 6));
+                //StartCoroutine(ShowMessage("You gave the wrong answer. -5 to your score. Try again.", 6));
+                StartCoroutine(ShowMessage("You failed, but don't lose hope", 6));
                 score -= 5;
                 Debug.Log("1er malus: -5");
             }
@@ -972,6 +1003,8 @@ public class GameManager : MonoBehaviour
                 overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0.4f);
             } 
         }
+
+
         CorrectChoice = false;
         TransformScore();
         //Debug.Log(playerMark);
