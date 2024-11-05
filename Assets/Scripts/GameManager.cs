@@ -219,7 +219,7 @@ public class GameManager : MonoBehaviour
 
             // Permet de repérer les éléments qui ont EMPTY et de les supprimer de l'array
             var Empty = new HashSet<string> { "EMPTY" };
-            var test = answerAndEmpty.ToHashSet();
+            var test = answerAndEmpty.ToHashSet(); 
             test.ExceptWith(Empty);
             correctAnswer = test.ToArray();
 
@@ -280,18 +280,20 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            //if (!QnA[QuestionIndex].EndsWith('?'))
-            //{
-            //    if (nbDisplayedQuestions >= nbLines - 1) // In the current version of the game, this would never happened. However, the exception is still managed. If the number of questions is fewer than the number of rooms' maze and the player has managed to get out. He failed and the game is over.
-            //    {
-            //        StartCoroutine(ShowMessage("No questions left. The Game is over. You didn't succeed. Your score will be displayed in a few seconds.", 7));
-            //        ScorePanel.SetActive(true);
-                    
-            //    }
-            //    //RandomIndex = UnityEngine.Random.Range(0, QnA.Count);
-            //    QuestionText.text = QnA[QuestionIndex++];
-            //}
-            //nbDisplayedQuestions++;
+            if (!QnA[QuestionIndex].EndsWith('?'))
+            {
+                if (nbDisplayedQuestions >= nbLines - 1) // In the current version of the game, this would never happened. However, the exception is still managed. If the number of questions is fewer than the number of rooms' maze and the player has managed to get out. He failed and the game is over.
+                {
+                    StartCoroutine(ShowMessage("No questions left. The Game is over. You didn't succeed. Your score will be displayed in a few seconds.", 7));
+                    ScorePanel.SetActive(true);
+
+                }
+                //RandomIndex = UnityEngine.Random.Range(0, QnA.Count);
+                QuestionIndex = QuestionIndex + 11;
+                QuestionText.text = QnA[QuestionIndex];
+            }
+            nbDisplayedQuestions++;
+            Debug.Log("Ok c'est la merde ");
         }
         //SetAnswers();
         newSetAnswer();
@@ -380,7 +382,7 @@ public class GameManager : MonoBehaviour
                 Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[j];
             }
         }
-        QuestionIndex = QuestionIndex + 10;
+        QuestionIndex = QuestionIndex + 11;
     }
 
     public void SetAnswers()
