@@ -101,11 +101,11 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             if (isClose && manager.questionPopped == false)
             {
                 player.ableMoving = true;
-                Debug.Log("Close it is !");
+                //Debug.Log("Close it is !");
             }
             else
             {
-                Debug.Log("Plus close du tout ! ");
+                //Debug.Log("Plus close du tout ! ");
                 player.ableMoving = false;
             }
         }
@@ -150,7 +150,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             manager.tileX = (int)transform.position.x;
             manager.tileY = (int)transform.position.y;
             questionpoped = true;
-            manager.PopUpQuestion();  
+            manager.QuestionTile();  
         }
         else if (eventData.button == PointerEventData.InputButton.Left && _whiteHighlight == true && isClose == false) // and tag différet de opende door
         {

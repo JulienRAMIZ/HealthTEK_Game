@@ -11,6 +11,8 @@ using Unity.IO;
 using Nobi.UiRoundedCorners;
 using System.Linq;
 using UnityEditor;
+using Unity.VisualScripting;
+using static Unity.VisualScripting.Member;
 
 /* Script that manages the game */
 public class GameManager : MonoBehaviour
@@ -55,10 +57,13 @@ public class GameManager : MonoBehaviour
     private string[] answerAndEmpty = new string[4];
     private int nbEmptyAnswer = 0;
     private GameObject SelectedButton, SelectedButton2;
+    private GameObject[] closedRoom;
     private bool CorrectChoice = false;
     private bool isExitRoom = false;
+    private bool endMaze = false;
     public  bool questionPopped;
     public  int score;
+    public int[] unit = new int[6];
     public int unit2;
     public int unit3;
     public int unit4;
@@ -184,21 +189,54 @@ public class GameManager : MonoBehaviour
         //{
         //    HeartImage.gameObject.SetActive(false);
         //}
+        closedRoom = GameObject.FindGameObjectsWithTag("ClosedDoor");
+        Debug.Log("Room restantes  : " + closedRoom.Length);
+
+        if (closedRoom.Length <= 0 && !endMaze)
+        {
+            CountScore();
+            QuestionScreen.SetActive(false);
+            ScorePanel.SetActive(true);
+            ScoreText.SetActive(false);
+            timeText.gameObject.SetActive(true);
+            Joker.SetActive(false);
+            RulesButton.SetActive(false);
+            isExitRoom = false;
+            HeartImage.gameObject.SetActive(false);
+            endMaze = true;
+
+        }
+
+    }
+
+    public void CountScore()
+    {
+        //Debug.Log("début");
+        for (int i = 0; i < grid._height; i++)
+        {
+            //Debug.Log("On est dans les i : " + i );
+            for (int j = 0; j < grid._width; j++)
+            {
+                //Debug.Log("On est dans les j : " + j);
+                if (grid._listTiles[j, i].tag == "OpenedDoor")
+                {
+                    //Debug.Log("Cette room est juste  :  x " + j + "y " + i + "  " + grid._listTiles[j, i].tag);
+                    unit[i]++;
+                }
+            }
+        }
     }
 
     public void QuestionTile()
     {
-        if (QuestionIndex < 45)
-        {
-            if (CorrectChoice)
-            {
-                unit2++;
-            }
-        }
+        Debug.Log("Tile x : " + tileX + " et Tile y : " + tileY);
 
-        //QnA[QuestionIndex + 9] = 
-            
-       
+        QuestionIndex = (tileX + (tileY * 5)) * 11;
+        Debug.Log("Index de question: " + QuestionIndex );
+        Debug.Log("Et pos x : " + QnA[QuestionIndex + 9] + "   pos y : " + QnA[QuestionIndex + 10]);
+
+ 
+        PopUpQuestion();
 
     }
 
@@ -240,7 +278,11 @@ public class GameManager : MonoBehaviour
 
             // Permet de repérer les éléments qui ont EMPTY et de les supprimer de l'array
             var Empty = new HashSet<string> { "EMPTY" };
-            var test = answerAndEmpty.ToHashSet(); 
+            //var test = answerAndEmpty.ToHashSet());
+            var test = System.Linq.Enumerable.ToHashSet(answerAndEmpty);
+
+
+            
             test.ExceptWith(Empty);
             correctAnswer = test.ToArray();
 
@@ -313,8 +355,9 @@ public class GameManager : MonoBehaviour
                 //QuestionIndex = QuestionIndex + 11;
                 //QuestionText.text = QnA[QuestionIndex];
             }
-            nbDisplayedQuestions++;
+            //nbDisplayedQuestions++;
             Debug.Log("Ok c'est la merde ");
+            QuestionTile();
         }
         //SetAnswers();
         newSetAnswer();
@@ -403,7 +446,7 @@ public class GameManager : MonoBehaviour
                 Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[j];
             }
         }
-        QuestionIndex = QuestionIndex + 11;
+        //QuestionIndex = QuestionIndex + 11;
     }
 
     public void SetAnswers()
@@ -716,7 +759,7 @@ public class GameManager : MonoBehaviour
                 string correctAnswer1 = Answers[0];
                 string correctAnswer2 = Answers[1];
                 string correctAnswer3 = Answers[2];
-                Debug.Log(correctAnswer1 + "|" + correctAnswer2 + "|" + correctAnswer3);
+                //Debug.Log(correctAnswer1 + "|" + correctAnswer2 + "|" + correctAnswer3);
 
                 // If toggle 1, 2, and 3 are holding the correct answers 
                 if ((toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer1 && toggleChoice2.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer2 && toggleChoice3.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer3)||
@@ -858,7 +901,7 @@ public class GameManager : MonoBehaviour
                     //}
                     if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                     {
-                        isExitRoom = true;
+                        //isExitRoom = true;
                     }
                     break;
                 }
@@ -908,13 +951,13 @@ public class GameManager : MonoBehaviour
             {
                 score += 5;
                 StartCoroutine(ShowMessage("Keep it up! Two good answers in a row. +5 to your score.", 6));
-                Debug.Log("1er bonus: +5");
+                //Debug.Log("1er bonus: +5");
             }
             if (nbCorrectAnswers == 3)
             {
                 score += 10;
                 StartCoroutine(ShowMessage("Excellent! Three good answers in a row. +10 to your score.", 6));
-                Debug.Log("2e bonus: +10");
+                //Debug.Log("2e bonus: +10");
             }
             if (nbCorrectAnswers == 4)
             {
@@ -930,18 +973,19 @@ public class GameManager : MonoBehaviour
             }
         } 
         //else if (CorrectChoice && isExitRoom == true)
-        else if (QuestionIndex > 319)
-        {
-            QuestionScreen.SetActive(false);
-            ScorePanel.SetActive(true);
-            ScoreText.SetActive(false);            
-            timeText.gameObject.SetActive(true);
-            Joker.SetActive(false);
-            RulesButton.SetActive(false);
-            isExitRoom = false;
-            HeartImage.gameObject.SetActive(false);
+        //else if (closedRoom.Length <= 0)
+        //{
+        //    QuestionScreen.SetActive(false);
+        //    endGame.CountScore();
+        //    ScorePanel.SetActive(true);
+        //    ScoreText.SetActive(false);            
+        //    timeText.gameObject.SetActive(true);
+        //    Joker.SetActive(false);
+        //    RulesButton.SetActive(false);
+        //    isExitRoom = false;
+        //    HeartImage.gameObject.SetActive(false);
             
-        }
+        //}
         else if ((!toggleChoice1.isOn && !toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn) ||
                 (!toggleChoice1.isOn && !toggleChoice2.isOn && !toggleChoice3.isOn && Choices.Length == 3) ||
                 (!toggleChoice1.isOn && !toggleChoice3.isOn && Choices.Length == 2) )
@@ -968,13 +1012,13 @@ public class GameManager : MonoBehaviour
                 //StartCoroutine(ShowMessage("You gave the wrong answer. -5 to your score. Try again.", 6));
                 StartCoroutine(ShowMessage("You failed, but don't lose hope", 6));
                 score -= 5;
-                Debug.Log("1er malus: -5");
+                //Debug.Log("1er malus: -5");
             }
             if (nbWrongAnswers == 2)
             {
                 StartCoroutine(ShowMessage("You chose the wrong answer a second time. -10 to your score. Try again.", 6));
                 score -= 10;
-                Debug.Log("2e malus: -15");
+                //Debug.Log("2e malus: -15");
                 //durationTimer = 0;
                 overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0.4f);
             }
@@ -982,7 +1026,7 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(ShowMessage("You chose the wrong answer a third time. -15 to your score. Try again.", 6));
                 score -= 20;
-                Debug.Log("3e malus: -15");
+                //Debug.Log("3e malus: -15");
                 durationTimer = 0;
                 overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0.4f);
             }
@@ -990,13 +1034,13 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(ShowMessage("You chose the wrong answer a fourth time. -20 to your score. Try again.", 6));
                 score -= 20;
-                Debug.Log("4e malus: -20");
+                //Debug.Log("4e malus: -20");
                 durationTimer = 0;
                 overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0.4f);
             }
             else if(nbWrongAnswers > 4)
             {
-                Debug.Log("Wrong answer given again.");
+                //Debug.Log("Wrong answer given again.");
                 StartCoroutine(ShowMessage("Wrong again! Stay focused and think harder.", 6));
                 score -= 20;
                 durationTimer = 0;
@@ -1005,11 +1049,13 @@ public class GameManager : MonoBehaviour
         }
 
 
+
         CorrectChoice = false;
         TransformScore();
         //Debug.Log(playerMark);
         tile.questionpoped = false;
         //Debug.Log("Check les réponses");
+
     } 
 
     // Close the panel question
@@ -1137,6 +1183,7 @@ public class GameManager : MonoBehaviour
             playerMark = 20;
         }
 
-        Debug.Log("Your mark is : " + playerMark + "/20");
+
+        //Debug.Log("Your mark is : " + playerMark + "/20");
     }
 }

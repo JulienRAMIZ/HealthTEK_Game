@@ -57,8 +57,8 @@ public class PlayerController : MonoBehaviour
             target.x = (float)Math.Round(target.x);
             target.y = (float)Math.Round(target.y);
 
-            Debug.Log("x = " + target.x);
-            Debug.Log("y = " + target.y);
+            //Debug.Log("x = " + target.x);
+            //Debug.Log("y = " + target.y);
 
             // If the click happens outside the maze, the player don't move at all. 
             /*if (target.x <= 0){ target.x = 0;} else if */

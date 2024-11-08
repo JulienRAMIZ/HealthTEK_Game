@@ -1,11 +1,10 @@
-question;answer1;answer2;answer3;answer4;correct1;correct2;correct3;correct4;pos x;pos y
 How many bones are in the human foot ?;5;12;17;26;EMPTY;EMPTY;EMPTY;x;0;0
 Which bone forms the heel of the foot ?;Talus;Calcaneus;Cuboid;Navicular;EMPTY;x;EMPTY;EMPTY;1;0
 What is a pattern of walking ?;gait analaysis;ankle analysis;knee analysis;;x;EMPTY;EMPTY;EMPTY;2;0
 Who has flat feet ?;Elderly people;Teenagers;Babies;man;EMPTY;EMPTY;x;EMPTY;3;0
 Which of this shoe element can be found in all types of shoes ?;Sholeace;Sole;Evelets;;EMPTY;x;EMPTY;EMPTY;4;0
 True or False: In basic electronics, current is measured in amperes ?;TRUE;FALSE;;;x;EMPTY;EMPTY;EMPTY;0;1
-"True or False: In binary, the digit ""1"" represents an ""off"" state ?""";TRUE;FALSE;;;EMPTY;x;EMPTY;EMPTY;1;1
+True or False: In binary, the digit "1" represents an "off" state ?;TRUE;FALSE;;;EMPTY;x;EMPTY;EMPTY;1;1
 Multiple Choice: What does the binary number 1010 represent in decimal ?;8;10;12;15;EMPTY;x;EMPTY;EMPTY;2;1
 Multiple Choice: If the pH of a solution is 2, the solution is ?;Neutral;Acidic;Basic;Alkaline;EMPTY;x;EMPTY;EMPTY;3;1
 Multiple Correct Answers: Which of the following components are common in electronic circuits ?;Resistors;Capacitors;Glycogen;Inductors;x;x;EMPTY;x;4;1
