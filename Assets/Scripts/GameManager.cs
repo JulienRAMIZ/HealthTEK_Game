@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
 
     private string[] correctAnswer = new string[4];
     private string[] filledAnswer = new string[4];
+    private string[] filledWithEmpty = new string[4];
     private string[] answerAndEmpty = new string[4];
     private int nbEmptyAnswer = 0;
     private GameObject SelectedButton, SelectedButton2;
@@ -186,11 +187,12 @@ public class GameManager : MonoBehaviour
         }
 
         //if (ScorePanel.activeSelf == true)
-        //{
+        //{ 
         //    HeartImage.gameObject.SetActive(false);
         //}
         closedRoom = GameObject.FindGameObjectsWithTag("ClosedDoor");
-        Debug.Log("Room restantes  : " + closedRoom.Length);
+        //Debug.Log("Room restantes  : " + closedRoom.Length);
+        Debug.Log("Combien de réponses ??  : " + filledAnswer.Length);
 
         if (closedRoom.Length <= 0 && !endMaze)
         {
@@ -229,11 +231,11 @@ public class GameManager : MonoBehaviour
 
     public void QuestionTile()
     {
-        Debug.Log("Tile x : " + tileX + " et Tile y : " + tileY);
+        //Debug.Log("Tile x : " + tileX + " et Tile y : " + tileY);
 
         QuestionIndex = (tileX + (tileY * 5)) * 11;
-        Debug.Log("Index de question: " + QuestionIndex );
-        Debug.Log("Et pos x : " + QnA[QuestionIndex + 9] + "   pos y : " + QnA[QuestionIndex + 10]);
+        //Debug.Log("Index de question: " + QuestionIndex );
+        //Debug.Log("Et pos x : " + QnA[QuestionIndex + 9] + "   pos y : " + QnA[QuestionIndex + 10]);
 
  
         PopUpQuestion();
@@ -243,7 +245,7 @@ public class GameManager : MonoBehaviour
     public void AdaptFileAnswers()
     {
         //Debug.Log(" RandomIndex vaut  :  " + RandomIndex + "\n" + "Ok mais qna.count vaut  : " + (QnA.Count));
-        
+
         //Debug.Log(" correctAnswer vaut  :  " + correctAnswer[1] + "\n" + "Ok mais filledAnswer vaut  : " + filledAnswer);
         // create a function to adapt file's answers
         for (int i = 0; i <= 3; i++)
@@ -252,25 +254,24 @@ public class GameManager : MonoBehaviour
             //{
 
             answerAndEmpty[i] = QnA[QuestionIndex + 5 + i];
-                filledAnswer[i] = QnA[QuestionIndex + 1 + i];
+            filledWithEmpty[i] = QnA[QuestionIndex + 1 + i];
 
-                if (answerAndEmpty[i] == "EMPTY")
-                {
-                    nbEmptyAnswer++;
+            if (answerAndEmpty[i] == "EMPTY")
+            {
+                nbEmptyAnswer++;
 
-                }
-                else
-                {
-                    //for (int j = 0; j < 4; j++)
-                    //{
-                    answerAndEmpty[i] = filledAnswer[i];
-                    //}
-                    
+            }
+            else
+            {
+                //for (int j = 0; j < 4; j++)
+                //{
+                answerAndEmpty[i] = filledWithEmpty[i];
+                //}
 
-                }
 
+            }
+        }
             //}
-
             var total = 0;
             total = answerAndEmpty.Count(c => c == "EMPTY");
             //Debug.Log(total);
@@ -282,8 +283,8 @@ public class GameManager : MonoBehaviour
             var test = System.Linq.Enumerable.ToHashSet(answerAndEmpty);
 
 
-            
-            test.ExceptWith(Empty);
+        filledAnswer = filledWithEmpty.Except(new List<string> { string.Empty }).ToArray();
+        test.ExceptWith(Empty);
             correctAnswer = test.ToArray();
 
             //Debug.Log("voici correct answer : ");
@@ -304,7 +305,7 @@ public class GameManager : MonoBehaviour
             //    Console.WriteLine("Value {0} occurred {1} times.",pair.Key,pair.Value);
             //}
 
-        }
+        
         //correctAnswer.RemoveAll(match:"EMPTY");
 
 
@@ -434,6 +435,7 @@ public class GameManager : MonoBehaviour
                 //Choices[j].transform.GetChild(1).GetComponent<Text>().text = (QnA[RandomIndex + 1].Split(','))[j];
                 Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[j];
             }
+            toggleChoice4.gameObject.SetActive(false);
         }
 
 
