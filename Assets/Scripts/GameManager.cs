@@ -43,7 +43,8 @@ public class GameManager : MonoBehaviour
     public EndGame endGame;
     public GridScript grid;
     public SelectedButton selectedButton;
-    public Toggle toggleChoice1, toggleChoice2,toggleChoice3, toggleChoice4;
+    public Toggle toggleChoice1, toggleChoice2, toggleChoice3, toggleChoice4;
+    public Toggle[] toggleChoice; 
     public GameObject background1 , background2, background3, background4;
     private ImageWithRoundedCorners image1, image2, image3, image4;
     public Sprite square, circle;
@@ -192,7 +193,7 @@ public class GameManager : MonoBehaviour
         //}
         closedRoom = GameObject.FindGameObjectsWithTag("ClosedDoor");
         //Debug.Log("Room restantes  : " + closedRoom.Length);
-        Debug.Log("Combien de réponses ??  : " + filledAnswer.Length);
+        //Debug.Log("Combien de réponses ??  : " + filledAnswer.Length);
 
         if (closedRoom.Length <= 0 && !endMaze)
         {
@@ -501,14 +502,51 @@ public class GameManager : MonoBehaviour
     public void IsCorrect()
    {
         //CheckButton(Choices);
+        OnlyOneToggle();
         CheckToggle();
    }
 
+    public void OnlyOneToggle()
+    {
+
+        toggleChoice = new[] { toggleChoice1, toggleChoice2, toggleChoice3, toggleChoice4 }; 
+
+        //if (toggleChoice1.isOn)
+        //{
+        //    toggleChoice2.isOn = false;
+        //    toggleChoice3.isOn = false;
+        //    toggleChoice4.isOn = false;
+        //    Debug.Log("1");
+        //}
+        //if (toggleChoice2.isOn)
+        //{
+        //    toggleChoice1.isOn = false;
+        //    toggleChoice3.isOn = false;
+        //    toggleChoice4.isOn = false;
+        //    Debug.Log("2");
+        //}
+        //if (toggleChoice3.isOn)
+        //{
+        //    toggleChoice1.isOn = false;
+        //    toggleChoice2.isOn = false;
+        //    toggleChoice4.isOn = false;
+        //    Debug.Log("3");
+        //}
+        //if (toggleChoice4.isOn)
+        //{
+        //    toggleChoice1.isOn = false;
+        //    toggleChoice2.isOn = false;
+        //    toggleChoice3.isOn = false;
+        //    Debug.Log("4");
+        //}
+    }
    public void CheckToggle()
    {
         // If we only have one correct answer
         if (correctAnswer.Length == 1)
         {
+            
+
             if (toggleChoice1.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer[0])
             {
                 if (!toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice4.isOn && toggleChoice1.isOn)
@@ -887,7 +925,7 @@ public class GameManager : MonoBehaviour
     public void CheckButton(GameObject[] Choices)
     {
         SelectedButton = EventSystem.current.currentSelectedGameObject;
-        Debug.Log(grid._listTiles[tileX, tileY].tag);
+        //Debug.Log(grid._listTiles[tileX, tileY].tag);
 
         for (int i = 0; i < Choices.Length; i++)
         {
