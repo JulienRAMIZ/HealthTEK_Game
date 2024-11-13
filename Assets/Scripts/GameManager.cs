@@ -20,7 +20,8 @@ public class GameManager : MonoBehaviour
     public GameObject TitleScreen;
     public GameObject QuestionScreen;
     public GameObject[] Choices;
-    public GameObject ScorePanel;
+    public GameObject ScorePanel;  
+    public GameObject ToggleGroup;  
     public GameObject ScoreText;
     public GameObject CloseButton;
     public GameObject RulesButton;
@@ -386,6 +387,8 @@ public class GameManager : MonoBehaviour
             background2.GetComponent<Image>().sprite = square;
             background3.GetComponent<Image>().sprite = square;
             background4.GetComponent<Image>().sprite = square;
+            //this.GetComponentInChildren<ToggleGroup>().gameObject.SetActive(true);
+            ToggleGroup.SetActive(false);
 
             //Debug.Log("Passe t'on ici ?");
             //image1.radius = 0;
@@ -407,6 +410,8 @@ public class GameManager : MonoBehaviour
             background2.GetComponent<Image>().sprite = circle;
             background3.GetComponent<Image>().sprite = circle;
             background4.GetComponent<Image>().sprite = circle;
+            //this.GetComponentInChildren<ToggleGroup>().gameObject.SetActive(false);
+            ToggleGroup.SetActive(true);
             //image1.radius = 10;
             //image2.radius = 10;
             //image3.radius = 10;
@@ -510,7 +515,6 @@ public class GameManager : MonoBehaviour
     {
 
         toggleChoice = new[] { toggleChoice1, toggleChoice2, toggleChoice3, toggleChoice4 }; 
-
         //if (toggleChoice1.isOn)
         //{
         //    toggleChoice2.isOn = false;
