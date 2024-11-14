@@ -207,16 +207,18 @@ public class GameManager : MonoBehaviour
 
     public void EndMaze()
     {
-        CountScore();
-        QuestionScreen.SetActive(false);
-        ScorePanel.SetActive(true);
-        ScoreText.SetActive(false);
-        timeText.gameObject.SetActive(true);
-        Joker.SetActive(false);
-        RulesButton.SetActive(false);
-        isExitRoom = false;
-        HeartImage.gameObject.SetActive(false);
-        endMaze = true;
+        if (!endMaze)
+        {
+            CountScore();
+            QuestionScreen.SetActive(false);
+            ScorePanel.SetActive(true);
+            ScoreText.SetActive(false);
+            timeText.gameObject.SetActive(true);
+            RulesButton.SetActive(false);
+            isExitRoom = false;
+            HeartImage.gameObject.SetActive(false);
+            endMaze = true;
+        }
     }
 
     public void CountScore()
