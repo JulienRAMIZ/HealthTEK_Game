@@ -83,13 +83,15 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
         // Limit the movements to the adjacent squares
-        if (player.transform.position.x - transform.position.x == -1 || player.transform.position.x - transform.position.x == 1 || player.transform.position.y - transform.position.y == -1 || player.transform.position.y - transform.position.y == 1)
+        if (Math.Abs(player.transform.position.x - transform.position.x) == 1 || Math.Abs(player.transform.position.y - transform.position.y) == 1)
         {
-            if (player.transform.position.x - transform.position.x == 0 || player.transform.position.y - transform.position.y == 0)
+            if (Math.Abs(player.transform.position.x - transform.position.x) == 0 || Math.Abs(player.transform.position.y - transform.position.y) == 0)
             {
                 isClose = true;
             }    
         }
+
+
 
         // The OpenedDoor tag means that the player answered correctlty and that he can move to the room. The default tag is ClosedDoor.
         if (CompareTag("OpenedDoor") == true || CompareTag("FailedRoom") == true)
@@ -126,7 +128,13 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             player.closedDoor = true;
             _whiteHighlight.SetActive(true);
+            Debug.Log("X player : " + player.transform.position.x + " Y player : " + player.transform.position.y);
             player.ableMoving = false;
+            if (Math.Abs(player.transform.position.x - transform.position.x) + Math.Abs(player.transform.position.y - transform.position.y) < 2)
+            {
+                isClose = true;
+                
+            }
             if (isClose)
             {
                 goQnA = true;

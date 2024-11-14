@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     public Tile tile;
     public EndGame endGame;
     public GridScript grid;
+    public TimeCount timeCount;
     public SelectedButton selectedButton;
     public Toggle toggleChoice1, toggleChoice2, toggleChoice3, toggleChoice4;
     public Toggle[] toggleChoice; 
@@ -196,21 +197,26 @@ public class GameManager : MonoBehaviour
         //Debug.Log("Room restantes  : " + closedRoom.Length);
         //Debug.Log("Combien de réponses ??  : " + filledAnswer.Length);
 
-        if (closedRoom.Length <= 0 && !endMaze)
+        if (closedRoom.Length <= 0)
         {
-            CountScore();
-            QuestionScreen.SetActive(false);
-            ScorePanel.SetActive(true);
-            ScoreText.SetActive(false);
-            timeText.gameObject.SetActive(true);
-            Joker.SetActive(false);
-            RulesButton.SetActive(false);
-            isExitRoom = false;
-            HeartImage.gameObject.SetActive(false);
-            endMaze = true;
+            EndMaze();
 
         }
 
+    }
+
+    public void EndMaze()
+    {
+        CountScore();
+        QuestionScreen.SetActive(false);
+        ScorePanel.SetActive(true);
+        ScoreText.SetActive(false);
+        timeText.gameObject.SetActive(true);
+        Joker.SetActive(false);
+        RulesButton.SetActive(false);
+        isExitRoom = false;
+        HeartImage.gameObject.SetActive(false);
+        endMaze = true;
     }
 
     public void CountScore()
@@ -621,10 +627,6 @@ public class GameManager : MonoBehaviour
                 {
                     CorrectChoice = true;
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
-                    if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
-                    {
-                        //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
-                    }
                     //if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
                     //{
                     //    isExitRoom = true;
@@ -1105,25 +1107,29 @@ public class GameManager : MonoBehaviour
     // Close the panel question
     public void ClosePanel()
     {
-        if (nbJokers != 0)
-        {
-            nbJokers--;
-            QuestionScreen.SetActive(false);
-            questionPopped = false;
-            
-                grid._listTiles[tileX, tileY].tag = "Obstacle";
- 
-            StartCoroutine(ShowMessage("Careful, by skipping the question, you've used up 1 joker. You only have " + nbJokers.ToString() + " left now.", 8));
-        }
+        QuestionScreen.SetActive(false);
+        questionPopped = false;
 
-        jokerText.text = "Joker : " + nbJokers.ToString() + "/3";
 
-        if (nbJokers == 0)
-        {
-            CloseButton.SetActive(false);
-        }
-        tile.questionpoped = false;
-        Debug.Log("joker utilisé");
+        //if (nbJokers != 0)
+        //{
+        //    nbJokers--;
+        //    QuestionScreen.SetActive(false);
+        //    questionPopped = false;
+
+        //    grid._listTiles[tileX, tileY].tag = "Obstacle";
+
+        //    StartCoroutine(ShowMessage("Careful, by skipping the question, you've used up 1 joker. You only have " + nbJokers.ToString() + " left now.", 8));
+        //}
+
+        //jokerText.text = "Joker : " + nbJokers.ToString() + "/3";
+
+        //if (nbJokers == 0)
+        //{
+        //    CloseButton.SetActive(false);
+        //}
+        //tile.questionpoped = false;
+        //Debug.Log("joker utilisé");
 
     }
 

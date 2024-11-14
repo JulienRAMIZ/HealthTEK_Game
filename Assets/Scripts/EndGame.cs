@@ -25,7 +25,8 @@ public class EndGame : MonoBehaviour
     void Update()
     {
        // finalTimeText = "Your time : " + timeCount.timerText.text[7..];
-        finalTimeText = "Your time : " + (15 - int.Parse(timeCount.timerText.text.Substring(6, 3))).ToString() + ":" + (60 - int.Parse(timeCount.timerText.text[10..])).ToString();
+        //finalTimeText = "Your time : " + (15 - int.Parse(timeCount.timerText.text.Substring(6, 3))).ToString() + ":" + (60 - int.Parse(timeCount.timerText.text[10..])).ToString();
+        finalTimeText = "Your time : " + timeCount.timerText.text;
         //totalScoreText.text = "Your score : " + manager.score.ToString() + "\n" + finalTimeText + "\n" + "Your mark : " + manager.playerMark + "/20";
         totalScoreText.text = "Your score :  \n Unit 2 : " + manager.unit[0] + " / 5 \n Unit 3 : " + manager.unit[1] + " / 5 \n Unit 4 :" + manager.unit[2] + " / 5 \n Unit 5 : " + manager.unit[3] + " / 5 \n Unit 6 : " + manager.unit[4] + " / 5 \n Unit 7 : " + manager.unit[5] + " / 5";
     }
