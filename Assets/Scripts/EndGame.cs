@@ -9,6 +9,7 @@ public class EndGame : MonoBehaviour
 
     [SerializeField] TMP_Text totalScoreText;
     [SerializeField] TMP_Text resultText;
+    [SerializeField] TMP_Text resultTitle;
     [SerializeField] TMP_Text gameScoreText;
 
     private string finalTimeText;
@@ -31,7 +32,7 @@ public class EndGame : MonoBehaviour
         //finalTimeText = "Your time : " + (15 - int.Parse(timeCount.timerText.text.Substring(6, 3))).ToString() + ":" + (60 - int.Parse(timeCount.timerText.text[10..])).ToString();
         finalTimeText = "Your time : " + timeCount.timerText.text;
         //totalScoreText.text = "Your score : " + manager.score.ToString() + "\n" + finalTimeText + "\n" + "Your mark : " + manager.playerMark + "/20";
-        totalScoreText.text = "Your score :  \n Line 1 : " + manager.unit[0] + " / 5 \n Line 2 : " + manager.unit[1] + " / 5 \n Line 3 : " + manager.unit[2] + " / 5 \n Line 4 : " + manager.unit[3] + " / 5 \n Line 5 : " + manager.unit[4] + " / 5 \n Line 6 : " + manager.unit[5] + " / 5";
+        totalScoreText.text = "Your score line by line  :  \n Line 1 : " + manager.unit[0] + " / 5 \n Line 2 : " + manager.unit[1] + " / 5 \n Line 3 : " + manager.unit[2] + " / 5 \n Line 4 : " + manager.unit[3] + " / 5 \n Line 5 : " + manager.unit[4] + " / 5 \n Line 6 : " + manager.unit[5] + " / 5";
         ScoreSentences();
         Result();
 
@@ -49,6 +50,10 @@ public class EndGame : MonoBehaviour
                     resultText.text = resultText.text + " \n • " + unitName[i];
                 }
             }
+            if (string.IsNullOrEmpty(resultText.text))
+            {
+                resultTitle.text = " You don't have the required knowledge for now \n But don't worry you can try again if you want ! ";
+            }
             resultShowed = true;
         }
 
@@ -60,22 +65,22 @@ public class EndGame : MonoBehaviour
         {
             if (manager.score >= 300)
             {
-                gameScoreText.text = manager.score + " \n You can save lifes  !";
+                gameScoreText.text = manager.scoreText.text + " \n You can save lifes  !";
             }
 
             else if (manager.score <= 300 && manager.score > 150)
             {
-                gameScoreText.text = manager.score + " \n You are close to the cure !";
+                gameScoreText.text = manager.scoreText.text + " \n You are close to the cure !";
             }
 
             else if (manager.score <= 150 && manager.score > 50)
             {
-                gameScoreText.text = manager.score + " \n Well, it can be better !";
+                gameScoreText.text = manager.scoreText.text + " \n Well, it can be better !";
             }
 
             else if (manager.score <= 50)
             {
-                gameScoreText.text = manager.score + " \n You still have much to learn !";
+                gameScoreText.text = manager.scoreText.text + " \n You still have much to learn !";
             }
         }
 

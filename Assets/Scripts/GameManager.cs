@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] TMP_Text notificationText;
     [SerializeField] TMP_Text timeText;
-    [SerializeField] TMP_Text scoreText;
+    public TMP_Text scoreText;
     [SerializeField] TMP_Text jokerText;
 
     void Start()
