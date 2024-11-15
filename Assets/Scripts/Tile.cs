@@ -128,7 +128,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         {
             player.closedDoor = true;
             _whiteHighlight.SetActive(true);
-            Debug.Log("X player : " + player.transform.position.x + " Y player : " + player.transform.position.y);
+            //Debug.Log("X player : " + player.transform.position.x + " Y player : " + player.transform.position.y);
             player.ableMoving = false;
             if (Math.Abs(player.transform.position.x - transform.position.x) + Math.Abs(player.transform.position.y - transform.position.y) < 2)
             {

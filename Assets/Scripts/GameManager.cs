@@ -103,16 +103,7 @@ public class GameManager : MonoBehaviour
 
         ////Open the questions and answers file (csv file), retrieve the values and add them in a list
         //var reader = new StreamReader(File.OpenRead(FilePath));
-        //while (!reader.EndOfStream)
-        //{
-        //    var line = reader.ReadLine();
-        //    var values = line.Split(';');
-        //    QnA.Add(values[0]);
-        //    QnA.Add(values[1]);
-        //    QnA.Add(values[2]);
-        //    nbLines++; // We use nbLines here to get the number of questions. nbLines corresponds to the number of lines in the csv file. Since each line holds a question, nbLines can count as the number of questions.
-        //}
-        //QnA.RemoveRange(0, 3); //remove the first three values of the list (Question, Possible_Answer, Correct_Answer)   
+  
 
         //Open the questions and answers file (csv file), retrieve the values and add them in a list
         var reader = new StreamReader(File.OpenRead(FilePath));
@@ -150,25 +141,8 @@ public class GameManager : MonoBehaviour
         image2 = background2.GetComponent<ImageWithRoundedCorners>();
         image3 = background3.GetComponent<ImageWithRoundedCorners>();
         image4 = background4.GetComponent<ImageWithRoundedCorners>();
-
-        //Debug.Log(QnA[0]);
-        //Debug.Log(QnA[1]);
-        //Debug.Log(QnA[2]);
-        //Debug.Log(QnA[3]);
-        //Debug.Log(QnA[4]);
-        //Debug.Log(QnA[5]);
-        //Debug.Log(QnA[6]);
-        //Debug.Log(QnA[7]);
-        //Debug.Log(QnA[8]);
     }
 
-    /* Possible evolution of the game. Here we set the difficulty.
-     * Start the game, remove title screen, reset timer, and adjust the questions based on difficulty button clicked.
-       public void StartGame(int difficulty)
-      {
-        TitleScreen.SetActive(false); 
-      }
-    */
 
    // Update is called once per frame
    void Update()
@@ -189,13 +163,9 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        //if (ScorePanel.activeSelf == true)
-        //{ 
-        //    HeartImage.gameObject.SetActive(false);
-        //}
+
         closedRoom = GameObject.FindGameObjectsWithTag("ClosedDoor");
-        //Debug.Log("Room restantes  : " + closedRoom.Length);
-        //Debug.Log("Combien de réponses ??  : " + filledAnswer.Length);
+
 
         if (closedRoom.Length <= 0)
         {
@@ -241,11 +211,9 @@ public class GameManager : MonoBehaviour
 
     public void QuestionTile()
     {
-        //Debug.Log("Tile x : " + tileX + " et Tile y : " + tileY);
 
         QuestionIndex = (tileX + (tileY * 5)) * 11;
-        //Debug.Log("Index de question: " + QuestionIndex );
-        //Debug.Log("Et pos x : " + QnA[QuestionIndex + 9] + "   pos y : " + QnA[QuestionIndex + 10]);
+
 
  
         PopUpQuestion();
@@ -254,9 +222,7 @@ public class GameManager : MonoBehaviour
 
     public void AdaptFileAnswers()
     {
-        //Debug.Log(" RandomIndex vaut  :  " + RandomIndex + "\n" + "Ok mais qna.count vaut  : " + (QnA.Count));
 
-        //Debug.Log(" correctAnswer vaut  :  " + correctAnswer[1] + "\n" + "Ok mais filledAnswer vaut  : " + filledAnswer);
         // create a function to adapt file's answers
         for (int i = 0; i <= 3; i++)
         {
@@ -303,25 +269,6 @@ public class GameManager : MonoBehaviour
                 //Debug.Log(correctAnswer[k]);   
             }
 
-            //    var dict = new Dictionary<string, int>();
-
-            //foreach (string value in correctAnswer)
-            //{
-            //    dict.TryGetValue(value, out int count);
-            //    dict[value] = count + 1;
-            //}
-            //foreach(var pair in dict)
-            //{
-            //    Console.WriteLine("Value {0} occurred {1} times.",pair.Key,pair.Value);
-            //}
-
-        
-        //correctAnswer.RemoveAll(match:"EMPTY");
-
-
-
-        //Debug.Log(" Voici le ne nombre de Empty Answer là le truc que tu voulais mettre  : " + nbEmptyAnswer);
-        //Debug.Log($"Voyons correct answer : on a  {correctAnswer.Length} éléments \n Ensuite on verra");
     }
 
    // Choose a question randomly and displays it along with its possible answers
@@ -350,7 +297,7 @@ public class GameManager : MonoBehaviour
         {
             QuestionText.text = QnA[QuestionIndex];
             nbDisplayedQuestions++;
-            Debug.Log("Index question : " + QuestionIndex);
+            //Debug.Log("Index question : " + QuestionIndex);
         }
         else
         {
@@ -362,9 +309,6 @@ public class GameManager : MonoBehaviour
                     ScorePanel.SetActive(true);
 
                 }
-                //RandomIndex = UnityEngine.Random.Range(0, QnA.Count);
-                //QuestionIndex = QuestionIndex + 11;
-                //QuestionText.text = QnA[QuestionIndex];
             }
             //nbDisplayedQuestions++;
             Debug.Log("Ok c'est la merde ");
@@ -384,25 +328,12 @@ public class GameManager : MonoBehaviour
 
         if (nbEmptyAnswer <= 2)
         {
-            //for (int i = 0; i < 4; i++)
-            //{
-            //    backgroundM[i].gameObject.SetActive(true);
-            //    backgroundS[i].gameObject.SetActive(false);
-            //    Debug.Log("Là c'est les carrés");
-
-            //}
             background1.GetComponent<Image>().sprite = square;
             background2.GetComponent<Image>().sprite = square;
             background3.GetComponent<Image>().sprite = square;
             background4.GetComponent<Image>().sprite = square;
-            //this.GetComponentInChildren<ToggleGroup>().gameObject.SetActive(true);
             ToggleGroup.SetActive(false);
 
-            //Debug.Log("Passe t'on ici ?");
-            //image1.radius = 0;
-            //image2.radius = 0;
-            //image3.radius = 0;
-            //image4.radius = 0;
         }
 
         if (nbEmptyAnswer == 3)
@@ -418,20 +349,14 @@ public class GameManager : MonoBehaviour
             background2.GetComponent<Image>().sprite = circle;
             background3.GetComponent<Image>().sprite = circle;
             background4.GetComponent<Image>().sprite = circle;
-            //this.GetComponentInChildren<ToggleGroup>().gameObject.SetActive(false);
+
             ToggleGroup.SetActive(true);
-            //image1.radius = 10;
-            //image2.radius = 10;
-            //image3.radius = 10;
-            //image4.radius = 10;
-            //Debug.Log("Passe par là ?");
+
         }
 
-
-        //Debug.Log("Correct answer est a  : " + filledAnswer.Length + " réponses");
         if (filledAnswer.Length == 2)
         {
-            Debug.Log("True or false question");
+            //Debug.Log("True or false question");
             toggleChoice2.gameObject.SetActive(false);
             toggleChoice4.gameObject.SetActive(false);
             // Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[0];
@@ -442,7 +367,7 @@ public class GameManager : MonoBehaviour
         // If we have three choices of correct answers
         if (filledAnswer.Length == 3)
         {
-            Debug.Log("three answers question");
+            //Debug.Log("three answers question");
             toggleChoice4.gameObject.SetActive(false);
             for (int j = 0; j < 3; j++)
             {
@@ -507,7 +432,6 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        //CorrectAnswer = QnA[RandomIndex + 2];
     }
 
     // Check if the player cliked on the correct answer
@@ -523,34 +447,6 @@ public class GameManager : MonoBehaviour
     {
 
         toggleChoice = new[] { toggleChoice1, toggleChoice2, toggleChoice3, toggleChoice4 }; 
-        //if (toggleChoice1.isOn)
-        //{
-        //    toggleChoice2.isOn = false;
-        //    toggleChoice3.isOn = false;
-        //    toggleChoice4.isOn = false;
-        //    Debug.Log("1");
-        //}
-        //if (toggleChoice2.isOn)
-        //{
-        //    toggleChoice1.isOn = false;
-        //    toggleChoice3.isOn = false;
-        //    toggleChoice4.isOn = false;
-        //    Debug.Log("2");
-        //}
-        //if (toggleChoice3.isOn)
-        //{
-        //    toggleChoice1.isOn = false;
-        //    toggleChoice2.isOn = false;
-        //    toggleChoice4.isOn = false;
-        //    Debug.Log("3");
-        //}
-        //if (toggleChoice4.isOn)
-        //{
-        //    toggleChoice1.isOn = false;
-        //    toggleChoice2.isOn = false;
-        //    toggleChoice3.isOn = false;
-        //    Debug.Log("4");
-        //}
     }
    public void CheckToggle()
    {
@@ -569,10 +465,6 @@ public class GameManager : MonoBehaviour
                     {
                         //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                     }
-                    //if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
-                    //{
-                    //    isExitRoom = true;
-                    //}
                 }
                 else
                 {
@@ -591,10 +483,6 @@ public class GameManager : MonoBehaviour
                     {
                         //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                     }
-                    //if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
-                    //{
-                    //    isExitRoom = true;
-                    //}
                 }
                 else
                 {
@@ -610,17 +498,12 @@ public class GameManager : MonoBehaviour
                     // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
                     if (grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == false)
                     {
-                        //grid._listTiles[tileX, tileY].tag = "OpenedDoor";
                     }
-                    //if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
-                    //{
-                    //    isExitRoom = true;
-                    //}
+ 
                 }
                 else
                 {
                     CorrectChoice = false;
-                    //toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;
                 }
             }
             else if (toggleChoice4.GetComponentInChildren<TextMeshProUGUI>().text == correctAnswer[0])
@@ -628,16 +511,10 @@ public class GameManager : MonoBehaviour
                 if (!toggleChoice2.isOn && !toggleChoice3.isOn && !toggleChoice1.isOn && toggleChoice4.isOn)
                 {
                     CorrectChoice = true;
-                    // Get the room from where the question popped and change its tag. The room's position comes from the script Tile via the OnPointerDown() function
-                    //if (tileX == 4 && tileY == 4 /*grid._listTiles[tileX, tileY].CompareTag("ExitRoom") == true*/)
-                    //{
-                    //    isExitRoom = true;
-                    //}
                 }
                 else
                 {
                     CorrectChoice = false;
-                   // toggleChoice1.isOn = false; toggleChoice2.isOn = false; toggleChoice3.isOn = false; toggleChoice4.isOn = false;
                 }
             }
         }
