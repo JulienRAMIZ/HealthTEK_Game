@@ -1038,7 +1038,7 @@ public class GameManager : MonoBehaviour
                 (!toggleChoice1.isOn && !toggleChoice2.isOn && !toggleChoice3.isOn && Choices.Length == 3) ||
                 (!toggleChoice1.isOn && !toggleChoice3.isOn && Choices.Length == 2) )
         {
-            StartCoroutine(ShowMessage("You haven't selected any answers. If you're struggling and you have jokers, you can skip the question.", 6));
+            StartCoroutine(ShowMessage("You haven't selected any answers.", 4));
         }
         else
         {
@@ -1058,13 +1058,13 @@ public class GameManager : MonoBehaviour
             if (nbWrongAnswers == 1)
             {
                 //StartCoroutine(ShowMessage("You gave the wrong answer. -5 to your score. Try again.", 6));
-                StartCoroutine(ShowMessage("You failed, but don't lose hope", 6));
+                StartCoroutine(ShowMessage("You failed, but don't lose hope. -5 to your score.", 6));
                 score -= 5;
                 //Debug.Log("1er malus: -5");
             }
             if (nbWrongAnswers == 2)
             {
-                StartCoroutine(ShowMessage("You chose the wrong answer a second time. -10 to your score. Try again.", 6));
+                StartCoroutine(ShowMessage("That wasn't the good choice. -10 to your score.", 6));
                 score -= 10;
                 //Debug.Log("2e malus: -15");
                 //durationTimer = 0;
@@ -1072,7 +1072,7 @@ public class GameManager : MonoBehaviour
             }
             if (nbWrongAnswers == 3)
             {
-                StartCoroutine(ShowMessage("You chose the wrong answer a third time. -15 to your score. Try again.", 6));
+                StartCoroutine(ShowMessage("It seems you don't want to find the cure. -15 to your score. ", 6));
                 score -= 20;
                 //Debug.Log("3e malus: -15");
                 durationTimer = 0;
@@ -1080,7 +1080,7 @@ public class GameManager : MonoBehaviour
             }
             if (nbWrongAnswers == 4)
             {
-                StartCoroutine(ShowMessage("You chose the wrong answer a fourth time. -20 to your score. Try again.", 6));
+                StartCoroutine(ShowMessage("You chose the wrong answer a fourth time. -20 to your score. ", 6));
                 score -= 20;
                 //Debug.Log("4e malus: -20");
                 durationTimer = 0;
@@ -1099,7 +1099,7 @@ public class GameManager : MonoBehaviour
 
 
         CorrectChoice = false;
-        TransformScore();
+        //TransformScore();
         //Debug.Log(playerMark);
         tile.questionpoped = false;
         //Debug.Log("Check les réponses");
