@@ -83,13 +83,13 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)
     {
         // Limit the movements to the adjacent squares
-        if (Math.Abs(player.transform.position.x - transform.position.x) == 1 || Math.Abs(player.transform.position.y - transform.position.y) == 1)
-        {
-            if (Math.Abs(player.transform.position.x - transform.position.x) == 0 || Math.Abs(player.transform.position.y - transform.position.y) == 0)
-            {
-                isClose = true;
-            }    
-        }
+        //if (Math.Abs(player.transform.position.x - transform.position.x) == 1 || Math.Abs(player.transform.position.y - transform.position.y) == 1)
+        //{
+        //    if (Math.Abs(player.transform.position.x - transform.position.x) == 0 || Math.Abs(player.transform.position.y - transform.position.y) == 0)
+        //    {
+        //        isClose = true;
+        //    }    
+        //}
 
 
 
@@ -130,11 +130,12 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             _whiteHighlight.SetActive(true);
             //Debug.Log("X player : " + player.transform.position.x + " Y player : " + player.transform.position.y);
             player.ableMoving = false;
-            if (Math.Abs(player.transform.position.x - transform.position.x) + Math.Abs(player.transform.position.y - transform.position.y) < 2)
-            {
-                isClose = true;
+            isClose = true;
+            //if (Math.Abs(player.transform.position.x - transform.position.x) + Math.Abs(player.transform.position.y - transform.position.y) < 2)
+            //{
+            //    isClose = true;
                 
-            }
+            //}
             if (isClose)
             {
                 goQnA = true;
@@ -147,7 +148,7 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     {
         _purpleHighlight.SetActive(false);
         _whiteHighlight.SetActive(false);
-        isClose = false;
+        //isClose = false;
     }
 
     // When we do a left click while being on a room
