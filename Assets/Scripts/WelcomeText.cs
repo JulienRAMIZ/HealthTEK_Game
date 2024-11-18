@@ -12,7 +12,7 @@ public class WelcomeText : MonoBehaviour
     public GameObject timer;
     public GameObject ScoreText;
     public GameObject RulesButton;
-   // public GameObject HeartImage;
+    public GameObject tryAgainButton;
     public string[] contextSentences;
     public Button startButton;
     public Button skipButton;
@@ -38,6 +38,7 @@ public class WelcomeText : MonoBehaviour
         timer.SetActive(false); //timer.gameObject.SetActive(false)
         ScoreText.SetActive(false); // ScoreText.gameObject.SetActive(false)
         RulesButton.SetActive(false);
+        tryAgainButton.SetActive(false);
         NextSentence();
     }
 
@@ -94,6 +95,7 @@ public class WelcomeText : MonoBehaviour
         timer.SetActive(true);
         ScoreText.SetActive(true);
         RulesButton.SetActive(true);
+        tryAgainButton.SetActive(true);
     }
 
 

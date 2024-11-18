@@ -8,9 +8,10 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
-    [System.NonSerialized] public bool ableMoving, isMoving, isCalculated, closedDoor;
+    /*[System.NonSerialized]*/ public bool ableMoving, isMoving, isCalculated, closedDoor, isAnswered;
     public Vector3 target;
     private GridScript grid;
+    private GameManager manager;
     public GameObject character;
     private Vector3 myTransform;
     private Vector3 calculatedTransform;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         // We retrieve the scripts we need
         grid = GameObject.Find("GridManager").GetComponent<GridScript>();
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         _openedTiles = new GameObject[grid._width, grid._height];
         _closedTiles = new GameObject[grid._width, grid._height];
         //grid._listTiles[(int)transform.position.x,(int)transform.position.y].tag = "OpenedDoor";
@@ -39,7 +41,7 @@ public class PlayerController : MonoBehaviour
         {
             // Calculate the movement to make between the player and the left click
             calculDestination();
-            target.z = (float)-8.2;
+            target.z = (float)-8.3;
             // Execute the movement if we respect one of the movement conditions 
             MoveCharacter();
         }
@@ -47,11 +49,13 @@ public class PlayerController : MonoBehaviour
 
     public void calculDestination()
     {
-        if (Input.GetMouseButtonDown(0) && ableMoving == true && isMoving == false && closedDoor == false)
+        if (isAnswered && ableMoving == true && isMoving == false && closedDoor == false)
         {
-            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            target.x = manager.tileX;
+            target.y = manager.tileY;
             //target.z = transform.position.z;
-            target.z = (float)-8.2;
+            target.z = (float)-8.3;
             target2D = new Vector2(target.x, target.y);
 
             target.x = (float)Math.Round(target.x);
@@ -77,7 +81,40 @@ public class PlayerController : MonoBehaviour
             isCalculated = true;
             calculatedTransform = target;
             ableMoving = true;
+            isAnswered = false;
             /*else if (target.y >= grid._height - 1){ target.y = grid._height - 1; }*/
+        }
+        else if (Input.GetMouseButtonDown(0) && ableMoving == true && isMoving == false && closedDoor == false)
+        {
+            target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //target.z = transform.position.z;
+            target.z = (float)-8.3;
+            target2D = new Vector2(target.x, target.y);
+
+            target.x = (float)Math.Round(target.x);
+            target.y = (float)Math.Round(target.y);
+
+            //Debug.Log("x = " + target.x);
+            //Debug.Log("y = " + target.y);
+
+            // If the click happens outside the maze, the player don't move at all. 
+            /*if (target.x <= 0){ target.x = 0;} else if */
+            if (target.x < 0 || target.x > grid._width - 1)
+            {
+                target.x = character.transform.position.x;
+
+            }
+
+            if (target.y < 0 || target.y > grid._height - 1)
+            {
+                target.y = character.transform.position.y;
+
+
+            }
+            isCalculated = true;
+            calculatedTransform = target;
+            ableMoving = true;
+            isAnswered = false;
         }
     }
 
@@ -98,6 +135,7 @@ public class PlayerController : MonoBehaviour
             if (transform.position == calculatedTransform)
             {
                 isMoving = false;
+
             }
         }
 

@@ -73,11 +73,11 @@ public class Tile : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         // Change the color every other square (reference in the GridScript)
         // Syntax explanation.... ? ... : ... => ? = if something is true (?), if yes I do this otherwise (:) I do that
         _renderer.color = isOffset ? _offsetColor : _baseColor;
-        if( _renderer.transform.position.x == 4 && _renderer.transform.position.y == 4)
-        {
-            _renderer.sprite = _exit;
+        //if( _renderer.transform.position.x == 4 && _renderer.transform.position.y == 4)
+        //{
+        //    _renderer.sprite = _exit;
 
-        }
+        //}
     }
     // When the mouse enters in a room
     void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData)

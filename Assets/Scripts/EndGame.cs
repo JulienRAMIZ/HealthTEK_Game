@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 /* This script displays the score details at the end of the game. */
 public class EndGame : MonoBehaviour
@@ -14,15 +15,21 @@ public class EndGame : MonoBehaviour
 
     private string finalTimeText;
     private GameManager manager;
+    private GameObject welcomePanel;
     private GridScript grid;
-    private TimeCount timeCount;
+    public TimeCount timeCount;
     private string[] unitName = new string[6] { "Engineering applied to orthopaedics as an example of the use of biomechanics biomaterials ", "Biosensors and medical devices based on electronic principles", "Surgical Instruments", "Artificial Intelligence and Health", "Anatomy and Physiology", "Genetics and genomics" };
     private bool resultShowed = false;
     // Start is called before the first frame update
     void Start()
     {
         manager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        timeCount = GameObject.Find("Time Text").GetComponent<TimeCount>();
+        //if (welcomePanel.activeSelf == false)
+        //{
+        //    timeCount = GameObject.Find("Time Text").GetComponent<TimeCount>();
+
+        //}
+        //timeCount = GameObject.Find("Time Text").GetComponent<TimeCount>();
     }
 
     // Update is called once per frame
@@ -32,7 +39,7 @@ public class EndGame : MonoBehaviour
         //finalTimeText = "Your time : " + (15 - int.Parse(timeCount.timerText.text.Substring(6, 3))).ToString() + ":" + (60 - int.Parse(timeCount.timerText.text[10..])).ToString();
         finalTimeText = "Your time : " + timeCount.timerText.text;
         //totalScoreText.text = "Your score : " + manager.score.ToString() + "\n" + finalTimeText + "\n" + "Your mark : " + manager.playerMark + "/20";
-        totalScoreText.text = "Your score line by line  :  \n Line 1 : " + manager.unit[0] + " / 5 \n Line 2 : " + manager.unit[1] + " / 5 \n Line 3 : " + manager.unit[2] + " / 5 \n Line 4 : " + manager.unit[3] + " / 5 \n Line 5 : " + manager.unit[4] + " / 5 \n Line 6 : " + manager.unit[5] + " / 5";
+        totalScoreText.text = "Your score line by line :  \n Line 1 : " + manager.unit[0] + " / 5 \n Line 2 : " + manager.unit[1] + " / 5 \n Line 3 : " + manager.unit[2] + " / 5 \n Line 4 : " + manager.unit[3] + " / 5 \n Line 5 : " + manager.unit[4] + " / 5 \n Line 6 : " + manager.unit[5] + " / 5";
         ScoreSentences();
         Result();
 

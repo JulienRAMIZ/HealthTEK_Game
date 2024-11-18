@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public GameObject ScoreText;
     public GameObject CloseButton;
     public GameObject RulesButton;
+    public GameObject tryAgainButton;
     public GameObject Joker;
     public GameObject DamageScreen;
     public GameObject HeartImage;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     public Button QuestionButton;
     public List<string> QnA;
     public Tile tile;
+    public PlayerController player;
     public EndGame endGame;
     public GridScript grid;
     public TimeCount timeCount;
@@ -141,6 +143,7 @@ public class GameManager : MonoBehaviour
         image2 = background2.GetComponent<ImageWithRoundedCorners>();
         image3 = background3.GetComponent<ImageWithRoundedCorners>();
         image4 = background4.GetComponent<ImageWithRoundedCorners>();
+        OnlyOneToggle();
     }
 
 
@@ -185,6 +188,7 @@ public class GameManager : MonoBehaviour
             ScoreText.SetActive(false);
             timeText.gameObject.SetActive(true);
             RulesButton.SetActive(false);
+            tryAgainButton.SetActive(false);
             isExitRoom = false;
             HeartImage.gameObject.SetActive(false);
             endMaze = true;
@@ -357,6 +361,8 @@ public class GameManager : MonoBehaviour
         if (filledAnswer.Length == 2)
         {
             //Debug.Log("True or false question");
+            toggleChoice1.gameObject.SetActive(true);
+            toggleChoice3.gameObject.SetActive(true);
             toggleChoice2.gameObject.SetActive(false);
             toggleChoice4.gameObject.SetActive(false);
             // Choices[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = (QnA[RandomIndex + 1].Split(','))[0];
@@ -373,6 +379,7 @@ public class GameManager : MonoBehaviour
             {
                 //Choices[j].transform.GetChild(1).GetComponent<Text>().text = (QnA[RandomIndex + 1].Split(','))[j];
                 Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[j];
+                toggleChoice[j].gameObject.SetActive(true);
             }
             toggleChoice4.gameObject.SetActive(false);
         }
@@ -385,6 +392,7 @@ public class GameManager : MonoBehaviour
             for (int j = 0; j < 4; j++)
             {
                 Choices[j].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = filledAnswer[j];
+                toggleChoice[j].gameObject.SetActive(true);
             }
         }
         //QuestionIndex = QuestionIndex + 11;
@@ -439,8 +447,9 @@ public class GameManager : MonoBehaviour
     public void IsCorrect()
    {
         //CheckButton(Choices);
-        OnlyOneToggle();
+        //OnlyOneToggle();
         CheckToggle();
+
    }
 
     public void OnlyOneToggle()
@@ -888,14 +897,18 @@ public class GameManager : MonoBehaviour
             {
                 score += 15;
                 StartCoroutine(ShowMessage("You are smashing it! +15 to your score.", 5));
-                Debug.Log("3e bonus: +15");
+                //Debug.Log("3e bonus: +15");
             }
             if (nbCorrectAnswers >= 5)
             {
                 score += 20;
                 StartCoroutine(ShowMessage("Spectacular! +20 to your score.", 5));
-                Debug.Log("4e bonus: +20");
+                //Debug.Log("4e bonus: +20");
             }
+            questionPopped = false;
+            player.isAnswered = true;
+            player.ableMoving = true;
+            player.closedDoor = false;
         } 
         //else if (CorrectChoice && isExitRoom == true)
         //else if (closedRoom.Length <= 0)
@@ -970,7 +983,11 @@ public class GameManager : MonoBehaviour
                 score -= 20;
                 durationTimer = 0;
                 overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0.4f);
-            } 
+            }
+            questionPopped = false;
+            player.isAnswered = true;
+            player.ableMoving = true;
+            player.closedDoor = false;
         }
 
 
@@ -980,6 +997,8 @@ public class GameManager : MonoBehaviour
         //Debug.Log(playerMark);
         tile.questionpoped = false;
         //Debug.Log("Check les réponses");
+
+
 
     } 
 
