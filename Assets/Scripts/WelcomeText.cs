@@ -20,7 +20,7 @@ public class WelcomeText : MonoBehaviour
     public Button previousButton;
     public TextMeshProUGUI contextText;
 
-    private int indexNext;
+    private int indexNext = 0;
 
     // public GameObject logoEstia;
     // public GameObject logoDonosti;
@@ -39,13 +39,14 @@ public class WelcomeText : MonoBehaviour
         ScoreText.SetActive(false); // ScoreText.gameObject.SetActive(false)
         RulesButton.SetActive(false);
         tryAgainButton.SetActive(false);
-        NextSentence();
+        contextText.text = contextSentences[indexNext];
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (indexNext <= 1)
+        if (indexNext <= 0)
         {
             previousButton.gameObject.SetActive(false); 
         }
@@ -61,10 +62,10 @@ public class WelcomeText : MonoBehaviour
     {
         if (indexNext < contextSentences.Length && indexNext >= 0)
         {
-            contextText.text = contextSentences[indexNext];
             indexNext++;
+            contextText.text = contextSentences[indexNext];
         }
-        if (indexNext == contextSentences.Length)
+        if (indexNext == contextSentences.Length-1)
         {
             startButton.gameObject.SetActive(true);
             skipButton.gameObject.SetActive(false);
@@ -75,9 +76,10 @@ public class WelcomeText : MonoBehaviour
     // Display the previous explanation whenever the user clicks on the "Previous" button
     public void PreviousSentence()
     {
-        contextText.text = contextSentences[indexNext-2];
-        Debug.Log(contextSentences[indexNext-2]);
-        indexNext --;
+        indexNext--;
+        contextText.text = contextSentences[indexNext];
+
+
         if (indexNext <= 0)
         {
             indexNext = 0;

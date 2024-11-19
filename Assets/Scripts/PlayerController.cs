@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 /* Script that controls the player */
 public class PlayerController : MonoBehaviour
@@ -84,7 +85,7 @@ public class PlayerController : MonoBehaviour
             isAnswered = false;
             /*else if (target.y >= grid._height - 1){ target.y = grid._height - 1; }*/
         }
-        else if (Input.GetMouseButtonDown(0) && ableMoving == true && isMoving == false && closedDoor == false)
+        else if (Input.GetMouseButtonDown(0) && ableMoving == true && isMoving == false && closedDoor == false && Input.mousePosition.x < grid._width && Input.mousePosition.x >= 0 &&  Input.mousePosition.y < grid._height && Input.mousePosition.y >= 0)
         {
             target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //target.z = transform.position.z;
