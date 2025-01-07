@@ -151,7 +151,8 @@ public class GameManager : MonoBehaviour
    void Update()
    {
         // Score updating
-        scoreText.text = "Score : " + score.ToString();
+        //scoreText.text = "Score : " + score.ToString();
+        scoreText.gameObject.SetActive(false);
         
 
         if (overlay.color.a > 0)
@@ -875,7 +876,7 @@ public class GameManager : MonoBehaviour
             QuestionScreen.SetActive(false);
             questionPopped = false;
             grid._listTiles[tileX, tileY].tag = "OpenedDoor";
-            StartCoroutine(ShowMessage("Well done! You can move to the green tile.", 4));
+            StartCoroutine(ShowMessage("Well done! ", 4));
             QuestionButton.gameObject.SetActive(true);
             score += 5;
             //QnA.Remove(QnA[QuestionIndex]); // remove the question from the list so that it doesn't show up again
@@ -884,25 +885,25 @@ public class GameManager : MonoBehaviour
             if (nbCorrectAnswers == 2)
             {
                 score += 5;
-                StartCoroutine(ShowMessage("Keep it up! Two good answers in a row. +5 to your score.", 6));
+                StartCoroutine(ShowMessage("Keep it up! Two good answers in a row.", 6));
                 //Debug.Log("1er bonus: +5");
             }
             if (nbCorrectAnswers == 3)
             {
                 score += 10;
-                StartCoroutine(ShowMessage("Excellent! Three good answers in a row. +10 to your score.", 6));
+                StartCoroutine(ShowMessage("Excellent! Three good answers in a row. ", 6));
                 //Debug.Log("2e bonus: +10");
             }
             if (nbCorrectAnswers == 4)
             {
                 score += 15;
-                StartCoroutine(ShowMessage("You are smashing it! +15 to your score.", 5));
+                StartCoroutine(ShowMessage("You are smashing it! ", 6));
                 //Debug.Log("3e bonus: +15");
             }
             if (nbCorrectAnswers >= 5)
             {
                 score += 20;
-                StartCoroutine(ShowMessage("Spectacular! +20 to your score.", 5));
+                StartCoroutine(ShowMessage("Spectacular! ", 6));
                 //Debug.Log("4e bonus: +20");
             }
             questionPopped = false;
@@ -948,13 +949,13 @@ public class GameManager : MonoBehaviour
             if (nbWrongAnswers == 1)
             {
                 //StartCoroutine(ShowMessage("You gave the wrong answer. -5 to your score. Try again.", 6));
-                StartCoroutine(ShowMessage("You failed, but don't lose hope. -5 to your score.", 6));
+                StartCoroutine(ShowMessage("You failed, but don't lose hope. ", 6));
                 score -= 5;
                 //Debug.Log("1er malus: -5");
             }
             if (nbWrongAnswers == 2)
             {
-                StartCoroutine(ShowMessage("That wasn't the good choice. -10 to your score.", 6));
+                StartCoroutine(ShowMessage("That wasn't the good choice. ", 6));
                 score -= 10;
                 //Debug.Log("2e malus: -15");
                 //durationTimer = 0;
@@ -962,7 +963,7 @@ public class GameManager : MonoBehaviour
             }
             if (nbWrongAnswers == 3)
             {
-                StartCoroutine(ShowMessage("It seems you don't want to find the cure. -15 to your score. ", 6));
+                StartCoroutine(ShowMessage("Wrong answer, but it's not over  ", 6));
                 score -= 20;
                 //Debug.Log("3e malus: -15");
                 durationTimer = 0;
@@ -970,7 +971,7 @@ public class GameManager : MonoBehaviour
             }
             if (nbWrongAnswers == 4)
             {
-                StartCoroutine(ShowMessage("You chose the wrong answer a fourth time. -20 to your score. ", 6));
+                StartCoroutine(ShowMessage("Don't worry you will succeed the next one ", 6));
                 score -= 20;
                 //Debug.Log("4e malus: -20");
                 durationTimer = 0;
