@@ -31,15 +31,15 @@ public class WelcomeText : MonoBehaviour
     {
         // logoEstia.SetActive(true);
         // logoDonosti.SetActive(true);
-        startButton.gameObject.SetActive(false);
-        skipButton.gameObject.SetActive(true);
-        nextButton.gameObject.SetActive(true);
+        startButton.gameObject.SetActive(true);
+        skipButton.gameObject.SetActive(false);
+        nextButton.gameObject.SetActive(false);
         previousButton.gameObject.SetActive(false);
         timer.SetActive(false); //timer.gameObject.SetActive(false)
         ScoreText.SetActive(false); // ScoreText.gameObject.SetActive(false)
         RulesButton.SetActive(false);
         tryAgainButton.SetActive(false);
-        contextText.text = contextSentences[indexNext];
+        //contextText.text = contextSentences[indexNext];
 
     }
 
