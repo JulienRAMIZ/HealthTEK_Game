@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
 
     public TextMeshProUGUI QuestionText;
+    public TextMeshProUGUI NumberAnswerText;
     public Button QuestionButton;
     public List<string> QnA;
     public Tile tile;
@@ -68,6 +69,7 @@ public class GameManager : MonoBehaviour
     private bool isExitRoom = false;
     private bool endMaze = false;
     public  bool questionPopped;
+    public  bool isNotification = false;
     public  int score;
     public int[] unit = new int[6];
     public int unit2;
@@ -86,6 +88,7 @@ public class GameManager : MonoBehaviour
     public float playerMark;
 
     [SerializeField] TMP_Text notificationText;
+    [SerializeField] TMP_Text identificationText;
     [SerializeField] TMP_Text timeText;
     public TMP_Text scoreText;
     [SerializeField] TMP_Text jokerText;
@@ -153,7 +156,6 @@ public class GameManager : MonoBehaviour
         // Score updating
         //scoreText.text = "Score : " + score.ToString();
         scoreText.gameObject.SetActive(false);
-        
 
         if (overlay.color.a > 0)
         {
@@ -333,10 +335,16 @@ public class GameManager : MonoBehaviour
 
         if (nbEmptyAnswer <= 2)
         {
-            background1.GetComponent<Image>().sprite = square;
-            background2.GetComponent<Image>().sprite = square;
-            background3.GetComponent<Image>().sprite = square;
-            background4.GetComponent<Image>().sprite = square;
+            //NumberAnswerText.text = "Chose many ! ";
+            QuestionText.text = QuestionText.text + "  Chose many ! ";
+            //background1.GetComponent<Image>().sprite = square;
+            //background2.GetComponent<Image>().sprite = square;
+            //background3.GetComponent<Image>().sprite = square;
+            //background4.GetComponent<Image>().sprite = square;
+            background1.GetComponent<Image>().sprite = circle;
+            background2.GetComponent<Image>().sprite = circle;
+            background3.GetComponent<Image>().sprite = circle;
+            background4.GetComponent<Image>().sprite = circle;
             ToggleGroup.SetActive(false);
 
         }
@@ -354,6 +362,8 @@ public class GameManager : MonoBehaviour
             background2.GetComponent<Image>().sprite = circle;
             background3.GetComponent<Image>().sprite = circle;
             background4.GetComponent<Image>().sprite = circle;
+
+            QuestionText.text = QuestionText.text + "  Chose one ! ";
 
             ToggleGroup.SetActive(true);
 
@@ -852,11 +862,12 @@ public class GameManager : MonoBehaviour
    public IEnumerator ShowMessage (string message,float Delay)
    {
         bool textEnabled = true;
+
         while (textEnabled)
         {
             notificationText.text = message;
             yield return new WaitForSeconds(Delay);
-            notificationText.text = "";
+            notificationText.text = "Click on a box to answer a question.";
             textEnabled = false;
         }  
    }
@@ -885,25 +896,25 @@ public class GameManager : MonoBehaviour
             if (nbCorrectAnswers == 2)
             {
                 score += 5;
-                StartCoroutine(ShowMessage("Keep it up! Two good answers in a row.", 6));
+                StartCoroutine(ShowMessage("Keep it up! Two good answers in a row.", 4));
                 //Debug.Log("1er bonus: +5");
             }
             if (nbCorrectAnswers == 3)
             {
                 score += 10;
-                StartCoroutine(ShowMessage("Excellent! Three good answers in a row. ", 6));
+                StartCoroutine(ShowMessage("Excellent! Three good answers in a row. ", 4));
                 //Debug.Log("2e bonus: +10");
             }
             if (nbCorrectAnswers == 4)
             {
                 score += 15;
-                StartCoroutine(ShowMessage("You are smashing it! ", 6));
+                StartCoroutine(ShowMessage("You are smashing it! ", 4));
                 //Debug.Log("3e bonus: +15");
             }
             if (nbCorrectAnswers >= 5)
             {
                 score += 20;
-                StartCoroutine(ShowMessage("Spectacular! ", 6));
+                StartCoroutine(ShowMessage("Spectacular! ", 4));
                 //Debug.Log("4e bonus: +20");
             }
             questionPopped = false;
@@ -949,13 +960,13 @@ public class GameManager : MonoBehaviour
             if (nbWrongAnswers == 1)
             {
                 //StartCoroutine(ShowMessage("You gave the wrong answer. -5 to your score. Try again.", 6));
-                StartCoroutine(ShowMessage("You failed, but don't lose hope. ", 6));
+                StartCoroutine(ShowMessage("You failed, but don't lose hope. ", 4));
                 score -= 5;
                 //Debug.Log("1er malus: -5");
             }
             if (nbWrongAnswers == 2)
             {
-                StartCoroutine(ShowMessage("That wasn't the good choice. ", 6));
+                StartCoroutine(ShowMessage("That wasn't the good choice. ", 4));
                 score -= 10;
                 //Debug.Log("2e malus: -15");
                 //durationTimer = 0;
@@ -963,7 +974,7 @@ public class GameManager : MonoBehaviour
             }
             if (nbWrongAnswers == 3)
             {
-                StartCoroutine(ShowMessage("Wrong answer, but it's not over  ", 6));
+                StartCoroutine(ShowMessage("Wrong answer, but it's not over  ", 4));
                 score -= 20;
                 //Debug.Log("3e malus: -15");
                 durationTimer = 0;
@@ -971,7 +982,7 @@ public class GameManager : MonoBehaviour
             }
             if (nbWrongAnswers == 4)
             {
-                StartCoroutine(ShowMessage("Don't worry you will succeed the next one ", 6));
+                StartCoroutine(ShowMessage("Don't worry you will succeed the next one ", 4));
                 score -= 20;
                 //Debug.Log("4e malus: -20");
                 durationTimer = 0;
@@ -980,7 +991,7 @@ public class GameManager : MonoBehaviour
             else if(nbWrongAnswers > 4)
             {
                 //Debug.Log("Wrong answer given again.");
-                StartCoroutine(ShowMessage("Wrong again! Stay focused and think harder.", 6));
+                StartCoroutine(ShowMessage("Wrong again! Stay focused and think harder.", 4));
                 score -= 20;
                 durationTimer = 0;
                 overlay.color = new Color(overlay.color.r, overlay.color.g, overlay.color.b, 0.4f);
