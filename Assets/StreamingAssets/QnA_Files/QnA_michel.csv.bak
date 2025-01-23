@@ -1,42 +1,40 @@
-﻿Column1;Column2;Column3
-Question;Possible_Answers;Correct_Answer
-"PH" stands for ?;Protein Highrate,potential of hydrogen,potential of Hiderate;potential of hydrogen
-Heartbeats at a resting are rate close to ?;60,72,82;72
-more sensitive cells to coulours in the Eye ?;Cones,Nodes,Both;Cones
-The Alpha wave from range is from ?;8 to 12Hz,0.5 to 4Hz,15 to 20Hz;8 to 12Hz
-Mapping a continuous set to a countable set is called "Quantization" ?;Quantization,Sampling,Mapping;Quantization
-Used to test the electrical activity of Skeletal muscles ?;ECG,EMG,EEG;EMG
-Stethoscope is used for heartbeat ?;True,False;True
-Digital-to-Analog converter: converting a physical quantity to a digital number ?;True,False;True
-Sound frequency detection for human from ~10 Hz to 20 kHz ?;True,False;False
-Optical coherence tomography is for optical measurement ?;True,False;True
-Class I in medical device classification is for High risk devices ?;True,False;False
-BMI is for weighing scale ?;True,False;True
-Wheelchairs are Class I devices ?;True,False;True
-Surgical laser is Class III device ?;True,False;False
-An instrument for measuring the air capacity of the lungs ?;Spirometer,Cannula,Sphygmomanometer;Spirometer
-Systolic Blood pressure is ?;80 mm/Hg,120 mm/Hg,100 mm/Hg;120 mmHg
-It has 2 basic types,transmission probes and reflectance probes ?;Spirometer,Pulse oximeter,Sphygmomanometer;Pulse oximeter
-Which Class is Pacemakers ?;Class I,Class IIa,Class III;Class IIa
-Which Class is Hearing aid ?;Class I,Class IIa,Class III;Class III
-What is not Monitoring purposes ?;Tracking people,Life support,Therapeutic;Tracking people
-Sleep does not affect blood pressure ?;True,False;False
-Blood pressure numbers of less than 120/80 mm Hg is normal ?;True,False;True
-Tonometry method is invasive method ?;True,False;False
-Photoplethysmography uses visible light ?;True,False;False
-Hyperthermia is when body temperature ?;<35.0 °C,>37.5 or 38.3 °C,>40.0 or 41.0 °C;>37.5 or 38.3 °C
-"Sys" in Sphygmomanometer is for ?;System,Systolic,Sysop;Systolic
-Temperature is measured in ?;Thermometer,Thermoplast,Thermorecepter;Thermometer
-According to Blood pressure asociation,Low Blood pressure is below ?;90 mmHg, 80 mmHg,70 mmHg;90 mmHg
-Diastolic blood pressure is ?;pressure when heart pushes blood out, pressure when rests between beats, none of the above;pressure when rests between beats
-Oscillometer is used for ?;measuring sugar in blood,measuring blood pressure,measuring PH;measuring blood pressure
-RTD is a non-contact temperature device ?;True,False;False
-Thermocouple Sensor can stand much higher temperature than RTD ?;True,False;True
-Thermocouple are made of two similar metals ?;True,False;False
-RTD can be made of lead ?;True,False;False
-Temperature is not measured in ?;Pari, Celsius,Rankine;Pari
-Infrared Sensors works by ?;measuring the emitted thermal radiation from source, measuring the stored thermal radiation in source, none of them;measuring the emitted thermal radiation from source
-Does not play role in choosing temperature sensor ?;Temperature Range,Stability,Soundwave;Soundwave
-RTD stands for ?;Resistance Temperature Detector,Resistance Temperature Dimension,Resistance Time Device;Resistance Temperature Detector
-Infrared wavelength is between ?;400 nm – 700 nm,700 nm – 1 mm,1 mm – 1 meter;700 nm – 1 mm
-Bi-Metal Thermometer is made of ?;Two mis-similar metals,stem & gauge,a wire & an isulator;stem & gauge
+﻿"PH" stands for ?;Protein Highrate;potential of hydrogen;potential of Hiderate;potential of hydrogen
+Heartbeats at a resting are rate close to ?;60;72;82;72
+more sensitive cells to coulours in the Eye ?;Cones;Nodes;Both;Cones
+The Alpha wave from range is from ?;8 to 12Hz;0.5 to 4Hz;15 to 20Hz;8 to 12Hz
+Mapping a continuous set to a countable set is called "Quantization" ?;Quantization;Sampling;Mapping;Quantization
+Used to test the electrical activity of Skeletal muscles ?;ECG;EMG;EEG;EMG
+Stethoscope is used for heartbeat ?;True;False;True
+Digital-to-Analog converter: converting a physical quantity to a digital number ?;True;False;True
+Sound frequency detection for human from ~10 Hz to 20 kHz ?;True;False;False
+Optical coherence tomography is for optical measurement ?;True;False;True
+Class I in medical device classification is for High risk devices ?;True;False;False
+BMI is for weighing scale ?;True;False;True
+Wheelchairs are Class I devices ?;True;False;True
+Surgical laser is Class III device ?;True;False;False
+An instrument for measuring the air capacity of the lungs ?;Spirometer;Cannula;Sphygmomanometer;Spirometer
+Systolic Blood pressure is ?;80 mm/Hg;120 mm/Hg;100 mm/Hg;120 mm/Hg
+It has 2 basic types;transmission probes and reflectance probes ?;Spirometer;Pulse oximeter;Sphygmomanometer;Pulse oximeter
+Which Class is Pacemakers ?;Class I;Class IIa;Class III;Class IIa
+Which Class is Hearing aid ?;Class I;Class IIa;Class III;Class III
+What is not Monitoring purposes ?;Tracking people;Life support;Therapeutic;Tracking people
+Sleep does not affect blood pressure ?;True;False;False
+Blood pressure numbers of less than 120/80 mm Hg is normal ?;True;False;True
+Tonometry method is invasive method ?;True;False;False
+Photoplethysmography uses visible light ?;True;False;False
+Hyperthermia is when body temperature ?;<35.0 °C;>37.5 or 38.3 °C;>40.0 or 41.0 °C;>37.5 or 38.3 °C
+"Sys" in Sphygmomanometer is for ?;System;Systolic;Sysop;Systolic
+Temperature is measured in ?;Thermometer;Thermoplast;Thermorecepter;Thermometer
+According to Blood pressure asociation;Low Blood pressure is below ?;90 mmHg; 80 mmHg;70 mmHg;90 mmHg
+Diastolic blood pressure is ?;pressure when heart pushes blood out; pressure when rests between beats; none of the above;pressure when rests between beats
+Oscillometer is used for ?;measuring sugar in blood;measuring blood pressure;measuring PH;measuring blood pressure
+RTD is a non-contact temperature device ?;True;False;False
+Thermocouple Sensor can stand much higher temperature than RTD ?;True;False;True
+Thermocouple are made of two similar metals ?;True;False;False
+RTD can be made of lead ?;True;False;False
+Temperature is not measured in ?;Pari;Celsius;Rankine;Pari
+Infrared Sensors works by ?;measuring the emitted thermal radiation from source; measuring the stored thermal radiation in source; none of them;measuring the emitted thermal radiation from source
+Does not play role in choosing temperature sensor ?;Temperature Range;Stability;Soundwave;Soundwave
+RTD stands for ?;Resistance Temperature Detector;Resistance Temperature Dimension;Resistance Time Device;Resistance Temperature Detector
+Infrared wavelength is between ?;400 nm – 700 nm;700 nm – 1 mm;1 mm – 1 meter;700 nm – 1 mm
+Bi-Metal Thermometer is made of ?;Two mis-similar metals;stem & gauge;a wire & an isulator;stem & gauge

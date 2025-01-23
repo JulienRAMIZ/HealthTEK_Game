@@ -17,6 +17,7 @@ using static Unity.VisualScripting.Member;
 /* Script that manages the game */
 public class GameManager : MonoBehaviour
 {
+    public string lienFichier;
     public GameObject TitleScreen;
     public GameObject QuestionScreen;
     public GameObject[] Choices;
@@ -85,6 +86,8 @@ public class GameManager : MonoBehaviour
     private int nbDisplayedQuestions = 0;
     private int nbJokers = 3;
     private int maxScore = 450;
+    private int randomIndex = 0;
+    private bool isMaze = false;
     public float playerMark;
 
     [SerializeField] TMP_Text notificationText;
@@ -97,7 +100,7 @@ public class GameManager : MonoBehaviour
     {
         //var QuizFile = Resources.Load<TextAsset>("/QnA_Files/QnA");
         //var QuizFile = Path.Combine(Application.streamingAssetsPath,"QnA_Files/QnA_unit1.csv");
-        var QuizFile = Path.Combine(Application.streamingAssetsPath, "QnA_Files/SmartModule_NS.csv");
+        var QuizFile = Path.Combine(Application.streamingAssetsPath, "QnA_Files",lienFichier);
         string FilePath = QuizFile;
 
         Debug.Log(FilePath);
@@ -125,8 +128,8 @@ public class GameManager : MonoBehaviour
             QnA.Add(values[6]);
             QnA.Add(values[7]);
             QnA.Add(values[8]);
-            QnA.Add(values[9]);
-            QnA.Add(values[10]);
+            //QnA.Add(values[9]);
+            //QnA.Add(values[10]);
             nbLines++; // We use nbLines here to get the number of questions. nbLines corresponds to the number of lines in the csv file. Since each line holds a question, nbLines can count as the number of questions.
         }
         //On ne supprime plus la ligne de titre car elle n'existe plus dans le fichier
@@ -139,8 +142,9 @@ public class GameManager : MonoBehaviour
         //CorrectAnswer = QnA[RandomIndex + 2];
 
         // create a function for adapt file's answers
-        
-        
+        Debug.Log("On regarde le qna count" + QnA.Count);
+
+
 
         image1 = background1.GetComponent<ImageWithRoundedCorners>();
         image2 = background2.GetComponent<ImageWithRoundedCorners>();
@@ -219,7 +223,20 @@ public class GameManager : MonoBehaviour
     public void QuestionTile()
     {
 
-        QuestionIndex = (tileX + (tileY * 5)) * 11;
+        //QuestionIndex = (tileX + (tileY * 5)) * 11;
+        if (lienFichier == "questions_michel_NS.csv")
+        {
+            isMaze = true;
+
+            randomIndex = UnityEngine.Random.Range(0, QnA.Count / 9);
+            QuestionIndex = randomIndex * 9;
+        }
+        else
+        {
+            QuestionIndex = (tileX + (tileY * grid._width)) * 9;
+        }
+
+
 
 
  
