@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 
 /* This script displays the score details at the end of the game. */
 public class EndGame : MonoBehaviour
@@ -51,25 +52,45 @@ public class EndGame : MonoBehaviour
     {
         if(!resultShowed)
         {
-            for (int i = 0; i < manager.unit.Length; i++)
+            if (manager.isMaze == true)
             {
-                if (manager.unit[i] >= 3)
-                {
-                    //resultText.text = resultText.text + " \n • " + unitName[i];
-                    numberGoodUnit++;
+               // based on number of green box, add different resultText.text ...
+               if (manager.nbClosedDoor >= (grid._width * grid._height) -10)
+               {
+                    resultText.text = " Well done, you find the cure to save everyone !";
+               } 
+               else if (manager.nbClosedDoor <= (grid._width * grid._height) / 4)
+               {
+                    resultText.text = " You made some mistakes but don't lose hope, you can try again !"; 
+               }
+               else
+               {
+                    resultText.text = " You are close, your effort allow you to save people !";
                 }
             }
+            else 
+            {
+                for (int i = 0; i < manager.unit.Length; i++)
+                {
+                    if (manager.unit[i] >= 3)
+                    {
+                        //resultText.text = resultText.text + " \n • " + unitName[i];
+                        numberGoodUnit++;
+                    }
+                }
 
-            if (numberGoodUnit == 6)
-            {
-                AdvancedResult();
+                if (numberGoodUnit == 6)
+                {
+                    AdvancedResult();
+                }
+                else
+                {
+                    BasicResult();
+                }
+                timeCount.timerText.gameObject.SetActive(false);
+                resultShowed = true;
             }
-            else
-            {
-                BasicResult();
-            }
-            timeCount.timerText.gameObject.SetActive(false);
-            resultShowed = true;
+            
         }
 
     }

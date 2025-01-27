@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
 
     [System.NonSerialized]
     public int tileX,tileY;
+    public int nbClosedDoor = 0;
 
     private string[] correctAnswer = new string[4];
     private string[] filledAnswer = new string[4];
@@ -87,7 +88,7 @@ public class GameManager : MonoBehaviour
     private int nbJokers = 3;
     private int maxScore = 450;
     private int randomIndex = 0;
-    private bool isMaze = false;
+    public bool isMaze = false;
     public float playerMark;
 
     [SerializeField] TMP_Text notificationText;
@@ -213,11 +214,23 @@ public class GameManager : MonoBehaviour
                 //Debug.Log("On est dans les j : " + j);
                 if (grid._listTiles[j, i].tag == "OpenedDoor")
                 {
-                    //Debug.Log("Cette room est juste  :  x " + j + "y " + i + "  " + grid._listTiles[j, i].tag);
-                    unit[i]++;
+                    if (isMaze == true)
+                    {
+                        //add a code to count numbers of green box ...
+                        nbClosedDoor++;
+                    }
+                    else
+                    {
+                        //Debug.Log("Cette room est juste  :  x " + j + "y " + i + "  " + grid._listTiles[j, i].tag);
+                        unit[i]++;
+
+                    }
                 }
             }
         }
+
+        Debug.Log("Nombre de réponse juste : " + nbClosedDoor);
+
     }
 
     public void QuestionTile()
