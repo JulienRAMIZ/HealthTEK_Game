@@ -349,7 +349,7 @@ public class GameManager : MonoBehaviour
             }
             //nbDisplayedQuestions++;
             Debug.Log("Ok c'est la merde ");
-            QuestionTile();
+            //QuestionTile();
         }
         //SetAnswers();
         newSetAnswer();
@@ -366,15 +366,15 @@ public class GameManager : MonoBehaviour
         if (nbEmptyAnswer <= 2)
         {
             //NumberAnswerText.text = "Chose many ! ";
-            QuestionText.text = QuestionText.text + "  Chose many ! ";
-            //background1.GetComponent<Image>().sprite = square;
-            //background2.GetComponent<Image>().sprite = square;
-            //background3.GetComponent<Image>().sprite = square;
-            //background4.GetComponent<Image>().sprite = square;
-            background1.GetComponent<Image>().sprite = circle;
-            background2.GetComponent<Image>().sprite = circle;
-            background3.GetComponent<Image>().sprite = circle;
-            background4.GetComponent<Image>().sprite = circle;
+            //QuestionText.text = QuestionText.text + "  Chose many ! ";
+            background1.GetComponent<Image>().sprite = square;
+            background2.GetComponent<Image>().sprite = square;
+            background3.GetComponent<Image>().sprite = square;
+            background4.GetComponent<Image>().sprite = square;
+            //background1.GetComponent<Image>().sprite = circle;
+            //background2.GetComponent<Image>().sprite = circle;
+            //background3.GetComponent<Image>().sprite = circle;
+            //background4.GetComponent<Image>().sprite = circle;
             ToggleGroup.SetActive(false);
 
         }
@@ -393,7 +393,7 @@ public class GameManager : MonoBehaviour
             background3.GetComponent<Image>().sprite = circle;
             background4.GetComponent<Image>().sprite = circle;
 
-            QuestionText.text = QuestionText.text + "  Chose one ! ";
+            //QuestionText.text = QuestionText.text + "  Chose one ! ";
 
             ToggleGroup.SetActive(true);
 

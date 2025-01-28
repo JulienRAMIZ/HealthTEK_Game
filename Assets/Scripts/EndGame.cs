@@ -13,6 +13,7 @@ public class EndGame : MonoBehaviour
     [SerializeField] TMP_Text resultText;
     [SerializeField] TMP_Text resultTitle;
     [SerializeField] TMP_Text gameScoreText;
+    [SerializeField] TMP_Text endGameText;
 
     private string finalTimeText;
     private GameManager manager;
@@ -22,6 +23,7 @@ public class EndGame : MonoBehaviour
     private string[] unitName = new string[6] { "Engineering applied to orthopaedics as an example of the use of biomechanics biomaterials ", "Biosensors and medical devices based on electronic principles", "Surgical Instruments", "Artificial Intelligence and Health", "Anatomy and Physiology", "Genetics and genomics" };
     private bool resultShowed = false;
     private int numberGoodUnit = 0;
+    private int numberGridBox = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +34,7 @@ public class EndGame : MonoBehaviour
 
         //}
         //timeCount = GameObject.Find("Time Text").GetComponent<TimeCount>();
+        numberGridBox = manager.grid._width * manager.grid._height;
     }
 
     // Update is called once per frame
@@ -41,7 +44,15 @@ public class EndGame : MonoBehaviour
         //finalTimeText = "Your time : " + (15 - int.Parse(timeCount.timerText.text.Substring(6, 3))).ToString() + ":" + (60 - int.Parse(timeCount.timerText.text[10..])).ToString();
         finalTimeText = "Your time : " + timeCount.timerText.text;
         //totalScoreText.text = "Your score : " + manager.score.ToString() + "\n" + finalTimeText + "\n" + "Your mark : " + manager.playerMark + "/20";
-        totalScoreText.text = "Your score line by line :  \n Unit 2 : " + manager.unit[0] + " / 5 \n Unit 3 : " + manager.unit[1] + " / 5 \n Unit 4 : " + manager.unit[2] + " / 5 \n Unit 5 : " + manager.unit[3] + " / 5 \n Unit 6 : " + manager.unit[4] + " / 5 \n Unit 7 : " + manager.unit[5] + " / 5";
+        if (manager.isMaze)
+        {
+            totalScoreText.text = "Your score is " + manager.nbClosedDoor + " / " +numberGridBox;
+        }
+        else
+        {
+            totalScoreText.text = "Your score line by line :  \n Unit 2 : " + manager.unit[0] + " / 5 \n Unit 3 : " + manager.unit[1] + " / 5 \n Unit 4 : " + manager.unit[2] + " / 5 \n Unit 5 : " + manager.unit[3] + " / 5 \n Unit 6 : " + manager.unit[4] + " / 5 \n Unit 7 : " + manager.unit[5] + " / 5";
+
+        }
         ScoreSentences();
         Result();
 
@@ -50,23 +61,25 @@ public class EndGame : MonoBehaviour
 
     public void Result()
     {
-        if(!resultShowed)
+
+        if (!resultShowed)
         {
             if (manager.isMaze == true)
             {
+                totalScoreText.gameObject.SetActive(true);
                // based on number of green box, add different resultText.text ...
-               if (manager.nbClosedDoor >= (grid._width * grid._height) -10)
+               if (manager.nbClosedDoor >= numberGridBox - 10)
                {
-                    resultText.text = " Well done, you find the cure to save everyone !";
+                    endGameText.text = endGameText.text + "\n You find the cure to save everyone !";
                } 
-               else if (manager.nbClosedDoor <= (grid._width * grid._height) / 4)
+               else if (manager.nbClosedDoor <= (numberGridBox) / 4)
                {
-                    resultText.text = " You made some mistakes but don't lose hope, you can try again !"; 
+                    endGameText.text = endGameText.text + "\n You made some mistakes but don't lose hope, you can try again !"; 
                }
                else
                {
-                    resultText.text = " You are close, your effort allow you to save people !";
-                }
+                    endGameText.text = endGameText.text + "\n You are close, your effort allow you to save people !";
+               }
             }
             else 
             {
@@ -87,11 +100,12 @@ public class EndGame : MonoBehaviour
                 {
                     BasicResult();
                 }
-                timeCount.timerText.gameObject.SetActive(false);
-                resultShowed = true;
+                
             }
             
         }
+        timeCount.timerText.gameObject.SetActive(false);
+        resultShowed = true;
 
     }
 
