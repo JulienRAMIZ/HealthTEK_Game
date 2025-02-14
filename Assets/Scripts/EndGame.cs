@@ -78,7 +78,7 @@ public class EndGame : MonoBehaviour
                }
                else
                {
-                    endGameText.text = endGameText.text + "\n You are close, your effort allow you to save people !";
+                    endGameText.text = endGameText.text + "\n You are close, your effort allows you to save people !";
                }
             }
             else 

@@ -35,8 +35,8 @@ public class WelcomeText : MonoBehaviour
         // logoDonosti.SetActive(true);
         startButton.gameObject.SetActive(true);
         skipButton.gameObject.SetActive(false);
-        nextButton.gameObject.SetActive(true);
-        previousButton.gameObject.SetActive(false);
+        //nextButton.gameObject.SetActive(true);
+        //previousButton.gameObject.SetActive(false);
         ruleGrid.SetActive(false);
         timer.SetActive(false); //timer.gameObject.SetActive(false)
         ScoreText.SetActive(false); // ScoreText.gameObject.SetActive(false)
